@@ -2,6 +2,7 @@ import { getDashboard } from '../../services/api';
 import { useAsync } from '../../hooks/useAsync';
 import { GreetingBanner } from './GreetingBanner';
 import { KpiGrid } from './KpiGrid';
+import { ProgressPanel } from './ProgressPanel';
 
 const EMPTY_DEPS: unknown[] = [];
 
@@ -17,6 +18,10 @@ export function DashboardPage(): JSX.Element {
       <GreetingBanner agent={data.agent}>
         <KpiGrid kpis={data.kpis} />
       </GreetingBanner>
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]">
+        <ProgressPanel progress={data.progress} />
+        <div />
+      </div>
     </div>
   );
 }
