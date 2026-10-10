@@ -1,5 +1,6 @@
 import { getDashboard } from '../../services/api';
 import { useAsync } from '../../hooks/useAsync';
+import { CallsHandledChart } from './CallsHandledChart';
 import { GreetingBanner } from './GreetingBanner';
 import { EarningsCard } from './EarningsCard';
 import { KpiGrid } from './KpiGrid';
@@ -31,6 +32,7 @@ export function DashboardPage(): JSX.Element {
           <TasksCard tasks={data.tasks} />
         </div>
       </div>
+      <CallsHandledChart stats={data.callsLast7} />
     </div>
   );
 }
