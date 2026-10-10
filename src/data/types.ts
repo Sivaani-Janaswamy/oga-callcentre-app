@@ -4,6 +4,7 @@ export type ISODateTime = string;
 
 export interface Agent {
   id: ID;
+  greeting: string;
   name: string;
   shortName: string;
   company: string;

@@ -1,4 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { DashboardPage } from '../components/dashboard/DashboardPage';
 import { AppShell } from '../components/shell/AppShell';
 
 function PlaceholderPage({
@@ -24,15 +25,7 @@ export function AppRouter(): JSX.Element {
     <AppShell>
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route
-          path="/dashboard"
-          element={
-            <PlaceholderPage
-              title="Dashboard"
-              description="Dashboard KPI cards, progress, waiting list, earnings and task summaries will render here."
-            />
-          }
-        />
+        <Route path="/dashboard" element={<DashboardPage />} />
         <Route
           path="/plan/calls"
           element={

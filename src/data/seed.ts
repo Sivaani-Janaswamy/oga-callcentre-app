@@ -19,6 +19,7 @@ import type {
 
 export const agent: Agent = {
   id: 'agent_01',
+  greeting: 'Good afternoon 👋',
   name: 'Arvind Rajan',
   shortName: 'Arvind R.',
   company: 'The Sleep Company',
