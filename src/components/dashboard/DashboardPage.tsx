@@ -1,6 +1,7 @@
 import { getDashboard } from '../../services/api';
 import { useAsync } from '../../hooks/useAsync';
 import { CallsHandledChart } from './CallsHandledChart';
+import { CsatTrendChart } from './CsatTrendChart';
 import { GreetingBanner } from './GreetingBanner';
 import { EarningsCard } from './EarningsCard';
 import { KpiGrid } from './KpiGrid';
@@ -33,6 +34,7 @@ export function DashboardPage(): JSX.Element {
         </div>
       </div>
       <CallsHandledChart stats={data.callsLast7} />
+      <CsatTrendChart stats={data.csatLast7} />
     </div>
   );
 }
