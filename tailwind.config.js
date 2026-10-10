@@ -25,6 +25,8 @@ export default {
         warn: 'var(--color-warn)',
         'warn-soft': 'var(--color-warn-soft)',
         brand: 'var(--color-brand)',
+        info: 'var(--color-info)',
+        'info-soft': 'var(--color-info-soft)',
       },
       borderRadius: {
         xs: 'var(--radius-xs)',

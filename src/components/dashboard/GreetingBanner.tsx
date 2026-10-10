@@ -1,10 +1,10 @@
 import { CalendarDays, ChevronDown } from 'lucide-react';
-import { useState } from 'react';
+import { type ReactNode, useState } from 'react';
 import type { Agent } from '../../data/types';
 
 const PERIOD_OPTIONS = ['Today', 'This Week', 'This Month'] as const;
 
-export function GreetingBanner({ agent }: { agent: Agent }): JSX.Element {
+export function GreetingBanner({ agent, children }: { agent: Agent; children?: ReactNode }): JSX.Element {
   const [period, setPeriod] = useState<(typeof PERIOD_OPTIONS)[number]>('This Week');
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -54,6 +54,7 @@ export function GreetingBanner({ agent }: { agent: Agent }): JSX.Element {
           </div>
         </div>
       </div>
+      {children ? <div className="mt-6">{children}</div> : null}
       {/* PLACEHOLDER: verify against mock - period menu behavior is not specified. */}
     </section>
   );

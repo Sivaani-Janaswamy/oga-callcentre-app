@@ -1,6 +1,7 @@
 import { getDashboard } from '../../services/api';
 import { useAsync } from '../../hooks/useAsync';
 import { GreetingBanner } from './GreetingBanner';
+import { KpiGrid } from './KpiGrid';
 
 const EMPTY_DEPS: unknown[] = [];
 
@@ -13,7 +14,9 @@ export function DashboardPage(): JSX.Element {
 
   return (
     <div className="space-y-6">
-      <GreetingBanner agent={data.agent} />
+      <GreetingBanner agent={data.agent}>
+        <KpiGrid kpis={data.kpis} />
+      </GreetingBanner>
     </div>
   );
 }

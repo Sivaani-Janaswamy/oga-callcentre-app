@@ -6,7 +6,7 @@ export function Badge({
   className = '',
 }: {
   children: ReactNode;
-  tone?: 'default' | 'success' | 'danger' | 'warn' | 'purple';
+  tone?: 'default' | 'success' | 'danger' | 'warn' | 'purple' | 'info';
   className?: string;
 }): JSX.Element {
   const toneStyles: Record<string, string> = {
@@ -15,6 +15,7 @@ export function Badge({
     danger: 'bg-danger-soft text-danger border border-danger/20',
     warn: 'bg-warn-soft text-warn border border-warn/20',
     purple: 'bg-purple-soft text-purple border border-purple/20',
+    info: 'bg-info-soft text-info border border-info/20',
   };
 
   return (
