@@ -27,6 +27,7 @@ export const agent: Agent = {
   points: 1240,
   streakDays: 8,
   unreadNotifications: 3,
+  rank: 3,
 };
 
 export const leads: Lead[] = [

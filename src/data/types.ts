@@ -12,6 +12,7 @@ export interface Agent {
   points: number;
   streakDays: number;
   unreadNotifications: number;
+  rank: number;
 }
 
 export type LeadStatus = 'open' | 'won' | 'lost' | 'expired';
