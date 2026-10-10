@@ -2,7 +2,7 @@ import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YA
 import type { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 import type { TooltipProps } from 'recharts';
 import type { DailyStat } from '../../data/types';
-import { getDemoTodayIso, parseIso } from '../../utils/clock';
+import { getDemoTodayIso } from '../../utils/clock';
 import { Card } from '../ui/Card';
 
 type ChartMetric = 'calls' | 'csat';
@@ -44,12 +44,8 @@ export function DashboardBarChart({
 }): JSX.Element {
   const data = stats.map((stat) => {
     const value = metric === 'calls' ? stat.callsHandled : stat.csatPercent;
-    const dayLabel = stat.date === TODAY_ISO ? 'Today' : parseIso(stat.date).toLocaleDateString('en-US', {
-      weekday: 'short',
-    });
-
     return {
-      dayLabel,
+      dayLabel: stat.label,
       value,
       barHeight: Math.min(value * 3, 54),
       isToday: stat.date === TODAY_ISO,

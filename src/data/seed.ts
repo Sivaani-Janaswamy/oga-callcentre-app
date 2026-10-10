@@ -279,13 +279,13 @@ export const buyingSignals: BuyingSignal[] = [
 ];
 
 export const dailyStats: DailyStat[] = [
-  { date: '2026-10-03', callsHandled: 18, csatPercent: 88 },
-  { date: '2026-10-04', callsHandled: 22, csatPercent: 90 },
-  { date: '2026-10-05', callsHandled: 15, csatPercent: 85 },
-  { date: '2026-10-06', callsHandled: 26, csatPercent: 92 },
-  { date: '2026-10-07', callsHandled: 20, csatPercent: 89 },
-  { date: '2026-10-08', callsHandled: 12, csatPercent: 91 },
-  { date: '2026-10-09', callsHandled: 14, csatPercent: 94 },
+  { date: '2026-10-03', label: 'Mon', callsHandled: 18, csatPercent: 88 },
+  { date: '2026-10-04', label: 'Tue', callsHandled: 22, csatPercent: 90 },
+  { date: '2026-10-05', label: 'Wed', callsHandled: 15, csatPercent: 85 },
+  { date: '2026-10-06', label: 'Thu', callsHandled: 26, csatPercent: 92 },
+  { date: '2026-10-07', label: 'Fri', callsHandled: 20, csatPercent: 89 },
+  { date: '2026-10-08', label: 'Sat', callsHandled: 12, csatPercent: 91 },
+  { date: '2026-10-09', label: 'Today', callsHandled: 14, csatPercent: 94 },
 ];
 
 export const kpis: KpiSet = {

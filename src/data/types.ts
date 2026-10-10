@@ -115,6 +115,7 @@ export interface CalendarEvent {
 
 export interface DailyStat {
   date: ISODate;
+  label: string;
   callsHandled: number;
   csatPercent: number;
 }
