@@ -1,0 +1,60 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+      },
+      colors: {
+        sidebar: 'var(--color-sidebar)',
+        page: 'var(--color-page)',
+        card: 'var(--color-card)',
+        'card-soft': 'var(--color-card-soft)',
+        border: 'var(--color-border)',
+        text: 'var(--color-text)',
+        'text-muted': 'var(--color-text-muted)',
+        accent: 'var(--color-accent)',
+        'accent-soft': 'var(--color-accent-soft)',
+        purple: 'var(--color-purple)',
+        'purple-soft': 'var(--color-purple-soft)',
+        success: 'var(--color-success)',
+        'success-soft': 'var(--color-success-soft)',
+        danger: 'var(--color-danger)',
+        'danger-soft': 'var(--color-danger-soft)',
+        warn: 'var(--color-warn)',
+        'warn-soft': 'var(--color-warn-soft)',
+        brand: 'var(--color-brand)',
+      },
+      borderRadius: {
+        xs: 'var(--radius-xs)',
+        sm: 'var(--radius-sm)',
+        md: 'var(--radius-md)',
+      },
+      boxShadow: {
+        soft: 'var(--shadow-soft)',
+      },
+      fontSize: {
+        10: ['var(--font-size-10)', '1.3'],
+        11: ['var(--font-size-11)', '1.4'],
+        12: ['var(--font-size-12)', '1.5'],
+        13: ['var(--font-size-13)', '1.5'],
+        18: ['var(--font-size-18)', '1.35'],
+        20: ['var(--font-size-20)', '1.3'],
+        24: ['var(--font-size-24)', '1.2'],
+        hero: ['var(--font-size-hero)', '1.2'],
+      },
+      spacing: {
+        1: 'var(--space-1)',
+        2: 'var(--space-2)',
+        3: 'var(--space-3)',
+        4: 'var(--space-4)',
+        5: 'var(--space-5)',
+        6: 'var(--space-6)',
+        7: 'var(--space-7)',
+        8: 'var(--space-8)',
+      },
+    },
+  },
+  plugins: [],
+};
