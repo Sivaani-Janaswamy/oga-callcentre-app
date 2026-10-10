@@ -2,6 +2,7 @@ import { getDashboard } from '../../services/api';
 import { useAsync } from '../../hooks/useAsync';
 import { CallsHandledChart } from './CallsHandledChart';
 import { CsatTrendChart } from './CsatTrendChart';
+import { DashboardError, DashboardLoading } from './DashboardState';
 import { GreetingBanner } from './GreetingBanner';
 import { EarningsCard } from './EarningsCard';
 import { KpiGrid } from './KpiGrid';
@@ -12,10 +13,18 @@ import { WaitingList } from './WaitingList';
 const EMPTY_DEPS: unknown[] = [];
 
 export function DashboardPage(): JSX.Element {
-  const { data } = useAsync(getDashboard, EMPTY_DEPS);
+  const { data, loading, error } = useAsync(getDashboard, EMPTY_DEPS);
+
+  if (loading) {
+    return <DashboardLoading />;
+  }
+
+  if (error) {
+    return <DashboardError message={error.message} />;
+  }
 
   if (!data) {
-    return <div className="min-h-40" />;
+    return <DashboardError message="No dashboard data was returned." />;
   }
 
   return (
