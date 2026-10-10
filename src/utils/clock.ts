@@ -12,6 +12,14 @@ export function toDateFromIso(value: string): Date {
   return new Date(value);
 }
 
+export function parseIso(iso: string): Date {
+  return new Date(iso);
+}
+
+export function demoNowIso(): string {
+  return DEMO_TODAY.toISOString();
+}
+
 export function getDemoTodayIso(): string {
   return '2026-10-09';
 }
