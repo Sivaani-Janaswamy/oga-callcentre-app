@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useMemo, useState } from 'react';
 
 export interface UsePagingResult<T> {
