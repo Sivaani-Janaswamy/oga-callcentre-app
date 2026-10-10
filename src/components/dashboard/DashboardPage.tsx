@@ -4,6 +4,7 @@ import { GreetingBanner } from './GreetingBanner';
 import { EarningsCard } from './EarningsCard';
 import { KpiGrid } from './KpiGrid';
 import { ProgressPanel } from './ProgressPanel';
+import { TasksCard } from './TasksCard';
 import { WaitingList } from './WaitingList';
 
 const EMPTY_DEPS: unknown[] = [];
@@ -25,7 +26,10 @@ export function DashboardPage(): JSX.Element {
           <ProgressPanel progress={data.progress} />
           <WaitingList items={data.waiting} />
         </div>
-        <EarningsCard earnings={data.earnings} />
+        <div className="space-y-6">
+          <EarningsCard earnings={data.earnings} />
+          <TasksCard tasks={data.tasks} />
+        </div>
       </div>
     </div>
   );
