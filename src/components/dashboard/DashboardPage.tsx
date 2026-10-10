@@ -1,6 +1,7 @@
 import { getDashboard } from '../../services/api';
 import { useAsync } from '../../hooks/useAsync';
 import { GreetingBanner } from './GreetingBanner';
+import { EarningsCard } from './EarningsCard';
 import { KpiGrid } from './KpiGrid';
 import { ProgressPanel } from './ProgressPanel';
 import { WaitingList } from './WaitingList';
@@ -24,7 +25,7 @@ export function DashboardPage(): JSX.Element {
           <ProgressPanel progress={data.progress} />
           <WaitingList items={data.waiting} />
         </div>
-        <div />
+        <EarningsCard earnings={data.earnings} />
       </div>
     </div>
   );
