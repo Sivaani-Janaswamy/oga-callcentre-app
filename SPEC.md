@@ -20,12 +20,14 @@
 ## 1. Goals and non-goals
 
 **Goals**
+
 1. Match the mock visually (30% of grade) and behaviourally (25%).
 2. Clean, readable, typed code (25%). Every line must be explainable by me in a review.
 3. A README that explains how to run, why this stack, what is done/skipped, and AI tools used (10%).
 4. Bonus and polish (10%).
 
 **Non-goals**
+
 - No backend, auth, real telephony, or real AI. Everything is sample data.
 - No pixel-perfect obsession over the DEMO strip or floating dial button (optional per the brief).
 
@@ -33,32 +35,32 @@
 
 ## 2. Stack and rationale
 
-| Concern | Choice | Why |
-|---|---|---|
-| Framework | React 18 + Vite + TypeScript | Preferred by the brief; fast dev loop; types make the data model visible in review |
-| Styling | Tailwind CSS + a small token file | Restrained, consistent type scale; fast to match the mock |
-| Routing | React Router v6 | Real URLs for each screen, back button works in Pulse |
-| State | React state + Context (`AppContext`) | Small app; Redux is overkill |
-| Charts | Recharts | Covers the "charts with a library" bonus |
-| Data | Typed mock module + service layer | Behaves like an API without a backend |
-| Icons | lucide-react | Light, consistent |
-| Tests | Vitest + React Testing Library (a few targeted tests) | Shows code quality; keep scope small |
-| Deploy | Vercel | Live link bonus |
+| Concern   | Choice                                                | Why                                                                                |
+| --------- | ----------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Framework | React 18 + Vite + TypeScript                          | Preferred by the brief; fast dev loop; types make the data model visible in review |
+| Styling   | Tailwind CSS + a small token file                     | Restrained, consistent type scale; fast to match the mock                          |
+| Routing   | React Router v6                                       | Real URLs for each screen, back button works in Pulse                              |
+| State     | React state + Context (`AppContext`)                  | Small app; Redux is overkill                                                       |
+| Charts    | Recharts                                              | Covers the "charts with a library" bonus                                           |
+| Data      | Typed mock module + service layer                     | Behaves like an API without a backend                                              |
+| Icons     | lucide-react                                          | Light, consistent                                                                  |
+| Tests     | Vitest + React Testing Library (a few targeted tests) | Shows code quality; keep scope small                                               |
+| Deploy    | Vercel                                                | Live link bonus                                                                    |
 
 ---
 
 ## 3. Information architecture and routes
 
-| Screen | Route | Components | Data service functions | TASKLIST phase |
-|---|---|---|---|---|
-| Dashboard | `/dashboard` | Greeting banner, KPI cards, progress panel, waiting list, earnings card, tasks card, calls chart, CSAT chart | `getAgent()`, `getDashboardMetrics()`, `getWaitingList()`, `getEarnings()`, `getTasks()`, `getDailyStats()` | Phase 2 |
-| Plan default | `/plan/calls` | Plan header, tabs, ranked call rows, accordion, pager | `getCallsToMake()`, `getIncomingCalls()`, `getRecentCalls()`, `getCallReview()` | Phase 3 |
-| Plan incoming | `/plan/incoming` | Missed calls summary strip, incoming rows, call-back CTA | `getIncomingCalls()` | Phase 3 |
-| Plan recent | `/plan/recent` | Recent call rows, review panel drawer | `getRecentCalls()`, `getCallReview()` | Phase 3 |
-| Calendar | `/calendar` | Month header, day grid, selected-day panel | `getCalendarEvents()`, `getMonthEvents()` | Phase 4 |
-| Pulse home | `/pulse` | Pulse header, bot card, agents list, kudos card | `getChannels()`, `getKudos()` | Phase 5 |
-| Pulse channel | `/pulse/:channelId` | Channel header, pinned needs-input card, message list, composer | `getChannelMessages()`, `getNeedsInput()`, `sendMessage()` | Phase 5 |
-| Leads modal | overlay on dashboard | Leads modal, lead cards, score bars, collapsible sections, pager | `getLeadById()`, `getLeads()`, `getLeadSignals()` | Phase 6 |
+| Screen        | Route                | Components                                                                                                   | Data service functions                                                                                      | TASKLIST phase |
+| ------------- | -------------------- | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- | -------------- |
+| Dashboard     | `/dashboard`         | Greeting banner, KPI cards, progress panel, waiting list, earnings card, tasks card, calls chart, CSAT chart | `getAgent()`, `getDashboardMetrics()`, `getWaitingList()`, `getEarnings()`, `getTasks()`, `getDailyStats()` | Phase 2        |
+| Plan default  | `/plan/calls`        | Plan header, tabs, ranked call rows, accordion, pager                                                        | `getCallsToMake()`, `getIncomingCalls()`, `getRecentCalls()`, `getCallReview()`                             | Phase 3        |
+| Plan incoming | `/plan/incoming`     | Missed calls summary strip, incoming rows, call-back CTA                                                     | `getIncomingCalls()`                                                                                        | Phase 3        |
+| Plan recent   | `/plan/recent`       | Recent call rows, review panel drawer                                                                        | `getRecentCalls()`, `getCallReview()`                                                                       | Phase 3        |
+| Calendar      | `/calendar`          | Month header, day grid, selected-day panel                                                                   | `getCalendarEvents()`, `getMonthEvents()`                                                                   | Phase 4        |
+| Pulse home    | `/pulse`             | Pulse header, bot card, agents list, kudos card                                                              | `getChannels()`, `getKudos()`                                                                               | Phase 5        |
+| Pulse channel | `/pulse/:channelId`  | Channel header, pinned needs-input card, message list, composer                                              | `getChannelMessages()`, `getNeedsInput()`, `sendMessage()`                                                  | Phase 5        |
+| Leads modal   | overlay on dashboard | Leads modal, lead cards, score bars, collapsible sections, pager                                             | `getLeadById()`, `getLeads()`, `getLeadSignals()`                                                           | Phase 6        |
 
 The Leads modal is not a route. It opens over the Dashboard from the task list (optionally mirrored in a `?lead=<id>` query param so it survives refresh).
 
@@ -99,21 +101,25 @@ src/
 ## 6. App shell (must build)
 
 **Sidebar (left, dark green, ~150–160px)**
+
 - Brand text "On-Ground.ai" at top.
 - Items: Dashboard, Plan (expandable with sub-items: Calls to make, Incoming, Recent, Practise a call), Calendar, Pulse.
 - Active item has a highlighted pill; active Plan sub-item highlighted separately.
 - Plan group stays expanded while any `/plan/*` route is active.
 
 **Top bar**
+
 - Left: "OG" badge + "On-Ground.ai".
 - Right: three status chips (notification count badge in red, a small score/streak chip, a points chip) and a user avatar. Hover shows a tooltip.
 
 **Behaviour**
+
 - Shell persists across routes; only the content pane changes.
 - Content pane scrolls independently of the sidebar.
 - On phone width: sidebar collapses into a hamburger drawer (bonus).
 
 **Acceptance**
+
 - [ ] Navigation highlights match the current route, including on refresh.
 - [ ] Plan sub-menu expands/collapses and keeps state across navigation.
 
@@ -126,24 +132,30 @@ src/
 **KPI cards (4, in a row)** — e.g. Score, Avg handle time, CSAT/Conversion %, In queue. Each shows a big value, a label, and a small delta chip (green up / red down).
 
 **My progress — today (green panel)**
+
 - Two stat tiles: leads created, leads called. A "+N" chip on each.
 
 **Who's waiting**
+
 - List of 2+ rows: avatar, name, short reason, urgency chip (e.g. "4m 20s" in red/amber). Link "Open planner" → `/plan/calls`.
 
 **My earnings this month**
+
 - Large ₹ amount, sub-line ("₹1,750 from practised calls" style), progress bar toward a target.
 
 **My tasks** (brown/amber card with a count badge)
+
 - Rows: "2 callbacks", "2 hot leads", "1 outcome", each with an icon and secondary text.
 - **Clicking "2 hot leads" (or the leads row) opens the Leads modal.**
 
 **Charts**
+
 - "Calls handled — last 7 days": bar chart, today's bar visually distinct (darker).
 - "CSAT trend — last 7 days": bar chart with % labels, today's bar distinct.
 - Weekday labels on the x-axis, value labels above bars.
 
 **Acceptance**
+
 - [ ] All numbers come from the data layer, not hard-coded in JSX.
 - [ ] Charts render with Recharts, today's bar highlighted, tooltip on hover.
 - [ ] Clicking the tasks row opens the Leads modal at lead 1.
@@ -155,12 +167,14 @@ src/
 Shared **Plan header** (dark band): "Today's calling plan" + "Planner" title, and a date/streak chip on the right. Below it, a sub-title and the active tab's content.
 
 ### 8.1 Calls to make `/plan/calls`
+
 - Title "Planned outgoing calls", sub-line "Ranked by lead score, tap a row for the full picture".
 - Rows ranked by lead score descending. Each row: avatar initials, name, short context ("Interested · Ortho Grid · ₹10,000"), score badge on the right with a small delta.
 - **Expandable:** clicking a row expands inline details (intent, last note, buying signals summary, Call button). Only one open at a time (accordion).
 - **Paging:** 5 per page; footer shows "Page 1 of N" with prev/next. Next/prev disabled at the ends.
 
 ### 8.2 Incoming `/plan/incoming`
+
 - Title "Missed calls", sub-line "Ranked by expected value, the highest value is called first".
 - Summary strip: **count missed today** and **expected value at stake** (sum, ₹).
 - Rows: avatar, name (or "Unknown"), "Missed Today 10:09 AM · Hold queue" meta, expected value on the right, and a green **Call back** button.
@@ -168,14 +182,17 @@ Shared **Plan header** (dark band): "Today's calling plan" + "Planner" title, an
 - **Call back** → starts the in-app call flow (see Bonus) and marks the row "Calling…".
 
 ### 8.3 Recent `/plan/recent`
+
 - Title "Recent calls", sub-line "Tap a call to review it".
 - Rows: type icon (in-app vs phone), name, time and length ("Today 11:30 AM · —"), chevron.
 - **Tap a row** → opens a review drawer/panel with call summary, outcome, duration and notes.
 
 ### 8.4 Practise a call (bonus) `/plan/practise`
+
 - A list of practice scenarios, "Start" runs a scripted fake call (timer, transcript lines, end call) and awards sample points shown in earnings.
 
 **Acceptance (Plan overall)**
+
 - [ ] Sorting is computed in the service layer, not hard-coded in the order of fixtures.
 - [ ] Paging logic lives in `usePaging` and is unit-tested.
 - [ ] Empty state exists for each list.
@@ -192,6 +209,7 @@ Shared **Plan header** (dark band): "Today's calling plan" + "Planner" title, an
 - Days from neighbouring months are shown muted or blank, depending on the mock.
 
 **Acceptance**
+
 - [ ] Month math is correct for any month (leap years, 28–31 days, week offsets).
 - [ ] Today button always returns to the real current date.
 - [ ] Event dots come from `events` data.
@@ -201,6 +219,7 @@ Shared **Plan header** (dark band): "Today's calling plan" + "Planner" title, an
 ## 10. Pulse
 
 ### 10.1 Pulse home `/pulse`
+
 - Purple header band: "Pulse" + company subtitle; search box "Ask AvaniBot or search Pulse…".
 - **AvaniBot card** (purple gradient): label "AVANIBOT" with an "ALWAYS ON" chip, short blurb, two buttons: **Daily Brief** and **Ask a question**.
 - **Custom Agents** row.
@@ -211,6 +230,7 @@ Shared **Plan header** (dark band): "Today's calling plan" + "Planner" title, an
 - Clicking any channel → `/pulse/:channelId`.
 
 ### 10.2 Pulse channel `/pulse/:channelId`
+
 - Purple header with **Back** button and `# channel-name`.
 - **Needs your input** (pinned): red count badge, "pinned" tag, title ("Confirm the 4:30pm callback"), sub-line, **two buttons** (Confirmed / Reschedule), and a reply text box with a send button.
 - Date separator ("Today · Call Centre Team").
@@ -218,10 +238,12 @@ Shared **Plan header** (dark band): "Today's calling plan" + "Planner" title, an
 - **Composer** at bottom: placeholder "Message #callcentre-team…", emoji button.
 
 **Bonus behaviours**
+
 - Sending a message appends a green bubble on the right with the current time and scrolls to bottom. Enter sends, Shift+Enter newline.
 - Clicking **Confirmed** or **Reschedule** resolves the pinned card: it collapses into a small "Answered: Confirmed" state and a system line is added to the chat. Typing in the reply box and sending does the same with the typed answer.
 
 **Acceptance**
+
 - [ ] Message list auto-scrolls on new message.
 - [ ] Channel state persists while navigating between channels in the same session.
 - [ ] Back button returns to `/pulse`.
@@ -243,6 +265,7 @@ Shared **Plan header** (dark band): "Today's calling plan" + "Planner" title, an
 - Collapsible state resets when changing lead.
 
 **Acceptance**
+
 - [ ] Modal traps focus, restores focus on close, has `aria-modal` and a labelled title.
 - [ ] Paging never goes out of range; counter text updates.
 - [ ] Score bars animate to value on mount.

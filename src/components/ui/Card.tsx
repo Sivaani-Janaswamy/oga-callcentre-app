@@ -7,5 +7,9 @@ export function Card({
   className?: string;
   children: ReactNode;
 }): JSX.Element {
-  return <div className={`rounded-md border border-border bg-card p-4 shadow-soft ${className}`.trim()}>{children}</div>;
+  return (
+    <div className={`rounded-md border border-border bg-card p-4 shadow-soft ${className}`.trim()}>
+      {children}
+    </div>
+  );
 }

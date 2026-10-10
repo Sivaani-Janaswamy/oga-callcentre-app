@@ -1,8 +1,45 @@
-import { agent, buyingSignals, calendarEvents, channels, channelMessages, dailyStats, earnings, kpis, leads, missedCalls, needsInput, practiseScenarios, progressToday, recentCalls, tasks, waitingList, kudos } from '../data/seed';
-import type { Agent, BuyingSignal, CalendarEvent, Channel, DailyStat, Earnings, ID, KpiSet, Lead, Message, MissedCall, NeedsInput, Page, PractiseScenario, Task, WaitingItem, Kudos } from '../data/types';
+import {
+  agent,
+  buyingSignals,
+  calendarEvents,
+  channels,
+  channelMessages,
+  dailyStats,
+  earnings,
+  kpis,
+  leads,
+  missedCalls,
+  needsInput,
+  practiseScenarios,
+  progressToday,
+  recentCalls,
+  tasks,
+  waitingList,
+  kudos,
+} from '../data/seed';
+import type {
+  Agent,
+  BuyingSignal,
+  CalendarEvent,
+  Channel,
+  DailyStat,
+  Earnings,
+  ID,
+  KpiSet,
+  Lead,
+  Message,
+  MissedCall,
+  NeedsInput,
+  Page,
+  PractiseScenario,
+  Task,
+  WaitingItem,
+  Kudos,
+} from '../data/types';
 import { demoNowIso, parseIso } from '../utils/clock';
 
-const delay = (ms: number): Promise<void> => new Promise((resolve) => window.setTimeout(resolve, ms));
+const delay = (ms: number): Promise<void> =>
+  new Promise((resolve) => window.setTimeout(resolve, ms));
 
 export async function getCurrentAgent(): Promise<Agent> {
   await delay(180);
@@ -32,7 +69,9 @@ export async function getDashboard(): Promise<{
 
 export async function getPlannedCalls(page: number, pageSize: number): Promise<Page<Lead>> {
   await delay(220);
-  const sorted = [...leads].filter((lead) => lead.status === 'open').sort((a, b) => b.score - a.score);
+  const sorted = [...leads]
+    .filter((lead) => lead.status === 'open')
+    .sort((a, b) => b.score - a.score);
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
   const items = sorted.slice(start, end);
@@ -46,7 +85,11 @@ export async function getPlannedCalls(page: number, pageSize: number): Promise<P
   };
 }
 
-export async function getMissedCalls(): Promise<{ items: MissedCall[]; totalValueInr: number; count: number }> {
+export async function getMissedCalls(): Promise<{
+  items: MissedCall[];
+  totalValueInr: number;
+  count: number;
+}> {
   await delay(180);
   const items = [...missedCalls].sort((a, b) => {
     const left = a.expectedValueInr ?? 0;
@@ -60,7 +103,9 @@ export async function getMissedCalls(): Promise<{ items: MissedCall[]; totalValu
 
 export async function getRecentCalls(): Promise<import('../data/types').Call[]> {
   await delay(170);
-  return [...recentCalls].sort((a, b) => parseIso(b.startedAt).getTime() - parseIso(a.startedAt).getTime());
+  return [...recentCalls].sort(
+    (a, b) => parseIso(b.startedAt).getTime() - parseIso(a.startedAt).getTime(),
+  );
 }
 
 export async function getCallById(id: ID): Promise<import('../data/types').Call> {
@@ -79,7 +124,11 @@ export async function getEvents(month: string): Promise<CalendarEvent[]> {
   return calendarEvents.filter((event) => event.date.startsWith(month));
 }
 
-export async function getChannels(): Promise<{ role: Channel[]; task: Channel[]; general: Channel[] }> {
+export async function getChannels(): Promise<{
+  role: Channel[];
+  task: Channel[];
+  general: Channel[];
+}> {
   await delay(170);
   return {
     role: channels.filter((channel) => channel.group === 'role'),
@@ -88,7 +137,9 @@ export async function getChannels(): Promise<{ role: Channel[]; task: Channel[];
   };
 }
 
-export async function getChannel(id: ID): Promise<{ channel: Channel; messages: Message[]; needsInput?: NeedsInput }> {
+export async function getChannel(
+  id: ID,
+): Promise<{ channel: Channel; messages: Message[]; needsInput?: NeedsInput }> {
   await delay(220);
   const channel = channels.find((item) => item.id === id);
 
@@ -146,7 +197,13 @@ export async function sendMessage(channelId: ID, body: string): Promise<Message>
 
 export async function answerNeedsInput(id: ID, answer: string): Promise<NeedsInput> {
   await delay(180);
-  const result = { ...needsInput, id, status: 'answered' as const, answer, answeredAt: demoNowIso() };
+  const result = {
+    ...needsInput,
+    id,
+    status: 'answered' as const,
+    answer,
+    answeredAt: demoNowIso(),
+  };
   return result;
 }
 

@@ -51,12 +51,7 @@ export interface ProvenanceStep {
 }
 
 export type SignalType =
-  | 'financing'
-  | 'quotation'
-  | 'warranty'
-  | 'competitor'
-  | 'timeline'
-  | 'other';
+  'financing' | 'quotation' | 'warranty' | 'competitor' | 'timeline' | 'other';
 
 export interface BuyingSignal {
   id: ID;
@@ -70,12 +65,7 @@ export interface BuyingSignal {
 export type CallChannel = 'in_app' | 'phone';
 export type CallDirection = 'outgoing' | 'incoming';
 export type CallOutcome =
-  | 'connected'
-  | 'callback_requested'
-  | 'not_interested'
-  | 'no_answer'
-  | 'converted'
-  | 'unknown';
+  'connected' | 'callback_requested' | 'not_interested' | 'no_answer' | 'converted' | 'unknown';
 
 export interface Call {
   id: ID;

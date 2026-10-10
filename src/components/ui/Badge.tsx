@@ -17,5 +17,11 @@ export function Badge({
     purple: 'bg-purple-soft text-purple border border-purple/20',
   };
 
-  return <span className={`inline-flex items-center rounded-full px-2 py-1 text-10 font-medium ${toneStyles[tone]} ${className}`.trim()}>{children}</span>;
+  return (
+    <span
+      className={`inline-flex items-center rounded-full px-2 py-1 text-10 font-medium ${toneStyles[tone]} ${className}`.trim()}
+    >
+      {children}
+    </span>
+  );
 }

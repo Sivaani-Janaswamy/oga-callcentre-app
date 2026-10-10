@@ -12,7 +12,9 @@ export function Avatar({
   };
 
   return (
-    <div className={`flex items-center justify-center rounded-full bg-brand/10 text-text font-semibold ${sizes[size]}`.trim()}>
+    <div
+      className={`flex items-center justify-center rounded-full bg-brand/10 text-text font-semibold ${sizes[size]}`.trim()}
+    >
       {initials}
     </div>
   );

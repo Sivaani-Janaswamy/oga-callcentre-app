@@ -10,15 +10,15 @@ Legend: ⭐ must-build · ➕ bonus · ⏱ estimate
 
 ## Schedule at a glance
 
-| Block | When | Goal |
-|---|---|---|
-| A | Fri evening (~3h) | Setup, shell, data layer, routing |
-| B | Sat morning (~4h) | Dashboard + Plan (3 tabs) |
-| C | Sat afternoon (~4h) | Calendar + Pulse home + channel |
-| D | Sat evening (~3h) | Leads modal + core polish pass |
-| E | Sun morning (~3h) | Bonus items, responsive, tests |
-| F | Sun late morning → 3 PM | README, deploy, recording, submit |
-| Buffer | Sun 3 PM → 6 PM | Emergency only. Do not plan work here. |
+| Block  | When                    | Goal                                   |
+| ------ | ----------------------- | -------------------------------------- |
+| A      | Fri evening (~3h)       | Setup, shell, data layer, routing      |
+| B      | Sat morning (~4h)       | Dashboard + Plan (3 tabs)              |
+| C      | Sat afternoon (~4h)     | Calendar + Pulse home + channel        |
+| D      | Sat evening (~3h)       | Leads modal + core polish pass         |
+| E      | Sun morning (~3h)       | Bonus items, responsive, tests         |
+| F      | Sun late morning → 3 PM | README, deploy, recording, submit      |
+| Buffer | Sun 3 PM → 6 PM         | Emergency only. Do not plan work here. |
 
 Sleep is part of the plan. If you fall behind, **cut bonus work, never the README**.
 
@@ -169,14 +169,14 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 ## Risk register
 
-| Risk | Mitigation |
-|---|---|
-| Running out of time | Strict phase checkpoints; cut Phase 8 items from the bottom up |
-| Visual mismatch with the mock | Side-by-side check at the end of every phase, same viewport |
-| Recharts styling fights | Fall back to simple SVG bars if it takes > 30 min |
-| Modal focus/scroll bugs | Build `Modal` primitive early (Phase 6 start) and test with keyboard |
-| Deploy surprises | Deploy a hello-world to Vercel in Phase 1 so Sunday isn't the first attempt |
-| Missing the deadline by minutes | Email draft ready by Sat night; send by 3 PM Sunday |
+| Risk                            | Mitigation                                                                  |
+| ------------------------------- | --------------------------------------------------------------------------- |
+| Running out of time             | Strict phase checkpoints; cut Phase 8 items from the bottom up              |
+| Visual mismatch with the mock   | Side-by-side check at the end of every phase, same viewport                 |
+| Recharts styling fights         | Fall back to simple SVG bars if it takes > 30 min                           |
+| Modal focus/scroll bugs         | Build `Modal` primitive early (Phase 6 start) and test with keyboard        |
+| Deploy surprises                | Deploy a hello-world to Vercel in Phase 1 so Sunday isn't the first attempt |
+| Missing the deadline by minutes | Email draft ready by Sat night; send by 3 PM Sunday                         |
 
 ---
 
@@ -184,8 +184,8 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 Use this list in the README. Add one row per tool you actually used, and note what it helped with and what you verified yourself.
 
-| Tool | What I used it for | What I verified myself |
-|---|---|---|
-| Claude | Planning docs, reviewing decisions, and checking reasoning before implementation. | I confirmed the final answer matches the project requirements and does not rely on unverified mock source. |
-| GitHub Copilot | Drafting code, component structure, and quick implementation checks. | I reviewed generated code for correctness, simplicity, and project fit before keeping it. |
-| _add more_ | _brief explanation_ | _brief verification_ |
+| Tool           | What I used it for                                                                | What I verified myself                                                                                     |
+| -------------- | --------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Claude         | Planning docs, reviewing decisions, and checking reasoning before implementation. | I confirmed the final answer matches the project requirements and does not rely on unverified mock source. |
+| GitHub Copilot | Drafting code, component structure, and quick implementation checks.              | I reviewed generated code for correctness, simplicity, and project fit before keeping it.                  |
+| _add more_     | _brief explanation_                                                               | _brief verification_                                                                                       |

@@ -21,7 +21,9 @@ export function Sidebar(): JSX.Element {
   return (
     <aside className="flex w-64 flex-col bg-sidebar px-4 py-5 text-white">
       <div className="mb-8 flex items-center gap-3 px-2">
-        <div className="flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-12 font-semibold">OG</div>
+        <div className="flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-12 font-semibold">
+          OG
+        </div>
         <div>
           <div className="text-13 font-semibold">On-Ground.ai</div>
         </div>
@@ -38,7 +40,9 @@ export function Sidebar(): JSX.Element {
               aria-current={isActive ? 'page' : undefined}
               className={({ isActive: linkActive }) =>
                 `flex items-center gap-3 rounded-md px-3 py-2 text-13 transition-colors ${
-                  linkActive ? 'bg-white/10 text-white' : 'text-white/70 hover:bg-white/5 hover:text-white'
+                  linkActive
+                    ? 'bg-white/10 text-white'
+                    : 'text-white/70 hover:bg-white/5 hover:text-white'
                 }`
               }
             >
@@ -52,7 +56,9 @@ export function Sidebar(): JSX.Element {
           <button
             type="button"
             className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-13 transition-colors ${
-              isPlanActive ? 'bg-white/10 text-white' : 'text-white/70 hover:bg-white/5 hover:text-white'
+              isPlanActive
+                ? 'bg-white/10 text-white'
+                : 'text-white/70 hover:bg-white/5 hover:text-white'
             }`}
             aria-expanded={isPlanActive}
           >
@@ -72,7 +78,9 @@ export function Sidebar(): JSX.Element {
                   aria-current={pathname === to ? 'page' : undefined}
                   className={({ isActive: linkActive }) =>
                     `block rounded-md px-2 py-1.5 text-12 transition-colors ${
-                      linkActive ? 'bg-brand/20 text-white' : 'text-white/70 hover:bg-white/5 hover:text-white'
+                      linkActive
+                        ? 'bg-brand/20 text-white'
+                        : 'text-white/70 hover:bg-white/5 hover:text-white'
                     }`
                   }
                 >

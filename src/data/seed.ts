@@ -1,4 +1,21 @@
-import type { Agent, BuyingSignal, CalendarEvent, Channel, DailyStat, Earnings, KpiSet, Lead, Message, MissedCall, NeedsInput, PractiseScenario, ProgressToday, Task, WaitingItem, Kudos } from './types';
+import type {
+  Agent,
+  BuyingSignal,
+  CalendarEvent,
+  Channel,
+  DailyStat,
+  Earnings,
+  KpiSet,
+  Lead,
+  Message,
+  MissedCall,
+  NeedsInput,
+  PractiseScenario,
+  ProgressToday,
+  Task,
+  WaitingItem,
+  Kudos,
+} from './types';
 
 export const agent: Agent = {
   id: 'agent_01',
@@ -290,9 +307,30 @@ export const progressToday: ProgressToday = {
 };
 
 export const waitingList: WaitingItem[] = [
-  { id: 'wait_01', leadId: 'lead_01', name: 'Mukunda', reason: 'Quotes to review', waitingLabel: '4m 20s', urgency: 'high' },
-  { id: 'wait_02', leadId: 'lead_02', name: 'Shreya Nair', reason: 'Heat concern follow-up', waitingLabel: '6m 10s', urgency: 'medium' },
-  { id: 'wait_03', leadId: 'lead_05', name: 'Anita Verma', reason: 'Visit review', waitingLabel: '3m 55s', urgency: 'low' },
+  {
+    id: 'wait_01',
+    leadId: 'lead_01',
+    name: 'Mukunda',
+    reason: 'Quotes to review',
+    waitingLabel: '4m 20s',
+    urgency: 'high',
+  },
+  {
+    id: 'wait_02',
+    leadId: 'lead_02',
+    name: 'Shreya Nair',
+    reason: 'Heat concern follow-up',
+    waitingLabel: '6m 10s',
+    urgency: 'medium',
+  },
+  {
+    id: 'wait_03',
+    leadId: 'lead_05',
+    name: 'Anita Verma',
+    reason: 'Visit review',
+    waitingLabel: '3m 55s',
+    urgency: 'low',
+  },
 ];
 
 export const earnings: Earnings = {
@@ -305,16 +343,62 @@ export const earnings: Earnings = {
 
 export const tasks: Task[] = [
   { id: 'task_01', kind: 'callbacks', title: '2 callbacks', subtitle: 'next in 15 mins', count: 2 },
-  { id: 'task_02', kind: 'hot_leads', title: '2 hot leads', subtitle: 'priority queue', count: 2, leadIds: ['lead_01', 'lead_02'] },
+  {
+    id: 'task_02',
+    kind: 'hot_leads',
+    title: '2 hot leads',
+    subtitle: 'priority queue',
+    count: 2,
+    leadIds: ['lead_01', 'lead_02'],
+  },
   { id: 'task_03', kind: 'outcome', title: '1 outcome', subtitle: 'resolved today', count: 1 },
 ];
 
 export const missedCalls: MissedCall[] = [
-  { id: 'missed_01', leadId: 'lead_01', displayName: 'Mukunda', at: '2026-10-09T09:12:00+05:30', reason: 'Hold queue', expectedValueInr: 5800, status: 'calling' },
-  { id: 'missed_02', leadId: 'lead_03', displayName: 'Vikram Iyer', at: '2026-10-09T08:50:00+05:30', reason: 'Follow-up', expectedValueInr: 3900, status: 'missed' },
-  { id: 'missed_03', leadId: undefined, displayName: 'Unknown', at: '2026-10-08T18:40:00+05:30', reason: 'Call back requested', status: 'called_back' },
-  { id: 'missed_04', leadId: 'lead_05', displayName: 'Anita Verma', at: '2026-10-09T08:00:00+05:30', reason: 'Chat sent', expectedValueInr: 2400, status: 'missed' },
-  { id: 'missed_05', leadId: 'lead_06', displayName: 'Rajesh Kumar', at: '2026-10-09T07:30:00+05:30', reason: 'No response', expectedValueInr: 4100, status: 'calling' },
+  {
+    id: 'missed_01',
+    leadId: 'lead_01',
+    displayName: 'Mukunda',
+    at: '2026-10-09T09:12:00+05:30',
+    reason: 'Hold queue',
+    expectedValueInr: 5800,
+    status: 'calling',
+  },
+  {
+    id: 'missed_02',
+    leadId: 'lead_03',
+    displayName: 'Vikram Iyer',
+    at: '2026-10-09T08:50:00+05:30',
+    reason: 'Follow-up',
+    expectedValueInr: 3900,
+    status: 'missed',
+  },
+  {
+    id: 'missed_03',
+    leadId: undefined,
+    displayName: 'Unknown',
+    at: '2026-10-08T18:40:00+05:30',
+    reason: 'Call back requested',
+    status: 'called_back',
+  },
+  {
+    id: 'missed_04',
+    leadId: 'lead_05',
+    displayName: 'Anita Verma',
+    at: '2026-10-09T08:00:00+05:30',
+    reason: 'Chat sent',
+    expectedValueInr: 2400,
+    status: 'missed',
+  },
+  {
+    id: 'missed_05',
+    leadId: 'lead_06',
+    displayName: 'Rajesh Kumar',
+    at: '2026-10-09T07:30:00+05:30',
+    reason: 'No response',
+    expectedValueInr: 4100,
+    status: 'calling',
+  },
 ];
 
 export const recentCalls: import('./types').Call[] = [
@@ -417,29 +501,130 @@ export const recentCalls: import('./types').Call[] = [
 ];
 
 export const calendarEvents: CalendarEvent[] = [
-  { id: 'event_01', title: 'Customer callback', date: '2026-10-06', time: '16:30', type: 'callback', leadId: 'lead_01' },
+  {
+    id: 'event_01',
+    title: 'Customer callback',
+    date: '2026-10-06',
+    time: '16:30',
+    type: 'callback',
+    leadId: 'lead_01',
+  },
   { id: 'event_02', title: 'Practice call', date: '2026-10-08', time: '15:00', type: 'practice' },
   { id: 'event_03', title: 'Quarterly review', date: '2026-10-09', time: '11:15', type: 'meeting' },
-  { id: 'event_04', title: 'Follow-up call', date: '2026-10-12', time: '10:00', type: 'callback', leadId: 'lead_02' },
+  {
+    id: 'event_04',
+    title: 'Follow-up call',
+    date: '2026-10-12',
+    time: '10:00',
+    type: 'callback',
+    leadId: 'lead_02',
+  },
   { id: 'event_05', title: 'Demo prep', date: '2026-10-19', time: '14:00', type: 'other' },
-  { id: 'event_06', title: 'Lead review', date: '2026-10-26', time: '09:30', type: 'meeting', leadId: 'lead_05' },
+  {
+    id: 'event_06',
+    title: 'Lead review',
+    date: '2026-10-26',
+    time: '09:30',
+    type: 'meeting',
+    leadId: 'lead_05',
+  },
   { id: 'event_07', title: 'Training', date: '2026-10-28', time: '12:00', type: 'practice' },
 ];
 
 export const channels: Channel[] = [
-  { id: 'channel_01', slug: 'callcentre-agent', group: 'role', description: 'Call centre agent cohort', memberCount: 18, unreadCount: 5 },
-  { id: 'channel_02', slug: 'cross-sell', group: 'task', description: 'Cross-sell strategy', memberCount: 9, unreadCount: 2, healthPercent: 78, healthTone: 'good' },
-  { id: 'channel_03', slug: 'sop', group: 'task', description: 'Service operations', memberCount: 12, unreadCount: 3, healthPercent: 62, healthTone: 'warn' },
-  { id: 'channel_04', slug: 'lead-conversion', group: 'task', description: 'Lead conversion', memberCount: 8, unreadCount: 4, healthPercent: 85, healthTone: 'good' },
-  { id: 'channel_05', slug: 'capture', group: 'task', description: 'Capture practice', memberCount: 6, unreadCount: 1, healthPercent: 58, healthTone: 'bad' },
-  { id: 'channel_06', slug: 'customer-discussions', group: 'general', description: 'Customer conversations', memberCount: 14, unreadCount: 6 },
+  {
+    id: 'channel_01',
+    slug: 'callcentre-agent',
+    group: 'role',
+    description: 'Call centre agent cohort',
+    memberCount: 18,
+    unreadCount: 5,
+  },
+  {
+    id: 'channel_02',
+    slug: 'cross-sell',
+    group: 'task',
+    description: 'Cross-sell strategy',
+    memberCount: 9,
+    unreadCount: 2,
+    healthPercent: 78,
+    healthTone: 'good',
+  },
+  {
+    id: 'channel_03',
+    slug: 'sop',
+    group: 'task',
+    description: 'Service operations',
+    memberCount: 12,
+    unreadCount: 3,
+    healthPercent: 62,
+    healthTone: 'warn',
+  },
+  {
+    id: 'channel_04',
+    slug: 'lead-conversion',
+    group: 'task',
+    description: 'Lead conversion',
+    memberCount: 8,
+    unreadCount: 4,
+    healthPercent: 85,
+    healthTone: 'good',
+  },
+  {
+    id: 'channel_05',
+    slug: 'capture',
+    group: 'task',
+    description: 'Capture practice',
+    memberCount: 6,
+    unreadCount: 1,
+    healthPercent: 58,
+    healthTone: 'bad',
+  },
+  {
+    id: 'channel_06',
+    slug: 'customer-discussions',
+    group: 'general',
+    description: 'Customer conversations',
+    memberCount: 14,
+    unreadCount: 6,
+  },
 ];
 
 export const channelMessages: Record<string, Message[]> = {
   channel_01: [
-    { id: 'msg_01', channelId: 'channel_01', authorId: 'agent_01', authorName: 'Arvind Rajan', authorInitials: 'AR', isSelf: true, kind: 'text', body: 'Please share the updated callback plan before lunch.', sentAt: '2026-10-09T09:10:00+05:30' },
-    { id: 'msg_02', channelId: 'channel_01', authorId: 'agent_02', authorName: 'Preeti Shah', authorInitials: 'PS', isSelf: false, kind: 'text', body: 'I have flagged the three high-priority leads for follow-up.', sentAt: '2026-10-09T09:12:00+05:30' },
-    { id: 'msg_03', channelId: 'channel_01', authorId: 'agent_01', authorName: 'Arvind Rajan', authorInitials: 'AR', isSelf: true, kind: 'text', body: 'Great, I will make the first call after the team sync.', sentAt: '2026-10-09T09:14:00+05:30' },
+    {
+      id: 'msg_01',
+      channelId: 'channel_01',
+      authorId: 'agent_01',
+      authorName: 'Arvind Rajan',
+      authorInitials: 'AR',
+      isSelf: true,
+      kind: 'text',
+      body: 'Please share the updated callback plan before lunch.',
+      sentAt: '2026-10-09T09:10:00+05:30',
+    },
+    {
+      id: 'msg_02',
+      channelId: 'channel_01',
+      authorId: 'agent_02',
+      authorName: 'Preeti Shah',
+      authorInitials: 'PS',
+      isSelf: false,
+      kind: 'text',
+      body: 'I have flagged the three high-priority leads for follow-up.',
+      sentAt: '2026-10-09T09:12:00+05:30',
+    },
+    {
+      id: 'msg_03',
+      channelId: 'channel_01',
+      authorId: 'agent_01',
+      authorName: 'Arvind Rajan',
+      authorInitials: 'AR',
+      isSelf: true,
+      kind: 'text',
+      body: 'Great, I will make the first call after the team sync.',
+      sentAt: '2026-10-09T09:14:00+05:30',
+    },
   ],
 };
 
@@ -486,7 +671,10 @@ export const practiseScenarios: PractiseScenario[] = [
     difficulty: 'hard',
     script: [
       { speaker: 'customer', text: 'The product was not delivered on time last month.' },
-      { speaker: 'you', text: 'I appreciate the frustration, and I can explain the current availability and support.' },
+      {
+        speaker: 'you',
+        text: 'I appreciate the frustration, and I can explain the current availability and support.',
+      },
     ],
     rewardInr: 700,
   },

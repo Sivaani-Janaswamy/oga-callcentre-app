@@ -46,133 +46,123 @@ PractiseScenario ─< PractiseSession
 // src/data/types.ts
 
 export type ID = string;
-export type ISODate = string;      // "2026-10-09"
-export type ISODateTime = string;  // "2026-10-09T10:09:00+05:30"
+export type ISODate = string; // "2026-10-09"
+export type ISODateTime = string; // "2026-10-09T10:09:00+05:30"
 
 /* ---------- People ---------- */
 
 export interface Agent {
   id: ID;
-  name: string;               // "Arvind Rajan"
-  shortName: string;          // "Arvind R."
-  company: string;            // "The Sleep Company"
-  role: string;               // "Call Centre"
-  avatarInitials: string;     // "AR"
-  points: number;             // top-bar chip
-  streakDays: number;         // top-bar chip
-  unreadNotifications: number;// red badge in top bar
+  name: string; // "Arvind Rajan"
+  shortName: string; // "Arvind R."
+  company: string; // "The Sleep Company"
+  role: string; // "Call Centre"
+  avatarInitials: string; // "AR"
+  points: number; // top-bar chip
+  streakDays: number; // top-bar chip
+  unreadNotifications: number; // red badge in top bar
 }
 
 /* ---------- Leads ---------- */
 
-export type LeadStatus = "open" | "won" | "lost" | "expired";
+export type LeadStatus = 'open' | 'won' | 'lost' | 'expired';
 
 export interface Lead {
   id: ID;
-  name: string;                 // "Mukunda"
-  initials: string;             // "MK"
-  phone: string;                // fake number
-  productInterest: string;      // "Ortho GRID"
-  quoteValueInr: number;        // 9490
+  name: string; // "Mukunda"
+  initials: string; // "MK"
+  phone: string; // fake number
+  productInterest: string; // "Ortho GRID"
+  quoteValueInr: number; // 9490
   status: LeadStatus;
-  assignedTo: ID;               // Agent.id
-  score: number;                // 0-100, drives ranking in "Calls to make"
-  scoreDelta: number;           // +/- shown as small chip
-  icpScore: number;             // 0-100, ICP fit
-  intentScore: number;          // 0-100, lead intent
-  nextAction: string;           // "Quote to be given to customer"
-  closeBy: ISODateTime;         // used to compute "3h left"
-  cumulativeMissed: number;     // red footer chip
-  context: string;              // one-line shown in Plan rows
+  assignedTo: ID; // Agent.id
+  score: number; // 0-100, drives ranking in "Calls to make"
+  scoreDelta: number; // +/- shown as small chip
+  icpScore: number; // 0-100, ICP fit
+  intentScore: number; // 0-100, lead intent
+  nextAction: string; // "Quote to be given to customer"
+  closeBy: ISODateTime; // used to compute "3h left"
+  cumulativeMissed: number; // red footer chip
+  context: string; // one-line shown in Plan rows
   lastNote?: string;
   icpBreakdown: IcpFactor[];
   provenance: ProvenanceStep[]; // "How we got here"
-  signalIds: ID[];              // → BuyingSignal
+  signalIds: ID[]; // → BuyingSignal
 }
 
 export interface IcpFactor {
-  label: string;      // "Budget", "Need", "Authority", "Timeline"
-  weight: number;     // 0-1
-  value: number;      // 0-100
+  label: string; // "Budget", "Need", "Authority", "Timeline"
+  weight: number; // 0-1
+  value: number; // 0-100
 }
 
 export interface ProvenanceStep {
   at: ISODateTime;
-  label: string;      // "Walk-in captured", "First call", "Quote requested"
+  label: string; // "Walk-in captured", "First call", "Quote requested"
 }
 
 export type SignalType =
-  | "financing"
-  | "quotation"
-  | "warranty"
-  | "competitor"
-  | "timeline"
-  | "other";
+  'financing' | 'quotation' | 'warranty' | 'competitor' | 'timeline' | 'other';
 
 export interface BuyingSignal {
   id: ID;
   leadId: ID;
   type: SignalType;
-  title: string;      // "Financing Related"
-  evidence: string;   // italic quote shown in the modal
+  title: string; // "Financing Related"
+  evidence: string; // italic quote shown in the modal
   detectedAt: ISODateTime;
 }
 
 /* ---------- Calls ---------- */
 
-export type CallChannel = "in_app" | "phone";
-export type CallDirection = "outgoing" | "incoming";
+export type CallChannel = 'in_app' | 'phone';
+export type CallDirection = 'outgoing' | 'incoming';
 export type CallOutcome =
-  | "connected"
-  | "callback_requested"
-  | "not_interested"
-  | "no_answer"
-  | "converted"
-  | "unknown";
+  'connected' | 'callback_requested' | 'not_interested' | 'no_answer' | 'converted' | 'unknown';
 
 export interface Call {
   id: ID;
-  leadId?: ID;                // may be unknown caller
-  displayName: string;        // denormalised for "Unknown"
+  leadId?: ID; // may be unknown caller
+  displayName: string; // denormalised for "Unknown"
   channel: CallChannel;
   direction: CallDirection;
   startedAt: ISODateTime;
-  durationSec?: number;       // undefined → shown as "—"
+  durationSec?: number; // undefined → shown as "—"
   outcome: CallOutcome;
   handledBy: ID;
-  summary?: string;           // shown in the review panel
+  summary?: string; // shown in the review panel
   notes?: string;
 }
 
 export interface MissedCall {
   id: ID;
-  leadId?: ID;                // undefined for "Unknown"
+  leadId?: ID; // undefined for "Unknown"
   displayName: string;
   at: ISODateTime;
-  reason: string;             // "Hold queue", "Chat sent"
-  expectedValueInr?: number;  // undefined → "No plan saved"
-  status: "missed" | "calling" | "called_back";
+  reason: string; // "Hold queue", "Chat sent"
+  expectedValueInr?: number; // undefined → "No plan saved"
+  status: 'missed' | 'calling' | 'called_back';
 }
 
 /* ---------- Tasks, calendar, stats ---------- */
 
-export type TaskKind = "callbacks" | "hot_leads" | "outcome";
+export type TaskKind = 'callbacks' | 'hot_leads' | 'outcome';
 
 export interface Task {
   id: ID;
   kind: TaskKind;
-  title: string;          // "2 callbacks"
-  subtitle: string;       // "next in 15 mins"
+  title: string; // "2 callbacks"
+  subtitle: string; // "next in 15 mins"
   count: number;
-  leadIds?: ID[];         // for hot_leads → opens Leads modal in this order
+  leadIds?: ID[]; // for hot_leads → opens Leads modal in this order
 }
 
 export interface CalendarEvent {
   id: ID;
   title: string;
   date: ISODate;
-  time?: string;          // "16:30"
-  type: "callback" | "meeting" | "practice" | "other";
+  time?: string; // "16:30"
+  type: 'callback' | 'meeting' | 'practice' | 'other';
   leadId?: ID;
 }
 
@@ -183,11 +173,11 @@ export interface DailyStat {
 }
 
 export interface KpiSet {
-  qaScore: number;          // 76
+  qaScore: number; // 76
   avgHandleTimeSec: number; // 252 → "4m 12s"
-  conversionPercent: number;// 34
-  inQueue: number;          // 2
-  deltas: Record<"qaScore" | "avgHandleTime" | "conversion" | "inQueue", number>;
+  conversionPercent: number; // 34
+  inQueue: number; // 2
+  deltas: Record<'qaScore' | 'avgHandleTime' | 'conversion' | 'inQueue', number>;
 }
 
 export interface ProgressToday {
@@ -202,41 +192,41 @@ export interface WaitingItem {
   leadId: ID;
   name: string;
   reason: string;
-  waitingLabel: string;     // "4m 20s"
-  urgency: "high" | "medium" | "low";
+  waitingLabel: string; // "4m 20s"
+  urgency: 'high' | 'medium' | 'low';
 }
 
 export interface Earnings {
   agentId: ID;
-  month: string;            // "2026-10"
-  totalInr: number;         // 5200
-  fromPractiseInr: number;  // 1750
-  targetInr: number;        // progress bar denominator
+  month: string; // "2026-10"
+  totalInr: number; // 5200
+  fromPractiseInr: number; // 1750
+  targetInr: number; // progress bar denominator
 }
 
 /* ---------- Pulse ---------- */
 
-export type ChannelGroup = "role" | "task" | "general";
+export type ChannelGroup = 'role' | 'task' | 'general';
 
 export interface Channel {
   id: ID;
-  slug: string;             // "callcentre-agent"
+  slug: string; // "callcentre-agent"
   group: ChannelGroup;
   description: string;
   memberCount: number;
   unreadCount: number;
-  healthPercent?: number;   // coloured chip on task agents
-  healthTone?: "good" | "warn" | "bad";
+  healthPercent?: number; // coloured chip on task agents
+  healthTone?: 'good' | 'warn' | 'bad';
 }
 
 export interface Message {
   id: ID;
   channelId: ID;
-  authorId: ID;             // Agent.id or ChannelMember.id
+  authorId: ID; // Agent.id or ChannelMember.id
   authorName: string;
   authorInitials: string;
-  isSelf: boolean;          // right-aligned green bubble when true
-  kind: "text" | "stakeholders" | "issue" | "resolution" | "system";
+  isSelf: boolean; // right-aligned green bubble when true
+  kind: 'text' | 'stakeholders' | 'issue' | 'resolution' | 'system';
   body: string;
   sentAt: ISODateTime;
 }
@@ -244,10 +234,10 @@ export interface Message {
 export interface NeedsInput {
   id: ID;
   channelId: ID;
-  title: string;            // "Confirm the 4:30pm callback"
-  subtitle: string;         // "Priya Iyer · likely billing dispute"
-  options: [string, string];// ["Confirmed", "Reschedule"]
-  status: "open" | "answered";
+  title: string; // "Confirm the 4:30pm callback"
+  subtitle: string; // "Priya Iyer · likely billing dispute"
+  options: [string, string]; // ["Confirmed", "Reschedule"]
+  status: 'open' | 'answered';
   answer?: string;
   answeredAt?: ISODateTime;
 }
@@ -264,8 +254,8 @@ export interface Kudos {
 export interface PractiseScenario {
   id: ID;
   title: string;
-  difficulty: "easy" | "medium" | "hard";
-  script: { speaker: "customer" | "you"; text: string }[];
+  difficulty: 'easy' | 'medium' | 'hard';
+  script: { speaker: 'customer' | 'you'; text: string }[];
   rewardInr: number;
 }
 ```
@@ -274,31 +264,31 @@ export interface PractiseScenario {
 
 ## 4. Relationships and rules
 
-| Relationship | Rule |
-|---|---|
-| Lead → BuyingSignal | 0..n signals; modal shows them grouped under "Where we picked up signals" |
-| Lead → Call | A lead may have many calls; Recent shows latest first |
-| MissedCall → Lead | Optional. Unknown callers have no lead and no expected value |
-| Task(hot_leads) → Lead | `leadIds` defines paging order in the Leads modal |
-| Channel → NeedsInput | At most one open pinned card per channel |
-| Message.isSelf | Derived by comparing `authorId` to the current agent |
-| Earnings | `totalInr` = base + `fromPractiseInr`; practise sessions increase `fromPractiseInr` |
+| Relationship           | Rule                                                                                |
+| ---------------------- | ----------------------------------------------------------------------------------- |
+| Lead → BuyingSignal    | 0..n signals; modal shows them grouped under "Where we picked up signals"           |
+| Lead → Call            | A lead may have many calls; Recent shows latest first                               |
+| MissedCall → Lead      | Optional. Unknown callers have no lead and no expected value                        |
+| Task(hot_leads) → Lead | `leadIds` defines paging order in the Leads modal                                   |
+| Channel → NeedsInput   | At most one open pinned card per channel                                            |
+| Message.isSelf         | Derived by comparing `authorId` to the current agent                                |
+| Earnings               | `totalInr` = base + `fromPractiseInr`; practise sessions increase `fromPractiseInr` |
 
 ---
 
 ## 5. Derived values (computed in the service layer)
 
-| Value | Formula |
-|---|---|
-| Calls-to-make order | `leads.filter(open).sort(by score desc)` |
-| Missed-call expected value total | `sum(missedCalls.expectedValueInr ?? 0)` for today |
-| Missed calls order | by `expectedValueInr desc`, unknowns last |
-| "3h left" | `closeBy − now`, formatted `Xh` / `Xm` / "expired" |
-| Calendar dots | group `events` by `date` |
-| Calendar grid | 6×7 matrix from first-of-month weekday offset |
-| 7-day charts | last 7 `DailyStat` rows ending today |
-| Handle time label | `252 → "4m 12s"` |
-| ₹ formatting | `Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 })` |
+| Value                            | Formula                                                                                        |
+| -------------------------------- | ---------------------------------------------------------------------------------------------- |
+| Calls-to-make order              | `leads.filter(open).sort(by score desc)`                                                       |
+| Missed-call expected value total | `sum(missedCalls.expectedValueInr ?? 0)` for today                                             |
+| Missed calls order               | by `expectedValueInr desc`, unknowns last                                                      |
+| "3h left"                        | `closeBy − now`, formatted `Xh` / `Xm` / "expired"                                             |
+| Calendar dots                    | group `events` by `date`                                                                       |
+| Calendar grid                    | 6×7 matrix from first-of-month weekday offset                                                  |
+| 7-day charts                     | last 7 `DailyStat` rows ending today                                                           |
+| Handle time label                | `252 → "4m 12s"`                                                                               |
+| ₹ formatting                     | `Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 })` |
 
 ---
 
@@ -355,15 +345,15 @@ Numbers visible in the mock (e.g. KPIs, ₹ totals) should be copied by **value*
 
 ## 8. Mapping to real tables (for the README's "if this had a backend" note)
 
-| Type | Table | Notes |
-|---|---|---|
-| Agent | `agents` | |
-| Lead | `leads` + `lead_icp_factors` + `lead_provenance` | child tables for arrays |
-| BuyingSignal | `buying_signals` | FK `lead_id` |
-| Call | `calls` | FK `lead_id` nullable |
-| MissedCall | `missed_calls` | FK `lead_id` nullable |
-| Task | derived view | not stored; computed from leads/calls |
-| CalendarEvent | `calendar_events` | index on `date` |
-| DailyStat | materialised view | refreshed nightly |
-| Channel / Message / NeedsInput | `channels`, `messages`, `needs_input` | index `messages(channel_id, sent_at)` |
-| Earnings | derived | from calls + practise sessions |
+| Type                           | Table                                            | Notes                                 |
+| ------------------------------ | ------------------------------------------------ | ------------------------------------- |
+| Agent                          | `agents`                                         |                                       |
+| Lead                           | `leads` + `lead_icp_factors` + `lead_provenance` | child tables for arrays               |
+| BuyingSignal                   | `buying_signals`                                 | FK `lead_id`                          |
+| Call                           | `calls`                                          | FK `lead_id` nullable                 |
+| MissedCall                     | `missed_calls`                                   | FK `lead_id` nullable                 |
+| Task                           | derived view                                     | not stored; computed from leads/calls |
+| CalendarEvent                  | `calendar_events`                                | index on `date`                       |
+| DailyStat                      | materialised view                                | refreshed nightly                     |
+| Channel / Message / NeedsInput | `channels`, `messages`, `needs_input`            | index `messages(channel_id, sent_at)` |
+| Earnings                       | derived                                          | from calls + practise sessions        |

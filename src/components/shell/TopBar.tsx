@@ -16,12 +16,10 @@ export function TopBar(): JSX.Element {
 
       <div className="flex items-center gap-3">
         <Badge tone="danger" className="gap-1">
-          <Bell className="h-3 w-3" />
-          3
+          <Bell className="h-3 w-3" />3
         </Badge>
         <Badge tone="success" className="gap-1">
-          <Trophy className="h-3 w-3" />
-          8 day streak
+          <Trophy className="h-3 w-3" />8 day streak
         </Badge>
         <Badge tone="purple" className="gap-1">
           <Zap className="h-3 w-3" />
