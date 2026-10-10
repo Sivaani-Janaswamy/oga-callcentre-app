@@ -47,6 +47,7 @@ export async function getCurrentAgent(): Promise<Agent> {
 }
 
 export async function getDashboard(): Promise<{
+  agent: Agent;
   kpis: KpiSet;
   progress: typeof progressToday;
   waiting: WaitingItem[];
@@ -57,6 +58,7 @@ export async function getDashboard(): Promise<{
 }> {
   await delay(200);
   return {
+    agent,
     kpis,
     progress: progressToday,
     waiting: waitingList,

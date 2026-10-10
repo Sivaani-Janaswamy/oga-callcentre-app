@@ -278,32 +278,32 @@ export const buyingSignals: BuyingSignal[] = [
 ];
 
 export const dailyStats: DailyStat[] = [
-  { date: '2026-10-03', callsHandled: 22, csatPercent: 87 },
-  { date: '2026-10-04', callsHandled: 26, csatPercent: 89 },
-  { date: '2026-10-05', callsHandled: 29, csatPercent: 91 },
-  { date: '2026-10-06', callsHandled: 31, csatPercent: 88 },
-  { date: '2026-10-07', callsHandled: 33, csatPercent: 92 },
-  { date: '2026-10-08', callsHandled: 35, csatPercent: 94 },
-  { date: '2026-10-09', callsHandled: 38, csatPercent: 95 },
+  { date: '2026-10-03', callsHandled: 18, csatPercent: 88 },
+  { date: '2026-10-04', callsHandled: 22, csatPercent: 90 },
+  { date: '2026-10-05', callsHandled: 15, csatPercent: 85 },
+  { date: '2026-10-06', callsHandled: 26, csatPercent: 92 },
+  { date: '2026-10-07', callsHandled: 20, csatPercent: 89 },
+  { date: '2026-10-08', callsHandled: 12, csatPercent: 91 },
+  { date: '2026-10-09', callsHandled: 14, csatPercent: 94 },
 ];
 
 export const kpis: KpiSet = {
   qaScore: 76,
   avgHandleTimeSec: 252,
-  conversionPercent: 34,
+  csatTodayPercent: 94,
   inQueue: 2,
   deltas: {
-    qaScore: 8,
-    avgHandleTime: -17,
-    conversion: 12,
-    inQueue: 1,
+    qaScore: 13,
+    avgHandleTimePercent: 8,
+    csatTodayPoints: 2,
+    inQueueLive: true,
   },
 };
 
 export const progressToday: ProgressToday = {
-  leadsCreated: 18,
-  leadsCalled: 12,
-  createdDelta: 4,
+  leadsCreated: 3,
+  leadsCalled: 2,
+  createdDelta: 1,
   calledDelta: 2,
 };
 
@@ -311,26 +311,18 @@ export const waitingList: WaitingItem[] = [
   {
     id: 'wait_01',
     leadId: 'lead_01',
-    name: 'Mukunda',
-    reason: 'Quotes to review',
+    name: 'Priya Iyer',
+    reason: 'Likely billing dispute — flagged before',
     waitingLabel: '4m 20s',
     urgency: 'high',
   },
   {
     id: 'wait_02',
     leadId: 'lead_02',
-    name: 'Shreya Nair',
-    reason: 'Heat concern follow-up',
-    waitingLabel: '6m 10s',
+    name: 'Suresh Nair',
+    reason: 'Plan upgrade enquiry',
+    waitingLabel: '1m 50s',
     urgency: 'medium',
-  },
-  {
-    id: 'wait_03',
-    leadId: 'lead_05',
-    name: 'Anita Verma',
-    reason: 'Visit review',
-    waitingLabel: '3m 55s',
-    urgency: 'low',
   },
 ];
 
@@ -338,21 +330,22 @@ export const earnings: Earnings = {
   agentId: 'agent_01',
   month: '2026-10',
   totalInr: 5200,
-  fromPractiseInr: 1750,
-  targetInr: 7000,
+  fromPractiseInr: 1700,
+  slabFloorInr: 800,
+  targetInr: 6000,
 };
 
 export const tasks: Task[] = [
-  { id: 'task_01', kind: 'callbacks', title: '2 callbacks', subtitle: 'next in 15 mins', count: 2 },
+  { id: 'task_01', kind: 'callbacks', title: '2 callbacks', subtitle: 'next 4:30pm', count: 2 },
   {
     id: 'task_02',
     kind: 'hot_leads',
     title: '2 hot leads',
-    subtitle: 'priority queue',
+    subtitle: 'untouched 24h',
     count: 2,
     leadIds: ['lead_01', 'lead_02'],
   },
-  { id: 'task_03', kind: 'outcome', title: '1 outcome', subtitle: 'resolved today', count: 1 },
+  { id: 'task_03', kind: 'outcome', title: '1 outcome', subtitle: 'to log', count: 1 },
 ];
 
 export const missedCalls: MissedCall[] = [

@@ -121,9 +121,14 @@ export interface DailyStat {
 export interface KpiSet {
   qaScore: number;
   avgHandleTimeSec: number;
-  conversionPercent: number;
+  csatTodayPercent: number;
   inQueue: number;
-  deltas: Record<'qaScore' | 'avgHandleTime' | 'conversion' | 'inQueue', number>;
+  deltas: {
+    qaScore: number;
+    avgHandleTimePercent: number;
+    csatTodayPoints: number;
+    inQueueLive: boolean;
+  };
 }
 
 export interface ProgressToday {
@@ -147,6 +152,7 @@ export interface Earnings {
   month: string;
   totalInr: number;
   fromPractiseInr: number;
+  slabFloorInr: number;
   targetInr: number;
 }
 
