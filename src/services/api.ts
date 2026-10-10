@@ -1,5 +1,6 @@
 import { agent, buyingSignals, calendarEvents, channels, channelMessages, dailyStats, earnings, kpis, leads, missedCalls, needsInput, practiseScenarios, progressToday, recentCalls, tasks, waitingList, kudos } from '../data/seed';
 import type { Agent, BuyingSignal, CalendarEvent, Channel, DailyStat, Earnings, ID, KpiSet, Lead, Message, MissedCall, NeedsInput, Page, PractiseScenario, Task, WaitingItem, Kudos } from '../data/types';
+import { demoNowIso, parseIso } from '../utils/clock';
 
 const delay = (ms: number): Promise<void> => new Promise((resolve) => window.setTimeout(resolve, ms));
 
@@ -59,7 +60,7 @@ export async function getMissedCalls(): Promise<{ items: MissedCall[]; totalValu
 
 export async function getRecentCalls(): Promise<import('../data/types').Call[]> {
   await delay(170);
-  return [...recentCalls].sort((a, b) => new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime());
+  return [...recentCalls].sort((a, b) => parseIso(b.startedAt).getTime() - parseIso(a.startedAt).getTime());
 }
 
 export async function getCallById(id: ID): Promise<import('../data/types').Call> {
@@ -135,7 +136,7 @@ export async function sendMessage(channelId: ID, body: string): Promise<Message>
     isSelf: true,
     kind: 'text',
     body,
-    sentAt: new Date().toISOString(),
+    sentAt: demoNowIso(),
   };
 
   const currentMessages = channelMessages[channelId] ?? [];
@@ -145,7 +146,7 @@ export async function sendMessage(channelId: ID, body: string): Promise<Message>
 
 export async function answerNeedsInput(id: ID, answer: string): Promise<NeedsInput> {
   await delay(180);
-  const result = { ...needsInput, id, status: 'answered' as const, answer, answeredAt: new Date().toISOString() };
+  const result = { ...needsInput, id, status: 'answered' as const, answer, answeredAt: demoNowIso() };
   return result;
 }
 
