@@ -1,4 +1,6 @@
 import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import type { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
+import type { TooltipProps } from 'recharts';
 import type { DailyStat } from '../../data/types';
 import { getDemoTodayIso, parseIso } from '../../utils/clock';
 import { Card } from '../ui/Card';
@@ -6,6 +8,30 @@ import { Card } from '../ui/Card';
 type ChartMetric = 'calls' | 'csat';
 
 const TODAY_ISO = getDemoTodayIso();
+
+type ChartPoint = {
+  dayLabel: string;
+  value: number;
+  barHeight: number;
+  isToday: boolean;
+};
+
+function ChartTooltip({
+  active,
+  payload,
+}: TooltipProps<ValueType, NameType>): JSX.Element | null {
+  const point = payload?.[0]?.payload as ChartPoint | undefined;
+
+  if (!active || !point) {
+    return null;
+  }
+
+  return (
+    <div className="rounded-md border border-border bg-card px-2 py-1 text-11 text-text shadow-soft">
+      {point.dayLabel}: {point.value}
+    </div>
+  );
+}
 
 export function DashboardBarChart({
   title,
@@ -42,7 +68,7 @@ export function DashboardBarChart({
           <BarChart data={data} margin={{ top: 22, right: 4, left: 4, bottom: 0 }}>
             <XAxis dataKey="dayLabel" axisLine={false} tickLine={false} tick={{ fontSize: 10 }} />
             <YAxis hide domain={[0, 54]} />
-            <Tooltip formatter={(value, _name, item) => [item.payload.value, 'Value']} />
+            <Tooltip content={<ChartTooltip />} />
             <Bar dataKey="barHeight" radius={[4, 4, 0, 0]} maxBarSize={24}>
               <LabelList dataKey="value" position="top" fill="var(--color-text)" fontSize={10} />
               {data.map((item) => (
