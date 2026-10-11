@@ -139,6 +139,7 @@ export interface CalendarEvent {
   title: string;
   date: ISODate;
   time?: string;
+  metaLabel?: string;
   type: 'callback' | 'meeting' | 'practice' | 'other';
   leadId?: ID;
 }

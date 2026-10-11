@@ -38,3 +38,22 @@ export function shiftMonth(month: string, amount: number): string {
   date.setUTCMonth(date.getUTCMonth() + amount);
   return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}`;
 }
+
+export function formatCalendarDate(date: string): string {
+  return new Intl.DateTimeFormat('en-IN', {
+    day: 'numeric',
+    month: 'short',
+    timeZone: 'UTC',
+  }).format(parseIso(`${date}T00:00:00Z`));
+}
+
+export function formatEventTime(time?: string): string {
+  if (!time) {
+    return 'All day';
+  }
+
+  const [rawHours, minutes] = time.split(':').map(Number);
+  const suffix = rawHours >= 12 ? 'PM' : 'AM';
+  const hours = rawHours % 12 || 12;
+  return `${hours}:${String(minutes).padStart(2, '0')} ${suffix}`;
+}

@@ -601,6 +601,7 @@ export const calendarEvents: CalendarEvent[] = [
     title: 'SOP coaching session',
     date: '2026-10-23',
     time: '11:00',
+    metaLabel: 'With Sunita Rao (Manager) · via #callcentre-team',
     type: 'practice',
   },
   {
@@ -608,6 +609,8 @@ export const calendarEvents: CalendarEvent[] = [
     title: 'Store visit planning',
     date: '2026-10-26',
     time: '14:00',
+    // PLACEHOLDER: verify this event title, date, and metadata against mock.
+    metaLabel: 'With the store team · via #callcentre-team',
     type: 'meeting',
   },
   {
@@ -615,6 +618,8 @@ export const calendarEvents: CalendarEvent[] = [
     title: 'Team planning session',
     date: '2026-10-28',
     time: '10:30',
+    // PLACEHOLDER: verify this event title, date, and metadata against mock.
+    metaLabel: 'With the call centre team · via #callcentre-team',
     type: 'meeting',
   },
 ];

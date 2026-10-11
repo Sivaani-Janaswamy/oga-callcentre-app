@@ -1,58 +1,30 @@
 import { CalendarDays, ChevronLeft, ChevronRight, Mail } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
-import type { CalendarEvent } from '../../data/types';
 import { useAsync } from '../../hooks/useAsync';
 import { getEvents } from '../../services/api';
 import { getDemoTodayIso } from '../../utils/clock';
-import { formatMonthTitle, getMonthGrid, shiftMonth } from '../../utils/calendar';
+import {
+  formatCalendarDate,
+  formatEventTime,
+  formatMonthTitle,
+  shiftMonth,
+} from '../../utils/calendar';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
+import { CalendarGrid } from './CalendarGrid';
 
 const INITIAL_MONTH = '2026-10';
-const WEEKDAYS = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
-
-function CalendarGrid({
-  month,
-  events,
-}: {
-  month: string;
-  events: CalendarEvent[];
-}): JSX.Element {
-  const eventDates = new Set(events.map((event) => event.date));
-  const today = getDemoTodayIso();
-
-  return (
-    <div className="mt-4 grid grid-cols-7 gap-2">
-      {WEEKDAYS.map((weekday, index) => (
-        <span key={`${weekday}-${index}`} className="text-center text-11 text-text-muted">
-          {weekday}
-        </span>
-      ))}
-      {getMonthGrid(month).map((cell, index) =>
-        cell.date ? (
-          <div
-            key={cell.date}
-            className={`flex h-10 flex-col items-center justify-center rounded-md text-12 font-semibold shadow-soft ${
-              cell.date === today ? 'border-2 border-info text-info' : 'bg-card-soft text-text'
-            }`}
-          >
-            {cell.day}
-            {eventDates.has(cell.date) && <span className="mt-0.5 h-1 w-1 rounded-full bg-danger" />}
-          </div>
-        ) : (
-          <span key={`blank-${index}`} className="h-10" />
-        ),
-      )}
-    </div>
-  );
-}
-
 export function CalendarPage(): JSX.Element {
   const [month, setMonth] = useState(INITIAL_MONTH);
+  const [selectedDate, setSelectedDate] = useState(getDemoTodayIso());
   const request = useCallback(() => getEvents(month), [month]);
   const requestDeps = useMemo(() => [month], [month]);
   const { data, loading, error } = useAsync(request, requestDeps);
   const events = useMemo(() => data ?? [], [data]);
   const todayMonth = getDemoTodayIso().slice(0, 7);
+  const selectedEvents = events.filter((event) => event.date === selectedDate);
+  const upcomingEvents = events
+    .filter((event) => event.date >= getDemoTodayIso())
+    .sort((left, right) => left.date.localeCompare(right.date));
 
   if (loading) {
     return <DashboardLoading />;
@@ -92,7 +64,10 @@ export function CalendarPage(): JSX.Element {
             <h2 className="text-13 font-semibold text-text">{formatMonthTitle(month)}</h2>
             <button
               type="button"
-              onClick={() => setMonth(todayMonth)}
+              onClick={() => {
+                setMonth(todayMonth);
+                setSelectedDate(getDemoTodayIso());
+              }}
               className="rounded-full bg-info-soft px-2.5 py-1 text-10 font-semibold text-info"
             >
               Today
@@ -107,7 +82,41 @@ export function CalendarPage(): JSX.Element {
             <ChevronRight className="h-4 w-4" />
           </button>
         </div>
-        <CalendarGrid month={month} events={events} />
+        <CalendarGrid
+          month={month}
+          events={events}
+          selectedDate={selectedDate}
+          onSelect={setSelectedDate}
+        />
+        {/* PLACEHOLDER: verify the selected-day panel copy and layout against mock. */}
+        <div className="mt-4 rounded-md bg-card-soft p-3">
+          <p className="text-11 font-semibold text-text">{formatCalendarDate(selectedDate)}</p>
+          {selectedEvents.length === 0 ? (
+            <p className="mt-1 text-11 text-text-muted">No events</p>
+          ) : (
+            selectedEvents.map((event) => (
+              <p key={event.id} className="mt-1 text-11 text-text-muted">
+                {event.title}
+              </p>
+            ))
+          )}
+        </div>
+      </div>
+      <div className="mt-6">
+        <p className="text-11 font-semibold uppercase tracking-[0.12em] text-text-muted">
+          UPCOMING
+        </p>
+        <div className="mt-3 space-y-2">
+          {upcomingEvents.map((event) => (
+            <div key={event.id} className="border-l-2 border-info pl-3">
+              <p className="text-12 font-semibold text-info">{formatEventTime(event.time)}</p>
+              <p className="text-13 font-semibold text-text">{event.title}</p>
+              <p className="text-11 text-text-muted">
+                {formatCalendarDate(event.date)} · {event.metaLabel}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
