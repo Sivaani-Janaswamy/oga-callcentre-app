@@ -15,6 +15,7 @@ function avatarClass(tone: PlannedCall['avatarTone']): string {
     mint: 'bg-success-soft',
     blue: 'bg-info-soft',
     yellow: 'bg-warning-soft',
+    grey: 'bg-card-soft',
   };
   return classes[tone];
 }
@@ -53,7 +54,8 @@ function LeadRow({
         <div className="min-w-0 flex-1">
           <p className="text-13 font-semibold text-text">{lead.name}</p>
           <p className="mt-1 truncate text-11 text-text-muted">
-            Interested: {lead.productInterest} · {formatInr(lead.quoteValueInr)}
+            {lead.interestKind === 'browsing' ? 'Browsing' : 'Interested'}: {lead.productInterest} ·{' '}
+            {formatInr(lead.quoteValueInr)}
           </p>
         </div>
         <div className="text-right">

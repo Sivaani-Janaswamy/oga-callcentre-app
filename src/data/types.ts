@@ -45,13 +45,19 @@ export interface PlannedCall {
   id: ID;
   name: string;
   initials: string;
-  avatarTone: 'peach' | 'mint' | 'blue' | 'yellow';
+  avatarTone: 'peach' | 'mint' | 'blue' | 'yellow' | 'grey';
+  interestKind: 'interested' | 'browsing';
   productInterest: string;
   quoteValueInr: number;
   score: number;
   icpScore: number;
   intentScore: number;
   lastNote: string;
+  story: string;
+  preferredProduct: string;
+  crossSellProduct: string;
+  crossSellPriceInr: number;
+  financing: string;
 }
 
 export interface IcpFactor {
