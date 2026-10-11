@@ -61,7 +61,7 @@ Suggested path through the app:
 ## Feature walkthrough
 
 ### App shell
-A persistent dark-green sidebar and top bar wrap every screen. The sidebar groups the four Plan views under **Plan**, highlights only the current route and marks it with `aria-current`. The top bar shows the agent's score ring, rank, notification bell and avatar, all loaded from the service layer rather than hard-coded.
+A persistent dark-green sidebar and top bar wrap every screen. The sidebar groups the four Plan views under **Plan**, highlights only the current route and marks it with `aria-current`. The top bar shows the agent's score ring, rank, notification bell and avatar, all loaded from the service layer rather than hard-coded. Below the `md` breakpoint the sidebar becomes a slide-in drawer with a backdrop, an Escape-key handler, scroll lock and focus management, and every screen stacks to a single column without horizontal overflow (verified at 360px, 390px and 768px).
 
 ### Dashboard
 - Greeting hero with the four headline KPIs and delta chips.
@@ -204,6 +204,12 @@ Beyond tests, the codebase follows these rules:
 - Colours and sizes come from tokens, not literals.
 - A global `:focus-visible` ring so every control is keyboard-usable, and the modal traps and restores focus.
 
+Verification results on the production preview:
+
+- Lighthouse accessibility scores **1.0** on Dashboard, Calls to make, Pulse and Calendar.
+- An automated browser audit found no horizontal overflow at 360px, 390px or 768px on any screen, and exercised the drawer, the Plan toggle, modals, paging and the chat composer.
+- Phone, tablet and desktop screenshots of every screen are in [`docs/screens/`](docs/screens/).
+
 ## Design decisions
 
 **A fixed demo date (9 Oct 2026).** All dates flow from one `clock.ts`, so the sample data, "time left" chips, calendar highlight and charts always agree with each other. The reference app highlights the real date; I chose a fixed one so the demo is stable no matter when it is opened.
@@ -232,7 +238,6 @@ Beyond tests, the codebase follows these rules:
 
 | Item | Reason |
 | --- | --- |
-| Phone-width layout | Ran out of time after prioritising the required desktop screens |
 | Profile menu actions and settings | Out of the required scope, lower priority |
 | Customer-discussions and Kudos detail views | Out of the required scope, lower priority |
 | Task-agent channel metric panels | Out of the required scope, lower priority |
@@ -260,7 +265,7 @@ The git history is deliberately granular, one change per commit with `type(scope
 | --- | --- |
 | **Claude** | Planning the work, writing the specs, task list and prompts, and reviewing decisions and outputs. |
 | **GitHub Copilot agent (VS Code)** | Most of the implementation, directed by my specs in `SPEC.md`, `DATABASE_DESIGN.md` and `TASKLIST.md`. |
-| **A second coding agent** *(name the tool here)* | Finished the final groups of work after the first agent reached its usage limit. |
+| **Kilo coding agent** | Finished the final groups of work after the first agent reached its usage limit: phone-width responsiveness, loading skeletons and empty states, contrast fixes, and verification. |
 
 AI-written changes were checked with lint, a type-checked production build, tests and browser checks before being committed, and I compared the screens against the reference visually. I can explain the code in this repository.
 
@@ -270,9 +275,9 @@ I opened the mock only in the browser to observe layout and behaviour. I did not
 
 ## Known issues
 
-- No phone-width layout. The app is designed for a laptop-width Chrome window.
 - The demo uses a fixed date rather than the real one (see Design decisions).
 - Visual fidelity is close but not pixel-exact, and some content is placeholder (see above).
+- The live demo redeploys from `main`; after a push it can take a few minutes to reflect the latest commit.
 
 ---
 
