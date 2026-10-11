@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { DashboardPage } from '../components/dashboard/DashboardPage';
 import { PlanLayout } from '../components/plan/PlanLayout';
+import { RecentCallsPage } from '../components/plan/RecentCallsPage';
 import { AppShell } from '../components/shell/AppShell';
 
 function PlaceholderPage({
@@ -47,10 +48,7 @@ export function AppRouter(): JSX.Element {
               />
             }
           />
-          <Route
-            path="recent"
-            element={<PlaceholderPage title="Recent" description="Recent calls will render here." />}
-          />
+          <Route path="recent" element={<RecentCallsPage onSelect={() => undefined} />} />
           <Route
             path="practise"
             element={
