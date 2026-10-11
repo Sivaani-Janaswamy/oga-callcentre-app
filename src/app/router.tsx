@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { DashboardPage } from '../components/dashboard/DashboardPage';
+import { PlanLayout } from '../components/plan/PlanLayout';
 import { AppShell } from '../components/shell/AppShell';
 
 function PlaceholderPage({
@@ -26,42 +27,40 @@ export function AppRouter(): JSX.Element {
       <Routes>
         <Route path="/" element={<Navigate to="/dashboard" replace />} />
         <Route path="/dashboard" element={<DashboardPage />} />
-        <Route
-          path="/plan/calls"
-          element={
-            <PlaceholderPage
-              title="Calls to make"
-              description="This route is the ranked call plan workspace for open leads and follow-ups."
-            />
-          }
-        />
-        <Route
-          path="/plan/incoming"
-          element={
-            <PlaceholderPage
-              title="Incoming"
-              description="This route will display missed calls and callback actions."
-            />
-          }
-        />
-        <Route
-          path="/plan/recent"
-          element={
-            <PlaceholderPage
-              title="Recent"
-              description="This route will review recent calls and call outcomes."
-            />
-          }
-        />
-        <Route
-          path="/plan/practise"
-          element={
-            <PlaceholderPage
-              title="Practise a call"
-              description="Bonus practise flow placeholder for role-play and call coaching."
-            />
-          }
-        />
+        <Route path="/plan" element={<PlanLayout />}>
+          <Route index element={<Navigate to="/plan/calls" replace />} />
+          <Route
+            path="calls"
+            element={
+              <PlaceholderPage
+                title="Calls to make"
+                description="This route is the ranked call plan workspace for open leads and follow-ups."
+              />
+            }
+          />
+          <Route
+            path="incoming"
+            element={
+              <PlaceholderPage
+                title="Incoming"
+                description="This route will display missed calls and callback actions."
+              />
+            }
+          />
+          <Route
+            path="recent"
+            element={<PlaceholderPage title="Recent" description="Recent calls will render here." />}
+          />
+          <Route
+            path="practise"
+            element={
+              <PlaceholderPage
+                title="Practise a call"
+                description="Bonus practise flow placeholder for role-play and call coaching."
+              />
+            }
+          />
+        </Route>
         <Route
           path="/calendar"
           element={
