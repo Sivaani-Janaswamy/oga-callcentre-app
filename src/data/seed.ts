@@ -291,6 +291,7 @@ export const plannedCalls: PlannedCall[] = [
     financing: 'Financing has not been discussed yet.',
   },
   {
+    // PLACEHOLDER: verify Divya's product, price, score, and detail values against mock.
     id: 'planned_05',
     name: 'Divya P.',
     initials: 'DP',
