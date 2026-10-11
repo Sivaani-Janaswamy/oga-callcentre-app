@@ -1,3 +1,5 @@
+import { parseIso } from './clock';
+
 export function formatInr(value: number): string {
   return new Intl.NumberFormat('en-IN', {
     style: 'currency',
@@ -20,4 +22,12 @@ export function formatDurationSeconds(totalSeconds: number): string {
 export function formatTimeLeftHours(value: number): string {
   const hours = Math.max(0, Math.floor(value));
   return `${hours}h`;
+}
+
+export function formatMessageTime(iso: string): string {
+  return new Intl.DateTimeFormat('en-IN', {
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZone: 'Asia/Kolkata',
+  }).format(parseIso(iso));
 }

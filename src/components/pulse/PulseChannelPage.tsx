@@ -4,6 +4,7 @@ import { useAsync } from '../../hooks/useAsync';
 import { getChannel } from '../../services/api';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
 import { PulseChannelHeader } from './PulseChannelHeader';
+import { MessageList } from './MessageList';
 
 export function PulseChannelPage(): JSX.Element {
   const { channelId } = useParams<{ channelId: string }>();
@@ -26,10 +27,7 @@ export function PulseChannelPage(): JSX.Element {
   return (
     <section>
       <PulseChannelHeader channel={data.channel} />
-      {/* PLACEHOLDER: verify channel message layout against mock until the chat is wired. */}
-      <div className="mt-5 rounded-md border border-dashed border-border bg-card p-5 text-12 text-text-muted">
-        Messages for this channel will appear here.
-      </div>
+      <MessageList messages={data.messages} />
     </section>
   );
 }
