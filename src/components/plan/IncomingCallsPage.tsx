@@ -5,6 +5,7 @@ import { useAsync } from '../../hooks/useAsync';
 import { getMissedCalls } from '../../services/api';
 import { formatInr } from '../../utils/format';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
+import { CallAction } from './CallAction';
 
 const EMPTY_DEPS: unknown[] = [];
 
@@ -35,20 +36,12 @@ function MissedCallRow({
           <p className="text-12 font-semibold text-success">{formatInr(call.expectedValueInr)} expected</p>
         )}
         <div className="mt-1 flex items-center justify-end gap-2">
-          <button
-            type="button"
-            disabled={calling}
-            onClick={onCall}
-            className="inline-flex items-center gap-1 rounded-md bg-success px-2 py-1 text-10 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
-          >
-            <PhoneMissed className="h-3 w-3" />
-            {calling ? 'Calling…' : 'Call back'}
-          </button>
-          {calling && (
-            <button type="button" onClick={onCancel} className="text-10 text-text-muted underline">
-              Cancel
-            </button>
-          )}
+          <CallAction
+            calling={calling}
+            label="Call back"
+            onCall={onCall}
+            onCancel={onCancel}
+          />
         </div>
       </div>
     </div>

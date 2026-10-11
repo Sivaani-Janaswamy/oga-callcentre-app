@@ -6,6 +6,7 @@ import { getPlannedCalls } from '../../services/api';
 import { formatInr } from '../../utils/format';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
 import { Avatar } from '../ui/Avatar';
+import { CallAction } from './CallAction';
 
 const PAGE_SIZE = 2;
 
@@ -34,11 +35,17 @@ function scoreClass(score: number): string {
 function LeadRow({
   lead,
   expanded,
+  calling,
   onToggle,
+  onCall,
+  onCancel,
 }: {
   lead: PlannedCall;
   expanded: boolean;
+  calling: boolean;
   onToggle: () => void;
+  onCall: () => void;
+  onCancel: () => void;
 }): JSX.Element {
   return (
     <div className="rounded-md border border-border bg-card shadow-soft">
@@ -70,7 +77,25 @@ function LeadRow({
       </button>
       {expanded && (
         // PLACEHOLDER: verify the expandable detail content against the mock.
-        <div className="grid gap-3 border-t border-border px-3 py-3 text-11 text-text-muted sm:grid-cols-3">
+        <div className="grid gap-3 border-t border-border px-3 py-3 text-11 text-text-muted sm:grid-cols-2">
+          <p className="sm:col-span-2">
+            <span className="block text-10 uppercase tracking-[0.1em]">Story so far</span>
+            <span className="mt-1 block text-text">{lead.story}</span>
+          </p>
+          <p>
+            <span className="block text-10 uppercase tracking-[0.1em]">Preferred product</span>
+            <span className="mt-1 block text-text">{lead.preferredProduct}</span>
+          </p>
+          <p>
+            <span className="block text-10 uppercase tracking-[0.1em]">Cross-sell</span>
+            <span className="mt-1 block text-text">
+              {lead.crossSellProduct} · {formatInr(lead.crossSellPriceInr)}
+            </span>
+          </p>
+          <p>
+            <span className="block text-10 uppercase tracking-[0.1em]">Financing</span>
+            <span className="mt-1 block text-text">{lead.financing}</span>
+          </p>
           <p>
             <span className="block text-10 uppercase tracking-[0.1em]">ICP fit</span>
             <strong className="mt-1 block text-13 text-text">{lead.icpScore}%</strong>
@@ -83,6 +108,14 @@ function LeadRow({
             <span className="block text-10 uppercase tracking-[0.1em]">Last note</span>
             <span className="mt-1 block text-text">{lead.lastNote}</span>
           </p>
+          <div className="flex items-end justify-end sm:col-span-2">
+            <CallAction
+              calling={calling}
+              label="Place call"
+              onCall={onCall}
+              onCancel={onCancel}
+            />
+          </div>
         </div>
       )}
     </div>
@@ -92,6 +125,7 @@ function LeadRow({
 export function CallsToMakePage(): JSX.Element {
   const [page, setPage] = useState(1);
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [callingId, setCallingId] = useState<string | null>(null);
   const request = useCallback(() => getPlannedCalls(page, PAGE_SIZE), [page]);
   const requestDeps = useMemo(() => [page], [page]);
   const { data, loading, error } = useAsync(request, requestDeps);
@@ -119,7 +153,10 @@ export function CallsToMakePage(): JSX.Element {
             key={lead.id}
             lead={lead}
             expanded={expandedId === lead.id}
+            calling={callingId === lead.id}
             onToggle={() => setExpandedId((current) => (current === lead.id ? null : lead.id))}
+            onCall={() => setCallingId(lead.id)}
+            onCancel={() => setCallingId(null)}
           />
         ))}
       </div>
