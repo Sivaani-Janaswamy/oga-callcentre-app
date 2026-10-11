@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { DashboardPage } from '../components/dashboard/DashboardPage';
+import { CalendarPage } from '../components/calendar/CalendarPage';
 import { CallsToMakePage } from '../components/plan/CallsToMakePage';
 import { IncomingCallsPage } from '../components/plan/IncomingCallsPage';
 import { PlanLayout } from '../components/plan/PlanLayout';
@@ -53,12 +54,7 @@ export function AppRouter(): JSX.Element {
         </Route>
         <Route
           path="/calendar"
-          element={
-            <PlaceholderPage
-              title="Calendar"
-              description="Calendar month view and event detail panel will render here."
-            />
-          }
+          element={<CalendarPage />}
         />
         <Route
           path="/pulse"
