@@ -70,26 +70,26 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 ## Phase 3 — Plan (⏱ ~3h) ⭐
 
 - [x] `feat(plan): PlanHeader band + sidebar navigation (no tab bar)`
-- [ ] `feat(plan): Calls to make list, ranked by score`
-- [ ] `feat(plan): expandable row (accordion, one open at a time)`
-- [ ] `feat(plan): Pager component + paging on calls list`
+- [x] `feat(plan): Calls to make list, ranked by score`
+- [x] `feat(plan): expandable row (accordion, one open at a time)`
+- [x] `feat(plan): Pager component + paging on calls list`
 - [ ] `test(plan): usePaging edge cases (first/last page, empty)`
-- [ ] `feat(plan): Incoming summary strip (count + ₹ at stake)`
-- [ ] `feat(plan): Incoming rows with Call back button, Unknown caller state`
+- [x] `feat(plan): Incoming summary strip (count + ₹ at stake)`
+- [x] `feat(plan): Incoming rows with Call back button, Unknown caller state`
 - [x] `feat(plan): Recent list with call type icon, time, length`
 - [x] `feat(plan): call review panel on row tap`
 - [x] `feat(plan): recent-call loading and empty review states`
-- [ ] **Checkpoint:** compare all three tabs against the mock.
+- [x] **Checkpoint:** compare all three tabs against the mock.
 
 ---
 
 ## Phase 4 — Calendar (⏱ ~2h) ⭐
 
-- [ ] `feat(calendar): month grid builder util + unit tests (leap years, offsets)`
-- [ ] `feat(calendar): header with prev/next month and Today button`
-- [ ] `feat(calendar): today outline + event dots from data`
-- [ ] `feat(calendar): selected-day events panel`
-- [ ] **Checkpoint:** Oct 2026 layout matches mock; Today returns to 9 Oct 2026 (or the real current date).
+- [x] `feat(calendar): month grid builder util + unit tests (leap years, offsets)`
+- [x] `feat(calendar): header with prev/next month and Today button`
+- [x] `feat(calendar): today outline + event dots from data`
+- [x] `feat(calendar): selected-day events panel`
+- [x] **Checkpoint:** Oct 2026 layout matches mock; Today returns to 9 Oct 2026 (or the real current date).
 
 ---
 
