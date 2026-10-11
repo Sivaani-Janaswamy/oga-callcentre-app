@@ -78,7 +78,7 @@ export function CallAction({
         type="button"
         disabled={calling || inCall}
         onClick={onCall}
-        className="inline-flex items-center gap-1 rounded-md bg-success px-2 py-1 text-10 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+        className="inline-flex items-center gap-1 rounded-md bg-brand-dark px-2 py-1 text-10 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
       >
         <PhoneCall className="h-3 w-3" />
         {inCall ? `In call ${formatTime(callSeconds)}` : calling ? 'Calling…' : label}

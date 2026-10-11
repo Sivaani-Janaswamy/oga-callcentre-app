@@ -11,7 +11,7 @@ function formatPlanDate(date: Date): string {
 
 export function PlanHeader(): JSX.Element {
   return (
-    <header className="flex flex-wrap items-end justify-between gap-4 rounded-md bg-gradient-to-r from-sidebar to-brand p-6 text-white shadow-soft">
+    <header className="flex flex-wrap items-end justify-between gap-4 rounded-md bg-gradient-to-r from-navy via-navy-mid to-navy-light p-6 text-white shadow-soft">
       <div>
         <p className="text-13 text-white/70">Today&apos;s calling plan</p>
         <h1 className="mt-1 text-24 font-semibold">Planner</h1>

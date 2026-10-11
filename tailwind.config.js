@@ -35,6 +35,7 @@ export default {
         gold: 'var(--color-gold)',
         brown: 'var(--color-brown)',
         amber: 'var(--color-amber)',
+        cream: 'var(--color-cream)',
         info: 'var(--color-info)',
         'info-light': 'var(--color-info-light)',
         'info-dark': 'var(--color-info-dark)',

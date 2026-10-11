@@ -82,7 +82,7 @@ export function IncomingCallsPage(): JSX.Element {
       <p className="mt-1 text-13 text-text-muted">
         Ranked by expected value — call the highest-value leads back first
       </p>
-      <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 rounded-md bg-warn-soft p-4">
+      <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 rounded-md bg-cream p-4">
         <div>
           <p className="text-20 font-semibold text-text">{data?.count ?? 0}</p>
           <p className="text-10 font-semibold tracking-[0.12em] text-text-muted">MISSED TODAY</p>
