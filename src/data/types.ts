@@ -73,6 +73,7 @@ export interface Call {
   id: ID;
   leadId?: ID;
   displayName: string;
+  whenLabel: string;
   channel: CallChannel;
   direction: CallDirection;
   startedAt: ISODateTime;
@@ -81,6 +82,21 @@ export interface Call {
   handledBy: ID;
   summary?: string;
   notes?: string;
+}
+
+export interface SopChecklistItem {
+  label: string;
+  passed: boolean;
+  quote?: string;
+  failureMessage?: string;
+}
+
+export interface CallReview {
+  callId: ID;
+  checklist: SopChecklistItem[];
+  passedItems: number;
+  totalItems: number;
+  adherencePercent: number;
 }
 
 export interface MissedCall {

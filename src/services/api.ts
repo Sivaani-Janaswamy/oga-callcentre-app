@@ -1,6 +1,7 @@
 import {
   agent,
   buyingSignals,
+  callReviewFixtures,
   calendarEvents,
   channels,
   channelMessages,
@@ -22,6 +23,7 @@ import type {
   BuyingSignal,
   CalendarEvent,
   Channel,
+  CallReview,
   DailyStat,
   Earnings,
   ID,
@@ -36,7 +38,7 @@ import type {
   WaitingItem,
   Kudos,
 } from '../data/types';
-import { demoNowIso, parseIso } from '../utils/clock';
+import { demoNowIso } from '../utils/clock';
 
 const delay = (ms: number): Promise<void> =>
   new Promise((resolve) => window.setTimeout(resolve, ms));
@@ -105,9 +107,7 @@ export async function getMissedCalls(): Promise<{
 
 export async function getRecentCalls(): Promise<import('../data/types').Call[]> {
   await delay(170);
-  return [...recentCalls].sort(
-    (a, b) => parseIso(b.startedAt).getTime() - parseIso(a.startedAt).getTime(),
-  );
+  return [...recentCalls];
 }
 
 export async function getCallById(id: ID): Promise<import('../data/types').Call> {
@@ -119,6 +119,32 @@ export async function getCallById(id: ID): Promise<import('../data/types').Call>
   }
 
   return match;
+}
+
+export async function getCallReview(id: ID): Promise<CallReview | null> {
+  await delay(150);
+  const call = recentCalls.find((item) => item.id === id);
+
+  if (!call) {
+    throw new Error(`Call not found: ${id}`);
+  }
+
+  const checklist = callReviewFixtures[id];
+
+  if (!checklist) {
+    return null;
+  }
+
+  const passedItems = checklist.filter((item) => item.passed).length;
+  const totalItems = checklist.length;
+
+  return {
+    callId: id,
+    checklist,
+    passedItems,
+    totalItems,
+    adherencePercent: totalItems === 0 ? 0 : Math.round((passedItems / totalItems) * 100),
+  };
 }
 
 export async function getEvents(month: string): Promise<CalendarEvent[]> {
