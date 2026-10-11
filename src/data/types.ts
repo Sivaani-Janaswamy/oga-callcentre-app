@@ -195,7 +195,7 @@ export interface Earnings {
   targetInr: number;
 }
 
-export type ChannelGroup = 'role' | 'task' | 'general';
+export type ChannelGroup = 'role' | 'task' | 'general' | 'direct';
 
 export interface Channel {
   id: ID;
@@ -206,6 +206,15 @@ export interface Channel {
   unreadCount: number;
   healthPercent?: number;
   healthTone?: 'good' | 'warn' | 'bad';
+}
+
+export interface PulseAgent {
+  id: ID;
+  name: string;
+  initials: string;
+  group: 'role' | 'task';
+  description: string;
+  progressPercent?: number;
 }
 
 export interface Message {

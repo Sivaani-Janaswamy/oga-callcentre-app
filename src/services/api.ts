@@ -14,6 +14,7 @@ import {
   practiseScenarios,
   progressToday,
   plannedCalls,
+  pulseAgents,
   recentCalls,
   tasks,
   waitingList,
@@ -35,6 +36,7 @@ import type {
   NeedsInput,
   Page,
   PlannedCall,
+  PulseAgent,
   PractiseScenario,
   Task,
   WaitingItem,
@@ -172,15 +174,21 @@ export async function getChannels(): Promise<{
   role: Channel[];
   task: Channel[];
   general: Channel[];
+  direct: Channel[];
 }> {
   await delay(170);
   return {
     role: channels.filter((channel) => channel.group === 'role'),
     task: channels.filter((channel) => channel.group === 'task'),
     general: channels.filter((channel) => channel.group === 'general'),
+    direct: channels.filter((channel) => channel.group === 'direct'),
   };
 }
 
+export async function getPulseAgents(): Promise<PulseAgent[]> {
+  await delay(170);
+  return [...pulseAgents];
+}
 export async function getChannel(
   id: ID,
 ): Promise<{ channel: Channel; messages: Message[]; needsInput?: NeedsInput }> {

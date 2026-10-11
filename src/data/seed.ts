@@ -16,6 +16,7 @@ import type {
   Task,
   WaitingItem,
   Kudos,
+  PulseAgent,
 } from './types';
 
 export const agent: Agent = {
@@ -645,6 +646,33 @@ export const calendarEvents: CalendarEvent[] = [
   },
 ];
 
+// PLACEHOLDER: verify Pulse agent names, descriptions, and channel copy against mock.
+export const pulseAgents: PulseAgent[] = [
+  {
+    id: 'pulse_agent_01',
+    name: 'AvaniBot',
+    initials: 'AB',
+    group: 'role',
+    description: 'Your AI call-centre coach',
+  },
+  {
+    id: 'pulse_agent_02',
+    name: 'SOP Coach',
+    initials: 'SC',
+    group: 'task',
+    description: 'Keep every call on the right track',
+    progressPercent: 82,
+  },
+  {
+    id: 'pulse_agent_03',
+    name: 'Lead Coach',
+    initials: 'LC',
+    group: 'task',
+    description: 'Turn more conversations into conversions',
+    progressPercent: 64,
+  },
+];
+
 export const channels: Channel[] = [
   {
     id: 'channel_01',
@@ -701,6 +729,22 @@ export const channels: Channel[] = [
     description: 'Customer conversations',
     memberCount: 14,
     unreadCount: 6,
+  },
+  {
+    id: 'channel_07',
+    slug: 'sunita-rao',
+    group: 'direct',
+    description: 'Sunita Rao',
+    memberCount: 2,
+    unreadCount: 1,
+  },
+  {
+    id: 'channel_08',
+    slug: 'kavya',
+    group: 'direct',
+    description: 'Kavya',
+    memberCount: 2,
+    unreadCount: 0,
   },
 ];
 
