@@ -1,13 +1,47 @@
+import { lazy, Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { DashboardPage } from '../components/dashboard/DashboardPage';
-import { CalendarPage } from '../components/calendar/CalendarPage';
-import { CallsToMakePage } from '../components/plan/CallsToMakePage';
-import { IncomingCallsPage } from '../components/plan/IncomingCallsPage';
 import { PlanLayout } from '../components/plan/PlanLayout';
-import { RecentCallsPage } from '../components/plan/RecentCallsPage';
-import { PulsePage } from '../components/pulse/PulsePage';
-import { PulseChannelPage } from '../components/pulse/PulseChannelPage';
 import { AppShell } from '../components/shell/AppShell';
+
+const DashboardPage = lazy(() =>
+  import('../components/dashboard/DashboardPage').then((module) => ({
+    default: module.DashboardPage,
+  })),
+);
+const CallsToMakePage = lazy(() =>
+  import('../components/plan/CallsToMakePage').then((module) => ({
+    default: module.CallsToMakePage,
+  })),
+);
+const IncomingCallsPage = lazy(() =>
+  import('../components/plan/IncomingCallsPage').then((module) => ({
+    default: module.IncomingCallsPage,
+  })),
+);
+const RecentCallsPage = lazy(() =>
+  import('../components/plan/RecentCallsPage').then((module) => ({
+    default: module.RecentCallsPage,
+  })),
+);
+const CalendarPage = lazy(() =>
+  import('../components/calendar/CalendarPage').then((module) => ({
+    default: module.CalendarPage,
+  })),
+);
+const PulsePage = lazy(() =>
+  import('../components/pulse/PulsePage').then((module) => ({
+    default: module.PulsePage,
+  })),
+);
+const PulseChannelPage = lazy(() =>
+  import('../components/pulse/PulseChannelPage').then((module) => ({
+    default: module.PulseChannelPage,
+  })),
+);
+
+function RouteLoading(): JSX.Element {
+  return <p className="py-10 text-center text-13 text-text-muted">Loading…</p>;
+}
 
 function PlaceholderPage({
   title,
@@ -27,47 +61,37 @@ function PlaceholderPage({
   );
 }
 
+function PractisePlaceholderPage(): JSX.Element {
+  return (
+    <PlaceholderPage
+      title="Practise a call"
+      description="Bonus practise flow placeholder for role-play and call coaching."
+    />
+  );
+}
+
+const PractisePage = lazy(async () => ({ default: PractisePlaceholderPage }));
+
 export function AppRouter(): JSX.Element {
   return (
     <AppShell>
-      <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        <Route path="/dashboard" element={<DashboardPage />} />
-        <Route path="/plan" element={<PlanLayout />}>
-          <Route index element={<Navigate to="/plan/calls" replace />} />
-          <Route
-            path="calls"
-            element={<CallsToMakePage />}
-          />
-          <Route
-            path="incoming"
-            element={<IncomingCallsPage />}
-          />
-          <Route path="recent" element={<RecentCallsPage />} />
-          <Route
-            path="practise"
-            element={
-              <PlaceholderPage
-                title="Practise a call"
-                description="Bonus practise flow placeholder for role-play and call coaching."
-              />
-            }
-          />
-        </Route>
-        <Route
-          path="/calendar"
-          element={<CalendarPage />}
-        />
-        <Route
-          path="/pulse"
-          element={<PulsePage />}
-        />
-        <Route
-          path="/pulse/:channelId"
-          element={<PulseChannelPage />}
-        />
-        <Route path="*" element={<Navigate to="/dashboard" replace />} />
-      </Routes>
+      <Suspense fallback={<RouteLoading />}>
+        <Routes>
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/plan" element={<PlanLayout />}>
+            <Route index element={<Navigate to="/plan/calls" replace />} />
+            <Route path="calls" element={<CallsToMakePage />} />
+            <Route path="incoming" element={<IncomingCallsPage />} />
+            <Route path="recent" element={<RecentCallsPage />} />
+            <Route path="practise" element={<PractisePage />} />
+          </Route>
+          <Route path="/calendar" element={<CalendarPage />} />
+          <Route path="/pulse" element={<PulsePage />} />
+          <Route path="/pulse/:channelId" element={<PulseChannelPage />} />
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      </Suspense>
     </AppShell>
   );
 }
