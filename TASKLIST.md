@@ -97,14 +97,15 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 ## Phase 5 — Pulse (⏱ ~3h) ⭐
 
-- [ ] `feat(pulse): Pulse home header + search box`
-- [ ] `feat(pulse): AvaniBot card with Daily Brief / Ask a question buttons`
-- [ ] `feat(pulse): Role agents, Task agents (with % chips), General sections`
-- [ ] `feat(pulse): Kudos card`
-- [ ] `feat(pulse): channel route + header with Back button`
-- [ ] `feat(pulse): message list (others left, self right, times, labelled bubbles)`
-- [ ] `feat(pulse): pinned Needs-your-input card (UI only)`
-- [ ] `feat(pulse): composer bar`
+- [x] `feat(pulse): Pulse home header + search box`
+- [x] `feat(pulse): AvaniBot card with Daily Brief / Ask a question buttons`
+- [x] `feat(pulse): Role agents, Task agents (with % chips), General sections`
+- [x] `feat(pulse): Kudos card`
+- [x] `feat(pulse): channel route + header with Back button`
+- [x] `feat(pulse): message list (others left, self right, times, labelled bubbles)`
+- [x] `feat(pulse): pinned Needs-your-input card (UI only)`
+- [x] `feat(pulse): composer bar`
+- [x] `feat(pulse): send a message and answer Needs-your-input`
 - [ ] **Checkpoint:** home → channel → back works, scrolling inside the chat is smooth.
 
 ---
