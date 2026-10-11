@@ -1,9 +1,11 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCallback, useEffect, useState } from 'react';
+import { useMemo } from 'react';
 import { useAsync } from '../../hooks/useAsync';
-import { getHotLeads } from '../../services/api';
+import { getHotLeads, getSignals } from '../../services/api';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
 import { Modal } from '../ui/Modal';
+import { LeadSignals } from './LeadSignals';
 import { LeadSummaryCard } from './LeadSummaryCard';
 
 const EMPTY_DEPS: unknown[] = [];
@@ -18,6 +20,12 @@ export function HotLeadsModal({
   const [index, setIndex] = useState(0);
   const { data: leads, loading, error } = useAsync(getHotLeads, EMPTY_DEPS);
   const lead = leads?.[index];
+  const signalsRequest = useCallback(() => getSignals(lead?.id ?? ''), [lead?.id]);
+  const signalsDeps = useMemo(() => [lead?.id], [lead?.id]);
+  const { data: signals, loading: signalsLoading, error: signalsError } = useAsync(
+    signalsRequest,
+    signalsDeps,
+  );
 
   useEffect(() => {
     if (isOpen) {
@@ -70,6 +78,11 @@ export function HotLeadsModal({
             </div>
           </div>
           <LeadSummaryCard lead={lead} />
+          {signalsLoading && <DashboardLoading />}
+          {signalsError && <DashboardError message={signalsError.message} />}
+          {!signalsLoading && !signalsError && signals && (
+            <LeadSignals lead={lead} signals={signals} />
+          )}
           <div className="mt-4 flex items-center justify-between">
             <button
               type="button"
