@@ -8,11 +8,13 @@ export function Modal({
   isOpen,
   onClose,
   title,
+  titleAdornment,
   children,
 }: {
   isOpen: boolean;
   onClose: () => void;
   title: string;
+  titleAdornment?: ReactNode;
   children: ReactNode;
 }): JSX.Element | null {
   const dialogRef = useRef<HTMLDivElement>(null);
@@ -95,9 +97,12 @@ export function Modal({
       >
         <div className="mx-auto mb-4 h-1 w-10 rounded-full bg-border" aria-hidden="true" />
         <div className="flex items-start justify-between gap-4">
-          <h2 id="modal-title" className="text-18 font-semibold text-text">
-            {title}
-          </h2>
+          <div className="flex items-center gap-3">
+            {titleAdornment}
+            <h2 id="modal-title" className="text-18 font-semibold text-text">
+              {title}
+            </h2>
+          </div>
           <button
             type="button"
             aria-label="Close dialog"

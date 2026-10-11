@@ -48,7 +48,7 @@ export function AppRouter(): JSX.Element {
               />
             }
           />
-          <Route path="recent" element={<RecentCallsPage onSelect={() => undefined} />} />
+          <Route path="recent" element={<RecentCallsPage />} />
           <Route
             path="practise"
             element={

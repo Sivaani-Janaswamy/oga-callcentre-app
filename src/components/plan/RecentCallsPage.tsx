@@ -1,7 +1,9 @@
 import { ChevronRight, PhoneIncoming, PhoneOff, PhoneOutgoing } from 'lucide-react';
+import { useState } from 'react';
 import { useAsync } from '../../hooks/useAsync';
 import type { Call } from '../../data/types';
 import { getRecentCalls } from '../../services/api';
+import { CallReviewPanel } from './CallReviewPanel';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
 
 const EMPTY_DEPS: unknown[] = [];
@@ -28,7 +30,8 @@ function getIconStyle(call: Call): string {
     : 'bg-success-soft text-success';
 }
 
-export function RecentCallsPage({ onSelect }: { onSelect: (call: Call) => void }): JSX.Element {
+export function RecentCallsPage(): JSX.Element {
+  const [selectedCall, setSelectedCall] = useState<Call | null>(null);
   const { data, loading, error } = useAsync(getRecentCalls, EMPTY_DEPS);
 
   if (loading) {
@@ -48,7 +51,7 @@ export function RecentCallsPage({ onSelect }: { onSelect: (call: Call) => void }
           <button
             key={call.id}
             type="button"
-            onClick={() => onSelect(call)}
+            onClick={() => setSelectedCall(call)}
             className="flex w-full items-center gap-3 rounded-md border border-border bg-card p-3 text-left shadow-soft transition-colors hover:border-brand"
           >
             <span
@@ -66,6 +69,7 @@ export function RecentCallsPage({ onSelect }: { onSelect: (call: Call) => void }
           </button>
         ))}
       </div>
+      <CallReviewPanel call={selectedCall} onClose={() => setSelectedCall(null)} />
     </section>
   );
 }
