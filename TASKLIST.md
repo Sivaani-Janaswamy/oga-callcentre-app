@@ -112,15 +112,15 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 ## Phase 6 — Leads modal (⏱ ~2.5h) ⭐
 
-- [ ] `feat(leads): Modal primitive (backdrop, Esc, focus trap, scroll lock)`
-- [ ] `feat(leads): LeadsModal header with "Lead n of N"`
-- [ ] `feat(leads): LeadCard (status, name, interest, time-left chip, prompt)`
-- [ ] `feat(leads): ScoreBar for ICP and intent score`
-- [ ] `feat(leads): collapsible ICP breakdown, How we got here`
-- [ ] `feat(leads): buying signals group with evidence quotes`
-- [ ] `feat(leads): cumulative missed footer chip`
-- [ ] `feat(leads): next/previous paging + dots + keyboard arrows`
-- [ ] `feat(dashboard): open modal from tasks card (hot leads)`
+- [x] `feat(leads): Modal primitive (backdrop, Esc, focus trap, scroll lock)`
+- [x] `feat(leads): LeadsModal header with "Lead n of N"`
+- [x] `feat(leads): LeadCard (status, name, interest, time-left chip, prompt)`
+- [x] `feat(leads): ScoreBar for ICP and intent score`
+- [x] `feat(leads): collapsible ICP breakdown, How we got here`
+- [x] `feat(leads): buying signals group with evidence quotes`
+- [x] `feat(leads): cumulative missed footer chip`
+- [x] `feat(leads): next/previous paging + dots + keyboard arrows`
+- [x] `feat(dashboard): open modal from tasks card (hot leads)`
 - [ ] **Checkpoint:** paging never overflows; collapsibles reset on lead change.
 
 ---
