@@ -65,14 +65,14 @@ export function DashboardBarChart({
       <h2 className="mb-3 text-11 font-semibold uppercase tracking-[0.12em] text-text-muted">
         {title}
       </h2>
-      <Card className="h-40 px-3 py-2">
+      <Card className="h-32 px-2 py-2 sm:h-40 sm:px-3">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 22, right: 4, left: 4, bottom: 0 }}>
-            <XAxis dataKey="dayLabel" axisLine={false} tickLine={false} tick={{ fontSize: 10 }} />
+          <BarChart data={data} margin={{ top: 18, right: 2, left: 2, bottom: 0 }}>
+            <XAxis dataKey="dayLabel" axisLine={false} tickLine={false} tick={{ fontSize: 9 }} />
             <YAxis hide domain={[0, 54]} />
             <Tooltip content={<ChartTooltip />} />
-            <Bar dataKey="barHeight" radius={[4, 4, 0, 0]} maxBarSize={24}>
-              <LabelList dataKey="value" position="top" fill="var(--color-text)" fontSize={10} />
+            <Bar dataKey="barHeight" radius={[4, 4, 0, 0]} maxBarSize={20}>
+              <LabelList dataKey="value" position="top" fill="var(--color-text)" fontSize={9} />
               {data.map((item) => (
                 <Cell key={item.dayLabel} fill={item.isToday ? darkColor : lightColor} />
               ))}

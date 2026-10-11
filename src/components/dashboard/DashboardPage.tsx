@@ -35,7 +35,7 @@ export function DashboardPage(): JSX.Element {
       <GreetingBanner agent={data.agent}>
         <KpiGrid kpis={data.kpis} />
       </GreetingBanner>
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)] lg:grid-cols-1">
         <div>
           <ProgressPanel progress={data.progress} />
           <WaitingList items={data.waiting} />
@@ -45,8 +45,10 @@ export function DashboardPage(): JSX.Element {
           <TasksCard tasks={data.tasks} onHotLeadsClick={() => setLeadsOpen(true)} />
         </div>
       </div>
-      <CallsHandledChart stats={data.callsLast7} />
-      <CsatTrendChart stats={data.csatLast7} />
+      <div className="grid gap-6 lg:grid-cols-2">
+        <CallsHandledChart stats={data.callsLast7} />
+        <CsatTrendChart stats={data.csatLast7} />
+      </div>
       <HotLeadsModal isOpen={leadsOpen} onClose={() => setLeadsOpen(false)} />
     </div>
   );
