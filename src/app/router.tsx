@@ -1,5 +1,6 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { DashboardPage } from '../components/dashboard/DashboardPage';
+import { CallsToMakePage } from '../components/plan/CallsToMakePage';
 import { PlanLayout } from '../components/plan/PlanLayout';
 import { RecentCallsPage } from '../components/plan/RecentCallsPage';
 import { AppShell } from '../components/shell/AppShell';
@@ -32,12 +33,7 @@ export function AppRouter(): JSX.Element {
           <Route index element={<Navigate to="/plan/calls" replace />} />
           <Route
             path="calls"
-            element={
-              <PlaceholderPage
-                title="Calls to make"
-                description="This route is the ranked call plan workspace for open leads and follow-ups."
-              />
-            }
+            element={<CallsToMakePage />}
           />
           <Route
             path="incoming"
