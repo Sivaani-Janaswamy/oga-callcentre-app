@@ -1,5 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import { answerNeedsInput, getCallReview, getDashboard, getHotLeads } from './api';
+import {
+  answerNeedsInput,
+  completePractise,
+  getCallReview,
+  getDashboard,
+  getHotLeads,
+} from './api';
 
 describe('call review service', () => {
   it('computes SOP adherence from the checklist', async () => {
@@ -27,5 +33,15 @@ describe('call review service', () => {
 
       expect(hotLeads.map((lead) => lead.id)).toEqual(['lead_01', 'lead_02']);
     });
+  });
+
+  it('adds a practise reward to earnings', async () => {
+    const before = await getDashboard();
+
+    await completePractise('practice_01');
+
+    const after = await getDashboard();
+    expect(after.earnings.totalInr).toBe(before.earnings.totalInr + 50);
+    expect(after.earnings.fromPractiseInr).toBe(before.earnings.fromPractiseInr + 50);
   });
 });
