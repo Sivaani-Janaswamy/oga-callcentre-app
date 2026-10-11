@@ -219,6 +219,13 @@ export async function getLeadsForTask(taskId: ID): Promise<Lead[]> {
   return leads.filter((lead) => ids.includes(lead.id));
 }
 
+export async function getHotLeads(): Promise<Lead[]> {
+  await delay(180);
+  const hotTask = tasks.find((task) => task.kind === 'hot_leads');
+  const ids = hotTask?.leadIds ?? [];
+  return leads.filter((lead) => ids.includes(lead.id));
+}
+
 export async function getSignals(leadId: ID): Promise<BuyingSignal[]> {
   await delay(180);
   return buyingSignals.filter((signal) => signal.leadId === leadId);

@@ -23,3 +23,8 @@ export function demoNowIso(): string {
 export function getDemoTodayIso(): string {
   return '2026-10-09';
 }
+
+export function hoursUntilDemo(iso: string): number {
+  const hours = (parseIso(iso).getTime() - DEMO_TODAY.getTime()) / (60 * 60 * 1000);
+  return Math.max(0, Math.round(hours));
+}
