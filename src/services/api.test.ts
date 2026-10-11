@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { getCallReview, getHotLeads } from './api';
+import { answerNeedsInput, getCallReview, getDashboard, getHotLeads } from './api';
 
 describe('call review service', () => {
   it('computes SOP adherence from the checklist', async () => {
@@ -8,6 +8,17 @@ describe('call review service', () => {
     expect(review?.passedItems).toBe(5);
     expect(review?.totalItems).toBe(6);
     expect(review?.adherencePercent).toBe(83);
+  });
+
+  it('removes the linked dashboard task when a pinned card is answered', async () => {
+    const before = await getDashboard();
+    expect(before.tasks.some((task) => task.kind === 'hot_leads')).toBe(true);
+
+    await answerNeedsInput('input_02', 'Calling now');
+
+    const after = await getDashboard();
+    expect(after.tasks.some((task) => task.kind === 'hot_leads')).toBe(false);
+    expect(after.tasks.map((task) => task.kind)).toEqual(['callbacks', 'outcome']);
   });
 
   describe('hot leads service', () => {

@@ -106,6 +106,13 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 - [x] `feat(pulse): pinned Needs-your-input card (UI only)`
 - [x] `feat(pulse): composer bar`
 - [x] `feat(pulse): send a message and answer Needs-your-input`
+- [x] `feat(data): add avanibot chat and task link fixtures`
+- [x] `feat(pulse): support several pinned cards in one channel`
+- [x] `feat(pulse): add avanibot chat with daily brief`
+- [x] `feat(pulse): wire daily brief and ask a question buttons`
+- [x] `fix(pulse): label sent messages just now`
+- [x] `feat(dashboard): derive my tasks from open pinned cards`
+- [x] `test(dashboard): answering a pinned card removes its task row`
 - [ ] **Checkpoint:** home → channel → back works, scrolling inside the chat is smooth.
 
 ---
