@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { DashboardPage } from '../components/dashboard/DashboardPage';
 import { CallsToMakePage } from '../components/plan/CallsToMakePage';
+import { IncomingCallsPage } from '../components/plan/IncomingCallsPage';
 import { PlanLayout } from '../components/plan/PlanLayout';
 import { RecentCallsPage } from '../components/plan/RecentCallsPage';
 import { AppShell } from '../components/shell/AppShell';
@@ -37,12 +38,7 @@ export function AppRouter(): JSX.Element {
           />
           <Route
             path="incoming"
-            element={
-              <PlaceholderPage
-                title="Incoming"
-                description="This route will display missed calls and callback actions."
-              />
-            }
+            element={<IncomingCallsPage />}
           />
           <Route path="recent" element={<RecentCallsPage />} />
           <Route
