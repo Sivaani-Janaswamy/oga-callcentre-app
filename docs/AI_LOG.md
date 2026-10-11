@@ -18,3 +18,4 @@ work in small commits.
 - I rejected hard-coded values in components and kept data in the seed and service layers.
 - I kept the mock source away from the coding agent. The implementation used my own reference
   notes, screenshots, and the written project specification.
+- A second coding agent finished the final groups (fixing missing CSS tokens, call timer, tests, hover states, format pass, and docs sync) after the first agent hit its usage limit.

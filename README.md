@@ -46,19 +46,18 @@ SOP adherence, and the Dashboard task list are computed in the service layer.
 - Plan: Calls to make with score sorting, paging, and expandable lead rows.
 - Plan: Incoming missed calls with computed totals and a Call back calling state.
 - Plan: Recent calls with a review panel and SOP checklist for the available reviewed call.
+- Plan: Practise a call with scripted scenarios, in-call timer, and earnings rewards.
 - Calendar with month navigation, fixed Today behavior, event dots, selected-day state, and upcoming events.
 - Pulse home with agents, channels, direct messages, Kudos, and search.
 - Generic channel chat with seeded messages, sending, and Needs your input cards.
 - AvaniBot chat with pinned cards, delayed daily brief replies, and question handling.
 - Leads modal opened from Dashboard tasks with paging, scores, signals, and evidence.
 - Bonus: send a message, answer Needs your input with the Dashboard task list staying in sync,
-  Call back calling state, and charts with Recharts.
+  Call back calling state with in-call timer and end call flow, and charts with Recharts.
 
 ## What is not built
 
 - Phone-width layout — time.
-- Practise a call — time.
-- Call overlay with timer — time.
 - Profile menu actions — time.
 - Settings — time.
 - Customer-discussions and kudos views — time.

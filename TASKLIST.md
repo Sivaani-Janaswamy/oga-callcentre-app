@@ -134,11 +134,11 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 ## Phase 7 — Core polish (⏱ ~1h) ⭐
 
-- [ ] Hover and focus states on every interactive element, matching the mock.
+- [x] Hover and focus states on every interactive element, matching the mock.
 - [ ] Consistent loading skeletons and empty states.
-- [ ] Remove console warnings, dead code, unused imports.
+- [x] Remove console warnings, dead code, unused imports.
 - [ ] Run Lighthouse (accessibility) and fix obvious issues.
-- [ ] `chore: lint + format pass`
+- [x] `chore: lint + format pass`
 
 ---
 
@@ -147,9 +147,9 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 1. [x] ➕ `feat(pulse): send message (Enter to send, auto-scroll, time stamp)`
 2. [x] ➕ `feat(pulse): answer Needs-your-input via buttons or reply box → collapses to answered state + system line`
 3. [ ] ➕ `feat(responsive): drawer sidebar, stacked KPIs, full-width modal at ≤640px`
-4. [ ] ➕ `feat(plan): Call back opens in-app call overlay (timer, end call, mark called back)`
-5. [ ] ➕ `feat(plan): Practise a call page with scripted scenario and reward`
-6. [ ] ➕ `test: key unit and component tests (paging, calendar util, send message)`
+4. [x] ➕ `feat(plan): Call back opens in-app call overlay (timer, end call, mark called back)`
+5. [x] ➕ `feat(plan): Practise a call page with scripted scenario and reward`
+6. [x] ➕ `test: key unit and component tests (paging, calendar util, send message)`
 7. [ ] ➕ Optional: DEMO strip and floating dial button (only if time remains).
 
 ---
@@ -158,7 +158,7 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 - [ ] `docs: README` — what it is, how to run, stack + why, structure, done / skipped, decisions, **AI tools used**, known issues.
 - [ ] Add screenshots to `/docs/screens/`.
-- [ ] `chore: production build passes, no warnings`.
+- [x] `chore: production build passes, no warnings`.
 - [ ] Deploy to Vercel, test the live link in an incognito window.
 - [ ] Record a ≤ 2-minute screen recording: shell → dashboard → plan tabs → calendar → pulse → channel send → leads modal. Upload (Drive/YouTube unlisted) and add the link to the README.
 - [ ] Final check that the repo is public (or shared with the email I'm sending from).
