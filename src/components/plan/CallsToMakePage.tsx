@@ -39,6 +39,7 @@ function LeadRow({
   onToggle,
   onCall,
   onCancel,
+  onEndCall,
 }: {
   lead: PlannedCall;
   expanded: boolean;
@@ -46,6 +47,7 @@ function LeadRow({
   onToggle: () => void;
   onCall: () => void;
   onCancel: () => void;
+  onEndCall: () => void;
 }): JSX.Element {
   return (
     <div className="rounded-md border border-border bg-card shadow-soft">
@@ -114,6 +116,7 @@ function LeadRow({
               label="Place call"
               onCall={onCall}
               onCancel={onCancel}
+              onEndCall={onEndCall}
             />
           </div>
         </div>
@@ -157,6 +160,7 @@ export function CallsToMakePage(): JSX.Element {
             onToggle={() => setExpandedId((current) => (current === lead.id ? null : lead.id))}
             onCall={() => setCallingId(lead.id)}
             onCancel={() => setCallingId(null)}
+            onEndCall={() => setCallingId(null)}
           />
         ))}
       </div>

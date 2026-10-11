@@ -318,6 +318,17 @@ export async function startCallback(missedCallId: ID): Promise<MissedCall> {
   return { ...match, status: 'calling' };
 }
 
+export async function completeCallback(missedCallId: ID): Promise<MissedCall> {
+  await delay(180);
+  const match = missedCalls.find((call) => call.id === missedCallId);
+
+  if (!match) {
+    throw new Error(`Missed call not found: ${missedCallId}`);
+  }
+
+  return { ...match, status: 'called_back' };
+}
+
 export async function completePractise(scenarioId: ID): Promise<Earnings> {
   await delay(180);
   const scenario = practiseScenarios.find((item) => item.id === scenarioId);

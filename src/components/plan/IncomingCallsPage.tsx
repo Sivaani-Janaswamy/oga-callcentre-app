@@ -2,7 +2,7 @@ import { PhoneMissed } from 'lucide-react';
 import { useState } from 'react';
 import type { MissedCall } from '../../data/types';
 import { useAsync } from '../../hooks/useAsync';
-import { getMissedCalls } from '../../services/api';
+import { completeCallback, getMissedCalls } from '../../services/api';
 import { formatInr } from '../../utils/format';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
 import { CallAction } from './CallAction';
@@ -12,13 +12,17 @@ const EMPTY_DEPS: unknown[] = [];
 function MissedCallRow({
   call,
   calling,
+  calledBack,
   onCall,
   onCancel,
+  onEndCall,
 }: {
   call: MissedCall;
   calling: boolean;
+  calledBack: boolean;
   onCall: () => void;
   onCancel: () => void;
+  onEndCall: () => void;
 }): JSX.Element {
   return (
     <div className="flex items-center gap-3 rounded-md border border-border bg-card p-3 shadow-soft">
@@ -41,6 +45,8 @@ function MissedCallRow({
             label="Call back"
             onCall={onCall}
             onCancel={onCancel}
+            onEndCall={onEndCall}
+            showCalledBack={calledBack}
           />
         </div>
       </div>
@@ -50,7 +56,14 @@ function MissedCallRow({
 
 export function IncomingCallsPage(): JSX.Element {
   const [callingId, setCallingId] = useState<string | null>(null);
+  const [calledBackIds, setCalledBackIds] = useState<Set<string>>(new Set());
   const { data, loading, error } = useAsync(getMissedCalls, EMPTY_DEPS);
+
+  const handleEndCall = async (id: string): Promise<void> => {
+    await completeCallback(id);
+    setCallingId(null);
+    setCalledBackIds((prev) => new Set(prev).add(id));
+  };
 
   if (loading) {
     return <DashboardLoading />;
@@ -84,8 +97,10 @@ export function IncomingCallsPage(): JSX.Element {
             key={call.id}
             call={call}
             calling={callingId === call.id}
+            calledBack={calledBackIds.has(call.id)}
             onCall={() => setCallingId(call.id)}
             onCancel={() => setCallingId(null)}
+            onEndCall={() => handleEndCall(call.id)}
           />
         ))}
       </div>
