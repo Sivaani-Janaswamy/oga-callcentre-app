@@ -677,7 +677,7 @@ export const pulseAgents: PulseAgent[] = [
 export const channels: Channel[] = [
   {
     id: 'channel_01',
-    slug: 'callcentre-agent',
+    slug: 'callcentre-team',
     group: 'role',
     description: 'Call centre agent cohort',
     memberCount: 18,
@@ -747,6 +747,14 @@ export const channels: Channel[] = [
     memberCount: 2,
     unreadCount: 0,
   },
+  {
+    id: 'channel_09',
+    slug: 'avanibot',
+    group: 'bot',
+    description: 'Your AI call-centre coach',
+    memberCount: 1,
+    unreadCount: 0,
+  },
 ];
 
 export const channelMessages: Record<string, Message[]> = {
@@ -785,16 +793,54 @@ export const channelMessages: Record<string, Message[]> = {
       sentAt: '2026-10-09T09:14:00+05:30',
     },
   ],
+  channel_09: [
+    {
+      id: 'bot_msg_01',
+      channelId: 'channel_09',
+      authorId: 'avanibot',
+      authorName: 'AvaniBot',
+      authorInitials: '✦',
+      isSelf: false,
+      isBot: true,
+      kind: 'text',
+      body: `Hey! I'm AvaniBot ✨ Ask me things like "what are my action items from Sunita", or tap the ✨ icon inside any channel to search just that channel.`,
+      sentAt: '2026-10-09T09:00:00+05:30',
+    },
+  ],
 };
 
-export const needsInput: NeedsInput = {
-  id: 'input_01',
-  channelId: 'channel_01',
-  title: 'Confirm the 4:30pm callback',
-  subtitle: 'Priya Iyer · likely billing dispute',
-  options: ['Confirmed', 'Reschedule'],
-  status: 'open',
-};
+// PLACEHOLDER: verify the inferred task-to-pinned-card mapping against the mock.
+export const needsInputs: NeedsInput[] = [
+  {
+    id: 'input_01',
+    channelId: 'channel_01',
+    title: 'Confirm the 4:30pm callback',
+    subtitle: 'Priya Iyer · likely billing dispute',
+    options: ['Confirmed', 'Reschedule'],
+    status: 'open',
+    taskKind: 'callbacks',
+  },
+  {
+    id: 'input_02',
+    channelId: 'channel_09',
+    title: 'Call now or reassign the 2 hot leads',
+    subtitle: 'Untouched for 24h',
+    options: ['Calling now', 'Reassign'],
+    status: 'open',
+    taskKind: 'hot_leads',
+  },
+  {
+    id: 'input_03',
+    channelId: 'channel_09',
+    title: "Log this morning's call outcome",
+    subtitle: 'Suresh Nair · plan upgrade enquiry',
+    options: ['Converted', 'Callback', 'Not interested'],
+    status: 'open',
+    taskKind: 'outcome',
+  },
+];
+
+export const needsInput = needsInputs[0];
 
 export const kudos: Kudos = {
   id: 'kudos_01',

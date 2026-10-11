@@ -195,7 +195,7 @@ export interface Earnings {
   targetInr: number;
 }
 
-export type ChannelGroup = 'role' | 'task' | 'general' | 'direct';
+export type ChannelGroup = 'role' | 'task' | 'general' | 'direct' | 'bot';
 
 export interface Channel {
   id: ID;
@@ -227,6 +227,8 @@ export interface Message {
   kind: 'text' | 'stakeholders' | 'issue' | 'resolution' | 'system';
   body: string;
   sentAt: ISODateTime;
+  timeLabel?: string;
+  isBot?: boolean;
 }
 
 export interface NeedsInput {
@@ -234,10 +236,11 @@ export interface NeedsInput {
   channelId: ID;
   title: string;
   subtitle: string;
-  options: [string, string];
+  options: string[];
   status: 'open' | 'answered';
   answer?: string;
   answeredAt?: ISODateTime;
+  taskKind?: TaskKind;
 }
 
 export interface Kudos {
