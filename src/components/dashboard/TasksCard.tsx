@@ -36,7 +36,7 @@ export function TasksCard({
   onHotLeadsClick: () => void;
 }): JSX.Element {
   return (
-    <Card className="bg-gradient-to-br from-sidebar to-accent">
+    <Card className="bg-gradient-to-br from-brown to-amber">
       <div className="flex items-center justify-between">
         <h2 className="text-13 font-semibold text-white">My Tasks</h2>
         <Badge tone="danger">{tasks.length}</Badge>

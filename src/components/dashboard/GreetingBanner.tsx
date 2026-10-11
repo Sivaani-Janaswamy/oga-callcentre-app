@@ -15,7 +15,7 @@ export function GreetingBanner({
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <section className="rounded-md bg-gradient-to-br from-sidebar to-brand p-6 text-white shadow-soft">
+    <section className="rounded-md bg-gradient-to-br from-navy via-navy-mid to-navy-light p-6 text-white shadow-soft">
       <div className="flex flex-wrap items-start justify-between gap-5">
         <div>
           <p className="text-13 text-white/70">{agent.greeting}</p>

@@ -57,8 +57,10 @@ export function DashboardBarChart({
       isToday: stat.date === TODAY_ISO,
     };
   });
-  const lightColor = metric === 'calls' ? 'var(--color-success-soft)' : 'var(--color-info-soft)';
-  const darkColor = metric === 'calls' ? 'var(--color-brand)' : 'var(--color-info)';
+  const lightColor =
+    metric === 'calls' ? 'var(--color-mint)' : 'var(--color-info-light)';
+  const darkColor =
+    metric === 'calls' ? 'var(--color-brand-dark)' : 'var(--color-info-dark)';
 
   return (
     <section>
@@ -73,11 +75,15 @@ export function DashboardBarChart({
         className="h-32 px-2 py-2 sm:h-40 sm:px-3"
       >
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} margin={{ top: 18, right: 2, left: 2, bottom: 0 }}>
+          <BarChart
+            data={data}
+            margin={{ top: 18, right: 2, left: 2, bottom: 0 }}
+            barCategoryGap="12%"
+          >
             <XAxis dataKey="dayLabel" axisLine={false} tickLine={false} tick={{ fontSize: 9 }} />
             <YAxis hide domain={[0, 54]} />
             <Tooltip content={<ChartTooltip />} />
-            <Bar dataKey="barHeight" radius={[4, 4, 0, 0]} maxBarSize={20}>
+            <Bar dataKey="barHeight" radius={[4, 4, 0, 0]} maxBarSize={40}>
               <LabelList dataKey="value" position="top" fill="var(--color-text)" fontSize={9} />
               {data.map((item) => (
                 <Cell key={item.dayLabel} fill={item.isToday ? darkColor : lightColor} />

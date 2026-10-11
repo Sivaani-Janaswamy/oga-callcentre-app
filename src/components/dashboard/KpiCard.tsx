@@ -17,9 +17,11 @@ export function KpiCard({
       <p className="mt-1 text-10 font-semibold uppercase tracking-[0.08em] text-white/70">
         {label}
       </p>
-      <Badge tone={tone} className="mt-2 bg-white/90">
-        {delta}
-      </Badge>
+      <div className="mt-2 flex justify-center">
+        <Badge tone={tone} className="bg-white/15 text-white">
+          {delta}
+        </Badge>
+      </div>
     </div>
   );
 }

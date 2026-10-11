@@ -18,16 +18,19 @@ export function ProgressPanel({ progress }: { progress: ProgressToday }): JSX.El
   ];
 
   return (
-    <section className="rounded-md bg-gradient-to-br from-brand to-success p-5 text-white shadow-soft">
+    <section className="rounded-md bg-gradient-to-br from-sidebar to-brand p-5 text-white shadow-soft">
       <h2 className="text-11 font-semibold uppercase tracking-[0.12em] text-white/80">
         ● MY PROGRESS · TODAY
       </h2>
       <div className="mt-4 grid grid-cols-2 gap-3">
         {tiles.map((tile) => (
-          <div key={tile.label} className="rounded-md border border-white/20 bg-white/10 p-4">
-            <div className="flex items-start justify-between gap-2">
-              <p className="text-24 font-semibold">{tile.value}</p>
-              <Badge tone={tile.tone} className="bg-white/90">
+          <div
+            key={tile.label}
+            className="rounded-md border border-white/20 bg-white/10 p-4 text-center"
+          >
+            <p className="text-24 font-semibold">{tile.value}</p>
+            <div className="mt-2 flex justify-center">
+              <Badge tone={tile.tone} className="bg-white/15 text-white">
                 ▲+{tile.delta}
               </Badge>
             </div>
