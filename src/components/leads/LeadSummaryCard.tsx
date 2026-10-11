@@ -3,6 +3,7 @@ import type { Lead } from '../../data/types';
 import { hoursUntilDemo } from '../../utils/clock';
 import { formatInr, formatTimeLeftHours } from '../../utils/format';
 import { Badge } from '../ui/Badge';
+import { LeadDetails } from './LeadDetails';
 
 export function LeadSummaryCard({ lead }: { lead: Lead }): JSX.Element {
   return (
@@ -24,6 +25,7 @@ export function LeadSummaryCard({ lead }: { lead: Lead }): JSX.Element {
         <span>{lead.nextAction}</span>
       </div>
       <p className="mt-3 text-12 text-text">{lead.context}</p>
+      <LeadDetails lead={lead} />
     </div>
   );
 }
