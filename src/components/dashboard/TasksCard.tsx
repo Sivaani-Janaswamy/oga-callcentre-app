@@ -1,4 +1,4 @@
-import { ChevronRight, FileText, Phone, Users } from 'lucide-react';
+import { CheckCircle2, ChevronRight, FileText, Phone, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Task, TaskKind } from '../../data/types';
 import { Badge } from '../ui/Badge';
@@ -42,7 +42,13 @@ export function TasksCard({
         <Badge tone="danger">{tasks.length}</Badge>
       </div>
       <div className="mt-3 space-y-2">
-        {tasks.map((task) => {
+        {tasks.length === 0 ? (
+          <div className="flex items-center gap-3 rounded-md bg-white p-2.5">
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-success" />
+            <span className="text-12 font-semibold text-text">All caught up</span>
+          </div>
+        ) : (
+          tasks.map((task) => {
           if (task.kind === 'callbacks') {
             return (
               <Link
@@ -77,7 +83,8 @@ export function TasksCard({
               <TaskContent task={task} />
             </button>
           );
-        })}
+          })
+        )}
       </div>
       {/* PLACEHOLDER: verify against mock - callback task target is assumed to open /plan/calls. */}
       {/* PLACEHOLDER: verify against mock - outcome task target is assumed to open /plan/recent. */}

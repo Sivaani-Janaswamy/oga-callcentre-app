@@ -94,6 +94,7 @@ export function PulseChannelPage(): JSX.Element {
   return (
     <section>
       <PulseChannelHeader channel={data.channel} />
+      {/* PLACEHOLDER: verify the hidden zero-open-card behavior against the mock. */}
       {isAvaniBot && openInputCount > 0 ? (
         <section className="mt-5 rounded-md bg-purple-soft p-3">
           <button

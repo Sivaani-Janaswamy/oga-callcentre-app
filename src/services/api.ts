@@ -65,13 +65,18 @@ export async function getDashboard(): Promise<{
   csatLast7: DailyStat[];
 }> {
   await delay(200);
+  const openTaskKinds = new Set(
+    activeNeedsInputs
+      .filter((input) => input.status === 'open' && input.taskKind !== undefined)
+      .map((input) => input.taskKind),
+  );
   return {
     agent,
     kpis,
     progress: progressToday,
     waiting: waitingList,
     earnings,
-    tasks,
+    tasks: tasks.filter((task) => openTaskKinds.has(task.kind)),
     callsLast7: dailyStats,
     csatLast7: dailyStats,
   };
