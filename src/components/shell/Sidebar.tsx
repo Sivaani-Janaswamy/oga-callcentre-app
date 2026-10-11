@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { CalendarDays, Home, MessagesSquare, PhoneCall, Sparkles, X } from 'lucide-react';
 
@@ -23,6 +24,83 @@ export function Sidebar({
 }): JSX.Element {
   const { pathname } = useLocation();
   const isPlanActive = pathname.startsWith('/plan');
+  const [planOpen, setPlanOpen] = useState(isPlanActive);
+  const drawerRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setPlanOpen(isPlanActive);
+  }, [isPlanActive]);
+
+  useEffect(() => {
+    if (!isOpen) {
+      return undefined;
+    }
+
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (event: KeyboardEvent): void => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = '';
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (isOpen) {
+      drawerRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  const togglePlan = (): void => setPlanOpen((open) => !open);
+
+  const renderPlanGroup = (itemClass: string): JSX.Element => (
+    <div className="pt-2">
+      <button
+        type="button"
+        onClick={togglePlan}
+        className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-13 transition-colors ${
+          isPlanActive
+            ? 'bg-white/10 text-white'
+            : 'text-white/70 hover:bg-white/5 hover:text-white'
+        }`}
+        aria-expanded={planOpen}
+      >
+        <span className="flex items-center gap-3">
+          <PhoneCall className="h-4 w-4" />
+          Plan
+        </span>
+        <Sparkles className={`h-3.5 w-3.5 transition-transform ${planOpen ? 'rotate-180' : ''}`} />
+      </button>
+
+      {planOpen && (
+        <div className="mt-2 space-y-1 pl-7">
+          {planItems.map(({ to, label }) => (
+            <NavLink
+              key={to}
+              to={to}
+              onClick={itemClass === 'mobile' ? onClose : undefined}
+              aria-current={pathname === to ? 'page' : undefined}
+              className={({ isActive: linkActive }) =>
+                `block rounded-md px-2 py-1.5 text-12 transition-colors ${
+                  linkActive
+                    ? 'bg-brand/20 text-white'
+                    : 'text-white/70 hover:bg-white/5 hover:text-white'
+                }`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 
   return (
     <>
@@ -59,44 +137,7 @@ export function Sidebar({
             );
           })}
 
-          <div className="pt-2">
-            <button
-              type="button"
-              className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-13 transition-colors ${
-                isPlanActive
-                  ? 'bg-white/10 text-white'
-                  : 'text-white/70 hover:bg-white/5 hover:text-white'
-              }`}
-              aria-expanded={isPlanActive}
-            >
-              <span className="flex items-center gap-3">
-                <PhoneCall className="h-4 w-4" />
-                Plan
-              </span>
-              <Sparkles className="h-3.5 w-3.5" />
-            </button>
-
-            {isPlanActive && (
-              <div className="mt-2 space-y-1 pl-7">
-                {planItems.map(({ to, label }) => (
-                  <NavLink
-                    key={to}
-                    to={to}
-                    aria-current={pathname === to ? 'page' : undefined}
-                    className={({ isActive: linkActive }) =>
-                      `block rounded-md px-2 py-1.5 text-12 transition-colors ${
-                        linkActive
-                          ? 'bg-brand/20 text-white'
-                          : 'text-white/70 hover:bg-white/5 hover:text-white'
-                      }`
-                    }
-                  >
-                    {label}
-                  </NavLink>
-                ))}
-              </div>
-            )}
-          </div>
+          {renderPlanGroup('desktop')}
         </nav>
       </aside>
 
@@ -106,7 +147,12 @@ export function Sidebar({
             className="fixed inset-0 z-40 bg-sidebar/50 md:hidden"
             onClick={onClose}
           />
-          <aside className="fixed left-0 top-0 z-50 flex h-full w-64 flex-col bg-sidebar px-4 py-5 text-white md:hidden">
+          <aside
+            ref={drawerRef}
+            tabIndex={-1}
+            aria-label="Mobile menu"
+            className="fixed left-0 top-0 z-50 flex h-full w-64 flex-col bg-sidebar px-4 py-5 text-white outline-none md:hidden"
+          >
             <div className="mb-8 flex items-center justify-between px-2">
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-12 font-semibold">
@@ -150,45 +196,7 @@ export function Sidebar({
                 );
               })}
 
-              <div className="pt-2">
-                <button
-                  type="button"
-                  className={`flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-13 transition-colors ${
-                    isPlanActive
-                      ? 'bg-white/10 text-white'
-                      : 'text-white/70 hover:bg-white/5 hover:text-white'
-                  }`}
-                  aria-expanded={isPlanActive}
-                >
-                  <span className="flex items-center gap-3">
-                    <PhoneCall className="h-4 w-4" />
-                    Plan
-                  </span>
-                  <Sparkles className="h-3.5 w-3.5" />
-                </button>
-
-                {isPlanActive && (
-                  <div className="mt-2 space-y-1 pl-7">
-                    {planItems.map(({ to, label }) => (
-                      <NavLink
-                        key={to}
-                        to={to}
-                        onClick={onClose}
-                        aria-current={pathname === to ? 'page' : undefined}
-                        className={({ isActive: linkActive }) =>
-                          `block rounded-md px-2 py-1.5 text-12 transition-colors ${
-                            linkActive
-                              ? 'bg-brand/20 text-white'
-                              : 'text-white/70 hover:bg-white/5 hover:text-white'
-                          }`
-                        }
-                      >
-                        {label}
-                      </NavLink>
-                    ))}
-                  </div>
-                )}
-              </div>
+              {renderPlanGroup('mobile')}
             </nav>
           </aside>
         </>
