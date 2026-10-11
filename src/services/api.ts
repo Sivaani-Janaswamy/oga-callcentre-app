@@ -251,6 +251,7 @@ export async function sendMessage(channelId: ID, body: string): Promise<Message>
     kind: 'text',
     body,
     sentAt: demoNowIso(),
+    timeLabel: 'Just now',
   };
 
   const currentMessages = channelMessages[channelId] ?? [];
@@ -274,6 +275,7 @@ export async function getAvaniBotReply(channelId: ID, body: string): Promise<Mes
     kind: 'text',
     body: response,
     sentAt: demoNowIso(),
+    timeLabel: 'Just now',
   };
 
   const currentMessages = channelMessages[channelId] ?? [];
