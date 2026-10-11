@@ -1,5 +1,6 @@
 import { getDashboard } from '../../services/api';
 import { useAsync } from '../../hooks/useAsync';
+import { useState } from 'react';
 import { CallsHandledChart } from './CallsHandledChart';
 import { CsatTrendChart } from './CsatTrendChart';
 import { DashboardError, DashboardLoading } from './DashboardState';
@@ -9,10 +10,12 @@ import { KpiGrid } from './KpiGrid';
 import { ProgressPanel } from './ProgressPanel';
 import { TasksCard } from './TasksCard';
 import { WaitingList } from './WaitingList';
+import { HotLeadsModal } from '../leads/HotLeadsModal';
 
 const EMPTY_DEPS: unknown[] = [];
 
 export function DashboardPage(): JSX.Element {
+  const [leadsOpen, setLeadsOpen] = useState(false);
   const { data, loading, error } = useAsync(getDashboard, EMPTY_DEPS);
 
   if (loading) {
@@ -39,11 +42,12 @@ export function DashboardPage(): JSX.Element {
         </div>
         <div className="space-y-6">
           <EarningsCard earnings={data.earnings} />
-          <TasksCard tasks={data.tasks} />
+          <TasksCard tasks={data.tasks} onHotLeadsClick={() => setLeadsOpen(true)} />
         </div>
       </div>
       <CallsHandledChart stats={data.callsLast7} />
       <CsatTrendChart stats={data.csatLast7} />
+      <HotLeadsModal isOpen={leadsOpen} onClose={() => setLeadsOpen(false)} />
     </div>
   );
 }

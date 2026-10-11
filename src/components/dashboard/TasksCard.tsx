@@ -28,7 +28,13 @@ function TaskContent({ task }: { task: Task }): JSX.Element {
   );
 }
 
-export function TasksCard({ tasks }: { tasks: Task[] }): JSX.Element {
+export function TasksCard({
+  tasks,
+  onHotLeadsClick,
+}: {
+  tasks: Task[];
+  onHotLeadsClick: () => void;
+}): JSX.Element {
   return (
     <Card className="bg-gradient-to-br from-sidebar to-accent">
       <div className="flex items-center justify-between">
@@ -65,7 +71,7 @@ export function TasksCard({ tasks }: { tasks: Task[] }): JSX.Element {
             <button
               key={task.id}
               type="button"
-              onClick={() => undefined}
+              onClick={onHotLeadsClick}
               className="flex w-full items-center gap-3 rounded-md bg-white p-2.5 text-left"
             >
               <TaskContent task={task} />
