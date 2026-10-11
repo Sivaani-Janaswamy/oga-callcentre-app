@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState, type ElementRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import type { Message, NeedsInput } from '../../data/types';
 import { useAsync } from '../../hooks/useAsync';
 import { answerNeedsInput, getAvaniBotReply, getChannel, sendMessage } from '../../services/api';
@@ -11,6 +11,8 @@ import { MessageComposer } from './MessageComposer';
 
 export function PulseChannelPage(): JSX.Element {
   const { channelId } = useParams<{ channelId: string }>();
+  const location = useLocation();
+  const navigate = useNavigate();
   const request = useCallback(() => getChannel(channelId ?? ''), [channelId]);
   const requestDeps = useMemo(() => [channelId], [channelId]);
   const { data, loading, error } = useAsync(request, requestDeps);
@@ -19,11 +21,49 @@ export function PulseChannelPage(): JSX.Element {
   const [actionError, setActionError] = useState<string | null>(null);
   const [isPinnedExpanded, setIsPinnedExpanded] = useState(true);
   const composerRef = useRef<ElementRef<'input'>>(null);
+  const intentHandled = useRef(false);
 
   useEffect(() => {
     setMessages(data?.messages ?? []);
     setInputStates(data?.needsInputs ?? []);
   }, [data]);
+
+  const handleSend = useCallback(
+    async (body: string): Promise<void> => {
+      if (!data) {
+        return;
+      }
+
+      setActionError(null);
+      try {
+        const message = await sendMessage(data.channel.id, body);
+        setMessages((current) => [...current, message]);
+        if (data.channel.slug === 'avanibot') {
+          const reply = await getAvaniBotReply(data.channel.id, body);
+          setMessages((current) => [...current, reply]);
+        }
+      } catch (sendError) {
+        setActionError(sendError instanceof Error ? sendError.message : 'Message could not be sent.');
+      }
+    },
+    [data],
+  );
+
+  useEffect(() => {
+    if (!data || data.channel.slug !== 'avanibot' || intentHandled.current) {
+      return;
+    }
+
+    const intent = location.state as { autoMessage?: string; focusComposer?: boolean } | null;
+    intentHandled.current = true;
+    if (intent?.autoMessage) {
+      void handleSend(intent.autoMessage);
+    }
+    if (intent?.focusComposer) {
+      composerRef.current?.focus();
+    }
+    navigate(location.pathname, { replace: true, state: null });
+  }, [data, handleSend, location.pathname, location.state, navigate]);
 
   if (loading) {
     return <DashboardLoading />;
@@ -36,20 +76,6 @@ export function PulseChannelPage(): JSX.Element {
   if (!data) {
     return <DashboardError message="Channel could not be loaded." />;
   }
-
-  const handleSend = async (body: string): Promise<void> => {
-    setActionError(null);
-    try {
-      const message = await sendMessage(data.channel.id, body);
-      setMessages((current) => [...current, message]);
-      if (data.channel.slug === 'avanibot') {
-        const reply = await getAvaniBotReply(data.channel.id, body);
-        setMessages((current) => [...current, reply]);
-      }
-    } catch (sendError) {
-      setActionError(sendError instanceof Error ? sendError.message : 'Message could not be sent.');
-    }
-  };
 
   const handleAnswer = async (id: string, answer: string): Promise<void> => {
     setActionError(null);

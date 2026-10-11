@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import type { Channel } from '../../data/types';
 import { useAsync } from '../../hooks/useAsync';
 import { getChannels, getKudos, getPulseAgents } from '../../services/api';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
-import { Modal } from '../ui/Modal';
 import { AvaniBotCard } from './AvaniBotCard';
 import { KudosCard } from './KudosCard';
 import { PulseAgentList } from './PulseAgentList';
@@ -14,7 +14,7 @@ const EMPTY_DEPS: unknown[] = [];
 
 export function PulsePage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
-  const [botAction, setBotAction] = useState<'brief' | 'question' | null>(null);
+  const navigate = useNavigate();
   const { data: agents, loading, error } = useAsync(getPulseAgents, EMPTY_DEPS);
   const { data: channels, loading: channelsLoading, error: channelsError } = useAsync(
     getChannels,
@@ -24,8 +24,6 @@ export function PulsePage(): JSX.Element {
     getKudos,
     EMPTY_DEPS,
   );
-  const actionTitle = botAction === 'brief' ? 'Daily Brief' : 'Ask AvaniBot';
-
   if (loading || channelsLoading || kudosLoading) {
     return <DashboardLoading />;
   }
@@ -55,11 +53,19 @@ export function PulsePage(): JSX.Element {
         channel.description.toLowerCase().includes(query)
       );
     });
+  const handleBotAction = (action: 'brief' | 'question'): void => {
+    navigate('/pulse/avanibot', {
+      state:
+        action === 'brief'
+          ? { autoMessage: 'Give me my daily brief' }
+          : { focusComposer: true },
+    });
+  };
 
   return (
     <section>
       <PulseHeader searchTerm={searchTerm} onSearchChange={setSearchTerm} />
-      <AvaniBotCard onAction={setBotAction} />
+      <AvaniBotCard onAction={handleBotAction} />
       <PulseAgentList agents={filteredAgents} />
       {channels && kudos && (
         <>
@@ -68,16 +74,11 @@ export function PulsePage(): JSX.Element {
             task={filterChannels(channels.task)}
             general={filterChannels(channels.general)}
             direct={filterChannels(channels.direct)}
+            bot={filterChannels(channels.bot)}
           />
           <KudosCard kudos={kudos} />
         </>
       )}
-      <Modal isOpen={botAction !== null} onClose={() => setBotAction(null)} title={actionTitle}>
-        <p className="text-12 text-text-muted">
-          {/* PLACEHOLDER: verify AvaniBot response content against mock. */}
-          AvaniBot content will appear here.
-        </p>
-      </Modal>
     </section>
   );
 }

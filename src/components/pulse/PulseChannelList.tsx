@@ -1,4 +1,4 @@
-import { Hash, MessageCircle, Users } from 'lucide-react';
+import { Hash, MessageCircle, Sparkles, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { Channel } from '../../data/types';
 import { Card } from '../ui/Card';
@@ -23,7 +23,7 @@ function ChannelGroup({
         {channels.map((channel) => (
           <Link
             key={channel.id}
-            to={`/pulse/${channel.id}`}
+            to={channel.slug === 'avanibot' ? '/pulse/avanibot' : `/pulse/${channel.id}`}
             className="flex items-center gap-3 rounded-md bg-card p-3 shadow-soft"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-info-soft text-info">
@@ -52,11 +52,13 @@ export function PulseChannelList({
   task,
   general,
   direct,
+  bot,
 }: {
   role: Channel[];
   task: Channel[];
   general: Channel[];
   direct: Channel[];
+  bot: Channel[];
 }): JSX.Element {
   return (
     <Card className="mt-5 space-y-5">
@@ -64,6 +66,7 @@ export function PulseChannelList({
       <ChannelGroup title="Task channels" channels={task} icon={Hash} />
       <ChannelGroup title="General" channels={general} icon={Hash} />
       <ChannelGroup title="Direct messages" channels={direct} icon={MessageCircle} />
+      <ChannelGroup title="AvaniBot" channels={bot} icon={Sparkles} />
     </Card>
   );
 }

@@ -816,6 +816,7 @@ export const avaniBotReplies = {
 • Greeting-in-first-10s at 71% — Sunita wants this pushed up
 • You've got 3 new kudos waiting 🏆
 Want me to open avani-coaching, or pull up your kudos?`,
+  // PLACEHOLDER: verify the non-brief AvaniBot response against the mock.
   fallback: 'I can only do daily briefs in this demo. Try asking for your daily brief.',
 };
 

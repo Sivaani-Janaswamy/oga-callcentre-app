@@ -177,6 +177,7 @@ export async function getChannels(): Promise<{
   task: Channel[];
   general: Channel[];
   direct: Channel[];
+  bot: Channel[];
 }> {
   await delay(170);
   return {
@@ -184,6 +185,7 @@ export async function getChannels(): Promise<{
     task: channels.filter((channel) => channel.group === 'task'),
     general: channels.filter((channel) => channel.group === 'general'),
     direct: channels.filter((channel) => channel.group === 'direct'),
+    bot: channels.filter((channel) => channel.group === 'bot'),
   };
 }
 
