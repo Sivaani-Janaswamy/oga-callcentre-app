@@ -46,6 +46,7 @@ import { demoNowIso } from '../utils/clock';
 
 const delay = (ms: number): Promise<void> =>
   new Promise((resolve) => window.setTimeout(resolve, ms));
+let activeNeedsInput: NeedsInput = needsInput;
 
 export async function getCurrentAgent(): Promise<Agent> {
   await delay(180);
@@ -202,7 +203,7 @@ export async function getChannel(
   return {
     channel,
     messages: channelMessages[id] ?? [],
-    needsInput: needsInput.channelId === id ? needsInput : undefined,
+    needsInput: activeNeedsInput.channelId === id ? activeNeedsInput : undefined,
   };
 }
 
@@ -250,12 +251,13 @@ export async function sendMessage(channelId: ID, body: string): Promise<Message>
 export async function answerNeedsInput(id: ID, answer: string): Promise<NeedsInput> {
   await delay(180);
   const result = {
-    ...needsInput,
+    ...activeNeedsInput,
     id,
     status: 'answered' as const,
     answer,
     answeredAt: demoNowIso(),
   };
+  activeNeedsInput = result;
   return result;
 }
 
