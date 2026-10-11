@@ -26,6 +26,9 @@ export default [
         JSX: 'readonly',
         React: 'readonly',
         HTMLButtonElement: 'readonly',
+        HTMLDivElement: 'readonly',
+        HTMLElement: 'readonly',
+        KeyboardEvent: 'readonly',
       },
     },
     plugins: {
