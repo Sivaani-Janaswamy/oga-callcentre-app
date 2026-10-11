@@ -202,7 +202,7 @@ export async function getChannel(
   return {
     channel,
     messages: channelMessages[id] ?? [],
-    needsInput,
+    needsInput: needsInput.channelId === id ? needsInput : undefined,
   };
 }
 
