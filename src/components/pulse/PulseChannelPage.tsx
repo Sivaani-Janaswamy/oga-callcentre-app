@@ -6,6 +6,7 @@ import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
 import { NeedsInputCard } from './NeedsInputCard';
 import { PulseChannelHeader } from './PulseChannelHeader';
 import { MessageList } from './MessageList';
+import { MessageComposer } from './MessageComposer';
 
 export function PulseChannelPage(): JSX.Element {
   const { channelId } = useParams<{ channelId: string }>();
@@ -30,6 +31,7 @@ export function PulseChannelPage(): JSX.Element {
       <PulseChannelHeader channel={data.channel} />
       {data.needsInput && <NeedsInputCard needsInput={data.needsInput} />}
       <MessageList messages={data.messages} />
+      <MessageComposer />
     </section>
   );
 }
