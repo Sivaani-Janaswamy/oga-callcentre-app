@@ -18,7 +18,7 @@ export function LeadSummaryCard({ lead }: { lead: Lead }): JSX.Element {
         <Badge tone={lead.status === 'open' ? 'success' : 'default'}>{lead.status}</Badge>
       </div>
       <div className="mt-3 flex flex-wrap items-center gap-3 text-11 text-text-muted">
-        <span className="inline-flex items-center gap-1 rounded-full bg-warning-soft px-2 py-1 text-warning">
+        <span className="inline-flex items-center gap-1 rounded-full bg-warn-soft px-2 py-1 text-warn">
           <Clock3 className="h-3 w-3" />
           {formatTimeLeftHours(hoursUntilDemo(lead.closeBy))} left
         </span>

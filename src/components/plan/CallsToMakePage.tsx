@@ -15,7 +15,7 @@ function avatarClass(tone: PlannedCall['avatarTone']): string {
     peach: 'bg-danger-soft',
     mint: 'bg-success-soft',
     blue: 'bg-info-soft',
-    yellow: 'bg-warning-soft',
+    yellow: 'bg-warn-soft',
     grey: 'bg-card-soft',
   };
   return classes[tone];
@@ -27,7 +27,7 @@ function scoreClass(score: number): string {
     return 'text-success';
   }
   if (score >= 40) {
-    return 'text-warning';
+    return 'text-warn';
   }
   return 'text-danger';
 }

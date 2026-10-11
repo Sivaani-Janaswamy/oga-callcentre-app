@@ -34,9 +34,9 @@ export function NeedsInputCard({
   }
 
   return (
-    <Card className="border border-warning/30 bg-warning-soft">
+    <Card className="border border-warn/30 bg-warn-soft">
       <div className="flex items-start gap-3">
-        <Pin className="mt-0.5 h-4 w-4 shrink-0 text-warning" />
+        <Pin className="mt-0.5 h-4 w-4 shrink-0 text-warn" />
         <div className="min-w-0 flex-1">
           {showLabel && (
             <p className="text-11 font-semibold uppercase tracking-[0.12em] text-text-muted">
@@ -67,7 +67,7 @@ export function NeedsInputCard({
               <button
                 type="submit"
                 disabled={draft.trim().length === 0 || onAnswer === undefined}
-                className="rounded-md bg-warning px-3 py-1.5 text-11 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-md bg-warn px-3 py-1.5 text-11 font-semibold text-white disabled:cursor-not-allowed disabled:opacity-60"
               >
                 Send
               </button>

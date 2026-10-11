@@ -4,13 +4,14 @@ import { useAsync } from '../../hooks/useAsync';
 import { getPractiseScenarios } from '../../services/api';
 import { formatInr } from '../../utils/format';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
+import { EmptyState } from '../ui/Skeleton';
 import { PractiseCallModal } from './PractiseCallModal';
 
 const EMPTY_DEPS: unknown[] = [];
 
 const difficultyClasses: Record<PractiseScenario['difficulty'], string> = {
   easy: 'bg-success-soft text-success',
-  medium: 'bg-warning-soft text-warning',
+  medium: 'bg-warn-soft text-warn',
   hard: 'bg-danger-soft text-danger',
 };
 
@@ -60,13 +61,20 @@ export function PractisePage(): JSX.Element {
       <h2 className="text-20 font-semibold text-text">Practise a call</h2>
       <p className="mt-1 text-13 text-text-muted">Rehearse a scenario and earn coaching rewards</p>
       <div className="mt-5 space-y-3">
-        {(data ?? []).map((scenario) => (
+        {(data ?? []).length === 0 ? (
+          <EmptyState
+            title="No practice scenarios"
+            description="Check back later for new coaching scenarios."
+          />
+        ) : (
+          (data ?? []).map((scenario) => (
           <ScenarioCard
             key={scenario.id}
             scenario={scenario}
             onStart={() => setSelectedScenario(scenario)}
           />
-        ))}
+          ))
+        )}
       </div>
       {selectedScenario && (
         <PractiseCallModal scenario={selectedScenario} onClose={() => setSelectedScenario(null)} />
