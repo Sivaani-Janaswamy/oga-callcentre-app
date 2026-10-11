@@ -18,7 +18,10 @@ function AgentGroup({
       <p className="text-11 font-semibold uppercase tracking-[0.12em] text-text-muted">{title}</p>
       <div className="mt-2 grid gap-2 sm:grid-cols-2">
         {agents.map((agent) => (
-          <div key={agent.id} className="flex items-center gap-3 rounded-md bg-card p-3 shadow-soft transition-colors hover:bg-card-soft">
+          <div
+            key={agent.id}
+            className="flex items-center gap-3 rounded-md bg-card p-3 shadow-soft transition-colors hover:bg-card-soft"
+          >
             <Avatar initials={agent.initials} size="md" />
             <div className="min-w-0 flex-1">
               <p className="text-12 font-semibold text-text">{agent.name}</p>

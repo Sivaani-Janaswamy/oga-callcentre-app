@@ -11,7 +11,7 @@ export function getMonthGrid(month: string): CalendarCell[] {
   const monthIndex = firstDay.getUTCMonth();
   const offset = firstDay.getUTCDay();
   const daysInMonth = parseIso(
-    `${monthIndex === 11 ? year + 1 : year}-${String((monthIndex + 1) % 12 + 1).padStart(2, '0')}-01T00:00:00Z`,
+    `${monthIndex === 11 ? year + 1 : year}-${String(((monthIndex + 1) % 12) + 1).padStart(2, '0')}-01T00:00:00Z`,
   );
   daysInMonth.setUTCDate(0);
 

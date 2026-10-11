@@ -2,9 +2,9 @@
 
 ## Tools used
 
-| Tool | What it did |
-| --- | --- |
-| Claude | Helped with planning documents, specs, and prompts. |
+| Tool                            | What it did                                                                                 |
+| ------------------------------- | ------------------------------------------------------------------------------------------- |
+| Claude                          | Helped with planning documents, specs, and prompts.                                         |
 | GitHub Copilot agent in VS Code | Implemented most of the front end under `SPEC.md`, `DATABASE_DESIGN.md`, and `TASKLIST.md`. |
 
 Every AI-written change was checked with lint, build, and tests. The git history records the

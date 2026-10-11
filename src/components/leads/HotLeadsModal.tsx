@@ -22,10 +22,11 @@ export function HotLeadsModal({
   const lead = leads?.[index];
   const signalsRequest = useCallback(() => getSignals(lead?.id ?? ''), [lead?.id]);
   const signalsDeps = useMemo(() => [lead?.id], [lead?.id]);
-  const { data: signals, loading: signalsLoading, error: signalsError } = useAsync(
-    signalsRequest,
-    signalsDeps,
-  );
+  const {
+    data: signals,
+    loading: signalsLoading,
+    error: signalsError,
+  } = useAsync(signalsRequest, signalsDeps);
 
   useEffect(() => {
     if (isOpen) {

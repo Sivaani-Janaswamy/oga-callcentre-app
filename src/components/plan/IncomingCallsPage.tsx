@@ -37,7 +37,9 @@ function MissedCallRow({
         {call.expectedValueInr === undefined ? (
           <p className="text-12 font-semibold text-text-muted">New contact</p>
         ) : (
-          <p className="text-12 font-semibold text-success">{formatInr(call.expectedValueInr)} expected</p>
+          <p className="text-12 font-semibold text-success">
+            {formatInr(call.expectedValueInr)} expected
+          </p>
         )}
         <div className="mt-1 flex items-center justify-end gap-2">
           <CallAction
@@ -85,7 +87,9 @@ export function IncomingCallsPage(): JSX.Element {
         </div>
         <div className="h-12 w-px bg-border" />
         <div>
-          <p className="text-20 font-semibold text-success">{formatInr(data?.totalValueInr ?? 0)}</p>
+          <p className="text-20 font-semibold text-success">
+            {formatInr(data?.totalValueInr ?? 0)}
+          </p>
           <p className="text-10 font-semibold tracking-[0.12em] text-text-muted">
             EXPECTED VALUE AT STAKE
           </p>

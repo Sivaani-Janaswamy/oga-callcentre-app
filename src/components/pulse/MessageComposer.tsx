@@ -24,7 +24,10 @@ export function MessageComposer({
   };
 
   return (
-    <form onSubmit={submit} className="mt-3 flex items-center gap-2 rounded-md bg-card p-2 shadow-soft">
+    <form
+      onSubmit={submit}
+      className="mt-3 flex items-center gap-2 rounded-md bg-card p-2 shadow-soft"
+    >
       <input
         ref={inputRef}
         value={draft}

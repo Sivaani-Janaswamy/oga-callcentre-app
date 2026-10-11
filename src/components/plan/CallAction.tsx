@@ -97,9 +97,7 @@ export function CallAction({
           End call
         </button>
       )}
-      {showLogged && (
-        <span className="text-10 font-semibold text-success">Call logged</span>
-      )}
+      {showLogged && <span className="text-10 font-semibold text-success">Call logged</span>}
     </div>
   );
 }

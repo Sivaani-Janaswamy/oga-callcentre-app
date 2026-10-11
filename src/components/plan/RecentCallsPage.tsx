@@ -25,9 +25,7 @@ function getIconStyle(call: Call): string {
     return 'bg-danger-soft text-danger';
   }
 
-  return call.direction === 'outgoing'
-    ? 'bg-info-soft text-info'
-    : 'bg-success-soft text-success';
+  return call.direction === 'outgoing' ? 'bg-info-soft text-info' : 'bg-success-soft text-success';
 }
 
 export function RecentCallsPage(): JSX.Element {

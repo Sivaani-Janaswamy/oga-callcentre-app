@@ -887,9 +887,15 @@ export const practiseScenarios: PractiseScenario[] = [
       { speaker: 'customer', text: 'This is more expensive than another mattress.' },
       { speaker: 'you', text: 'I can help compare the value, warranty, and trial support.' },
       { speaker: 'customer', text: 'Why should I pay more?' },
-      { speaker: 'you', text: 'The materials and after-sales support are built for long-term comfort.' },
+      {
+        speaker: 'you',
+        text: 'The materials and after-sales support are built for long-term comfort.',
+      },
       { speaker: 'customer', text: 'I need to think about it.' },
-      { speaker: 'you', text: 'Of course. I can also share the details so you can compare them easily.' },
+      {
+        speaker: 'you',
+        text: 'Of course. I can also share the details so you can compare them easily.',
+      },
     ],
     rewardInr: 75,
   },

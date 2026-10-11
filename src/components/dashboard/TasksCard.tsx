@@ -49,40 +49,40 @@ export function TasksCard({
           </div>
         ) : (
           tasks.map((task) => {
-          if (task.kind === 'callbacks') {
+            if (task.kind === 'callbacks') {
+              return (
+                <Link
+                  key={task.id}
+                  to="/plan/calls"
+                  className="flex items-center gap-3 rounded-md bg-white p-2.5 transition-colors hover:bg-card-soft"
+                >
+                  <TaskContent task={task} />
+                </Link>
+              );
+            }
+
+            if (task.kind === 'outcome') {
+              return (
+                <Link
+                  key={task.id}
+                  to="/plan/recent"
+                  className="flex items-center gap-3 rounded-md bg-white p-2.5 transition-colors hover:bg-card-soft"
+                >
+                  <TaskContent task={task} />
+                </Link>
+              );
+            }
+
             return (
-              <Link
+              <button
                 key={task.id}
-                to="/plan/calls"
-                className="flex items-center gap-3 rounded-md bg-white p-2.5 transition-colors hover:bg-card-soft"
+                type="button"
+                onClick={onHotLeadsClick}
+                className="flex w-full items-center gap-3 rounded-md bg-white p-2.5 text-left transition-colors hover:bg-card-soft"
               >
                 <TaskContent task={task} />
-              </Link>
+              </button>
             );
-          }
-
-          if (task.kind === 'outcome') {
-            return (
-              <Link
-                key={task.id}
-                to="/plan/recent"
-                className="flex items-center gap-3 rounded-md bg-white p-2.5 transition-colors hover:bg-card-soft"
-              >
-                <TaskContent task={task} />
-              </Link>
-            );
-          }
-
-          return (
-            <button
-              key={task.id}
-              type="button"
-              onClick={onHotLeadsClick}
-              className="flex w-full items-center gap-3 rounded-md bg-white p-2.5 text-left transition-colors hover:bg-card-soft"
-            >
-              <TaskContent task={task} />
-            </button>
-          );
           })
         )}
       </div>

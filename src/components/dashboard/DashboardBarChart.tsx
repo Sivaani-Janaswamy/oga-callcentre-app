@@ -1,4 +1,13 @@
-import { Bar, BarChart, Cell, LabelList, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts';
+import {
+  Bar,
+  BarChart,
+  Cell,
+  LabelList,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from 'recharts';
 import type { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 import type { TooltipProps } from 'recharts';
 import type { DailyStat } from '../../data/types';
@@ -16,10 +25,7 @@ type ChartPoint = {
   isToday: boolean;
 };
 
-function ChartTooltip({
-  active,
-  payload,
-}: TooltipProps<ValueType, NameType>): JSX.Element | null {
+function ChartTooltip({ active, payload }: TooltipProps<ValueType, NameType>): JSX.Element | null {
   const point = payload?.[0]?.payload as ChartPoint | undefined;
 
   if (!active || !point) {

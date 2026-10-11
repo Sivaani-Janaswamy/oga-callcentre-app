@@ -16,14 +16,12 @@ export function PulsePage(): JSX.Element {
   const [searchTerm, setSearchTerm] = useState('');
   const navigate = useNavigate();
   const { data: agents, loading, error } = useAsync(getPulseAgents, EMPTY_DEPS);
-  const { data: channels, loading: channelsLoading, error: channelsError } = useAsync(
-    getChannels,
-    EMPTY_DEPS,
-  );
-  const { data: kudos, loading: kudosLoading, error: kudosError } = useAsync(
-    getKudos,
-    EMPTY_DEPS,
-  );
+  const {
+    data: channels,
+    loading: channelsLoading,
+    error: channelsError,
+  } = useAsync(getChannels, EMPTY_DEPS);
+  const { data: kudos, loading: kudosLoading, error: kudosError } = useAsync(getKudos, EMPTY_DEPS);
   if (loading || channelsLoading || kudosLoading) {
     return <DashboardLoading />;
   }
@@ -56,9 +54,7 @@ export function PulsePage(): JSX.Element {
   const handleBotAction = (action: 'brief' | 'question'): void => {
     navigate('/pulse/avanibot', {
       state:
-        action === 'brief'
-          ? { autoMessage: 'Give me my daily brief' }
-          : { focusComposer: true },
+        action === 'brief' ? { autoMessage: 'Give me my daily brief' } : { focusComposer: true },
     });
   };
 

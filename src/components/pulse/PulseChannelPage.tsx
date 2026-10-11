@@ -43,7 +43,9 @@ export function PulseChannelPage(): JSX.Element {
           setMessages((current) => [...current, reply]);
         }
       } catch (sendError) {
-        setActionError(sendError instanceof Error ? sendError.message : 'Message could not be sent.');
+        setActionError(
+          sendError instanceof Error ? sendError.message : 'Message could not be sent.',
+        );
       }
     },
     [data],

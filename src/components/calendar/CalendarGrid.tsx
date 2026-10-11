@@ -38,7 +38,9 @@ export function CalendarGrid({
             }`}
           >
             {cell.day}
-            {eventDates.has(cell.date) && <span className="mt-0.5 h-1 w-1 rounded-full bg-danger" />}
+            {eventDates.has(cell.date) && (
+              <span className="mt-0.5 h-1 w-1 rounded-full bg-danger" />
+            )}
           </button>
         ) : (
           <span key={`blank-${index}`} className="h-10" />

@@ -86,9 +86,9 @@ I opened the mock only in the browser to observe layout and behaviour. I did not
 
 ## AI tools used
 
-| Tool | What I used it for |
-| --- | --- |
-| Claude | Planning docs, specs, and prompts. |
+| Tool                            | What I used it for                                                                                |
+| ------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Claude                          | Planning docs, specs, and prompts.                                                                |
 | GitHub Copilot agent in VS Code | Most of the implementation, under my specs in `SPEC.md`, `DATABASE_DESIGN.md`, and `TASKLIST.md`. |
 
 Every AI-written change was checked with lint, build, and tests, and the git history shows the

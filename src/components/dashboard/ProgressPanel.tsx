@@ -3,8 +3,18 @@ import { Badge } from '../ui/Badge';
 
 export function ProgressPanel({ progress }: { progress: ProgressToday }): JSX.Element {
   const tiles = [
-    { value: progress.leadsCreated, delta: progress.createdDelta, label: 'Leads Created', tone: 'warn' as const },
-    { value: progress.leadsCalled, delta: progress.calledDelta, label: 'Leads Called', tone: 'success' as const },
+    {
+      value: progress.leadsCreated,
+      delta: progress.createdDelta,
+      label: 'Leads Created',
+      tone: 'warn' as const,
+    },
+    {
+      value: progress.leadsCalled,
+      delta: progress.calledDelta,
+      label: 'Leads Called',
+      tone: 'success' as const,
+    },
   ];
 
   return (

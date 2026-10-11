@@ -27,7 +27,9 @@ function ScenarioCard({
         <h3 className="text-13 font-semibold text-text">{scenario.title}</h3>
         <p className="mt-1 text-11 text-text-muted">{scenario.description}</p>
       </div>
-      <span className={`rounded-full px-2 py-1 text-10 font-semibold ${difficultyClasses[scenario.difficulty]}`}>
+      <span
+        className={`rounded-full px-2 py-1 text-10 font-semibold ${difficultyClasses[scenario.difficulty]}`}
+      >
         {scenario.difficulty}
       </span>
       <p className="text-13 font-semibold text-success">+{formatInr(scenario.rewardInr)}</p>
@@ -56,9 +58,7 @@ export function PractisePage(): JSX.Element {
   return (
     <section>
       <h2 className="text-20 font-semibold text-text">Practise a call</h2>
-      <p className="mt-1 text-13 text-text-muted">
-        Rehearse a scenario and earn coaching rewards
-      </p>
+      <p className="mt-1 text-13 text-text-muted">Rehearse a scenario and earn coaching rewards</p>
       <div className="mt-5 space-y-3">
         {(data ?? []).map((scenario) => (
           <ScenarioCard
@@ -69,10 +69,7 @@ export function PractisePage(): JSX.Element {
         ))}
       </div>
       {selectedScenario && (
-        <PractiseCallModal
-          scenario={selectedScenario}
-          onClose={() => setSelectedScenario(null)}
-        />
+        <PractiseCallModal scenario={selectedScenario} onClose={() => setSelectedScenario(null)} />
       )}
     </section>
   );

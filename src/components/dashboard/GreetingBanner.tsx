@@ -4,7 +4,13 @@ import type { Agent } from '../../data/types';
 
 const PERIOD_OPTIONS = ['Today', 'This Week', 'This Month'] as const;
 
-export function GreetingBanner({ agent, children }: { agent: Agent; children?: ReactNode }): JSX.Element {
+export function GreetingBanner({
+  agent,
+  children,
+}: {
+  agent: Agent;
+  children?: ReactNode;
+}): JSX.Element {
   const [period, setPeriod] = useState<(typeof PERIOD_OPTIONS)[number]>('This Week');
   const [menuOpen, setMenuOpen] = useState(false);
 
