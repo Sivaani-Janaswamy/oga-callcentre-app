@@ -38,39 +38,15 @@ const PulseChannelPage = lazy(() =>
     default: module.PulseChannelPage,
   })),
 );
+const PractisePage = lazy(() =>
+  import('../components/plan/PractisePage').then((module) => ({
+    default: module.PractisePage,
+  })),
+);
 
 function RouteLoading(): JSX.Element {
   return <p className="py-10 text-center text-13 text-text-muted">Loading…</p>;
 }
-
-function PlaceholderPage({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}): JSX.Element {
-  return (
-    <div className="rounded-xl border border-border bg-card p-6 shadow-soft">
-      <p className="text-12 font-semibold uppercase tracking-[0.12em] text-text-muted">
-        Placeholder
-      </p>
-      <h1 className="mt-3 text-24 font-semibold text-text">{title}</h1>
-      <p className="mt-2 max-w-xl text-13 text-text-muted">{description}</p>
-    </div>
-  );
-}
-
-function PractisePlaceholderPage(): JSX.Element {
-  return (
-    <PlaceholderPage
-      title="Practise a call"
-      description="Bonus practise flow placeholder for role-play and call coaching."
-    />
-  );
-}
-
-const PractisePage = lazy(async () => ({ default: PractisePlaceholderPage }));
 
 export function AppRouter(): JSX.Element {
   return (
