@@ -26,8 +26,8 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 ## Phase 0 — Before coding (⏱ 30 min)
 
-- [ ] Open the mock in Chrome. Click every screen, hover everything, note behaviours (don't save the page, don't view-source to copy).
-- [ ] Take your own notes on exact labels, numbers and colours per screen. Put them in `notes/mock-observations.md` (this is your own spec supplement).
+- [x] Open the mock in Chrome. Click every screen, hover everything, note behaviours (don't save the page, don't view-source to copy).
+- [x] Take your own notes on exact labels, numbers and colours per screen. Put them in `notes/ui-reference.md` (this is your own spec supplement).
 - [x] Create a **public** GitHub repo `oga-callcentre-app`. Add MIT licence and a stub README.
 - [x] Start a running list of AI tools used (you'll need it for the README).
 
