@@ -1,10 +1,6 @@
-export function DashboardLoading(): JSX.Element {
-  return (
-    <div className="rounded-md border border-border bg-card p-6 text-13 text-text-muted shadow-soft">
-      Loading dashboard…
-    </div>
-  );
-}
+import { DashboardLoading, EmptyState, Skeleton } from '../ui/Skeleton';
+
+export { DashboardLoading, EmptyState, Skeleton };
 
 export function DashboardError({ message }: { message: string }): JSX.Element {
   return (

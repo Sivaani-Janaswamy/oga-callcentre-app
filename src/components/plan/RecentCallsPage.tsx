@@ -5,6 +5,7 @@ import type { Call } from '../../data/types';
 import { getRecentCalls } from '../../services/api';
 import { CallReviewPanel } from './CallReviewPanel';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
+import { EmptyState } from '../ui/Skeleton';
 
 const EMPTY_DEPS: unknown[] = [];
 
@@ -45,7 +46,13 @@ export function RecentCallsPage(): JSX.Element {
       <h2 className="text-20 font-semibold text-text">Recent calls</h2>
       <p className="mt-1 text-13 text-text-muted">Tap a call to review it against SOP</p>
       <div className="mt-5 space-y-2">
-        {(data ?? []).map((call) => (
+        {(data ?? []).length === 0 ? (
+          <EmptyState
+            title="No recent calls"
+            description="Your completed calls will appear here."
+          />
+        ) : (
+          (data ?? []).map((call) => (
           <button
             key={call.id}
             type="button"
@@ -65,7 +72,8 @@ export function RecentCallsPage(): JSX.Element {
             </span>
             <ChevronRight className="h-4 w-4 shrink-0 text-text-muted" />
           </button>
-        ))}
+          ))
+        )}
       </div>
       <CallReviewPanel call={selectedCall} onClose={() => setSelectedCall(null)} />
     </section>

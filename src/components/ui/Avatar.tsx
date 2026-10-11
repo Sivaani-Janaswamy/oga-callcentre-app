@@ -13,6 +13,7 @@ export function Avatar({
 
   return (
     <div
+      aria-hidden="true"
       className={`flex items-center justify-center rounded-full bg-brand/10 text-text font-semibold ${sizes[size]}`.trim()}
     >
       {initials}

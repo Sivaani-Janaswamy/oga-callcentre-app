@@ -65,7 +65,13 @@ export function DashboardBarChart({
       <h2 className="mb-3 text-11 font-semibold uppercase tracking-[0.12em] text-text-muted">
         {title}
       </h2>
-      <Card className="h-32 px-2 py-2 sm:h-40 sm:px-3">
+      <Card
+        role="img"
+        ariaLabel={`${title} bar chart, values ${data
+          .map((item) => `${item.dayLabel} ${item.value}`)
+          .join(', ')}`}
+        className="h-32 px-2 py-2 sm:h-40 sm:px-3"
+      >
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 18, right: 2, left: 2, bottom: 0 }}>
             <XAxis dataKey="dayLabel" axisLine={false} tickLine={false} tick={{ fontSize: 9 }} />

@@ -2,6 +2,7 @@ import type { Message } from '../../data/types';
 import { formatMessageTime } from '../../utils/format';
 import { Sparkles } from 'lucide-react';
 import { Avatar } from '../ui/Avatar';
+import { EmptyState } from '../ui/Skeleton';
 
 function messageTime(message: Message): string {
   return message.timeLabel ?? formatMessageTime(message.sentAt);
@@ -77,10 +78,21 @@ function MessageBubble({ message }: { message: Message }): JSX.Element {
 
 export function MessageList({ messages }: { messages: Message[] }): JSX.Element {
   return (
-    <div className="mt-5 max-h-[480px] space-y-4 overflow-y-auto rounded-md bg-page p-4">
-      {messages.map((message) => (
-        <MessageBubble key={message.id} message={message} />
-      ))}
+    <div
+      aria-label="Message history"
+      tabIndex={0}
+      className="mt-5 max-h-[480px] space-y-4 overflow-y-auto rounded-md bg-page p-4"
+    >
+      {messages.length === 0 ? (
+        <EmptyState
+          title="No messages yet"
+          description="Say hello to start the conversation."
+        />
+      ) : (
+        messages.map((message) => (
+          <MessageBubble key={message.id} message={message} />
+        ))
+      )}
     </div>
   );
 }

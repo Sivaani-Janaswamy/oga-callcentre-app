@@ -10,6 +10,7 @@ import {
   shiftMonth,
 } from '../../utils/calendar';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
+import { EmptyState } from '../ui/Skeleton';
 import { CalendarGrid } from './CalendarGrid';
 
 const INITIAL_MONTH = '2026-10';
@@ -107,7 +108,13 @@ export function CalendarPage(): JSX.Element {
           UPCOMING
         </p>
         <div className="mt-3 space-y-2">
-          {upcomingEvents.map((event) => (
+          {upcomingEvents.length === 0 ? (
+            <EmptyState
+              title="Nothing upcoming"
+              description="Your next events will appear here."
+            />
+          ) : (
+            upcomingEvents.map((event) => (
             <div key={event.id} className="flex gap-3 border-l-2 border-info pl-3">
               <p className="w-20 shrink-0 text-12 font-semibold text-info">
                 {formatEventTime(event.time)}
@@ -118,9 +125,10 @@ export function CalendarPage(): JSX.Element {
                   <Users className="h-3 w-3 shrink-0" />
                   {formatCalendarDate(event.date)} · {event.metaLabel}
                 </p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+          )}
         </div>
       </div>
     </section>

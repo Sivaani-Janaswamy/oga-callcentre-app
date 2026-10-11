@@ -2,6 +2,7 @@ import { ArrowRight, Headset } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import type { WaitingItem } from '../../data/types';
 import { Badge } from '../ui/Badge';
+import { EmptyState } from '../ui/Skeleton';
 
 const URGENCY_TONES = {
   high: 'danger',
@@ -24,7 +25,13 @@ export function WaitingList({ items }: { items: WaitingItem[] }): JSX.Element {
         </Link>
       </div>
       <div className="mt-3 space-y-2">
-        {items.map((item) => (
+        {items.length === 0 ? (
+          <EmptyState
+            title="Nobody is waiting"
+            description="Customers in your queue will show up here."
+          />
+        ) : (
+          items.map((item) => (
           <div
             key={item.id}
             className="flex items-center gap-3 rounded-md border border-border bg-card p-3 shadow-soft transition-colors hover:border-brand"
@@ -38,7 +45,8 @@ export function WaitingList({ items }: { items: WaitingItem[] }): JSX.Element {
             </div>
             <Badge tone={URGENCY_TONES[item.urgency]}>{item.waitingLabel}</Badge>
           </div>
-        ))}
+          ))
+        )}
       </div>
     </section>
   );

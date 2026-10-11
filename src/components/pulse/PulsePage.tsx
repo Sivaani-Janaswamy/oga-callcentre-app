@@ -4,6 +4,7 @@ import type { Channel } from '../../data/types';
 import { useAsync } from '../../hooks/useAsync';
 import { getChannels, getKudos, getPulseAgents } from '../../services/api';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
+import { EmptyState } from '../ui/Skeleton';
 import { AvaniBotCard } from './AvaniBotCard';
 import { KudosCard } from './KudosCard';
 import { PulseAgentList } from './PulseAgentList';
@@ -58,20 +59,48 @@ export function PulsePage(): JSX.Element {
     });
   };
 
+  const hasSearch = searchTerm.trim().length > 0;
+  const noAgentResults = hasSearch && filteredAgents.length === 0;
+  const allChannels =
+    channels ?? { role: [], task: [], general: [], direct: [], bot: [] };
+  const filteredChannelGroups = [
+    filterChannels(allChannels.role),
+    filterChannels(allChannels.task),
+    filterChannels(allChannels.general),
+    filterChannels(allChannels.direct),
+    filterChannels(allChannels.bot),
+  ];
+  const noChannelResults =
+    hasSearch && filteredChannelGroups.every((group) => group.length === 0);
+
   return (
     <section>
       <PulseHeader searchTerm={searchTerm} onSearchChange={setSearchTerm} />
       <AvaniBotCard onAction={handleBotAction} />
-      <PulseAgentList agents={filteredAgents} />
+      {noAgentResults ? (
+        <EmptyState
+          title={`No agents match "${searchTerm.trim()}"`}
+          description="Try a different name or description."
+        />
+      ) : (
+        <PulseAgentList agents={filteredAgents} />
+      )}
       {channels && kudos && (
         <>
-          <PulseChannelList
-            role={filterChannels(channels.role)}
-            task={filterChannels(channels.task)}
-            general={filterChannels(channels.general)}
-            direct={filterChannels(channels.direct)}
-            bot={filterChannels(channels.bot)}
-          />
+          {noChannelResults ? (
+            <EmptyState
+              title={`No channels match "${searchTerm.trim()}"`}
+              description="Try a different channel name."
+            />
+          ) : (
+            <PulseChannelList
+              role={filteredChannelGroups[0]}
+              task={filteredChannelGroups[1]}
+              general={filteredChannelGroups[2]}
+              direct={filteredChannelGroups[3]}
+              bot={filteredChannelGroups[4]}
+            />
+          )}
           <KudosCard kudos={kudos} />
         </>
       )}
