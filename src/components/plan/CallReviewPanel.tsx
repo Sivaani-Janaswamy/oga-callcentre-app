@@ -33,7 +33,7 @@ export function CallReviewPanel({
     <Modal
       isOpen
       onClose={onClose}
-      title={`Call with ${call.displayName}.`}
+      title={`Call with ${call.displayName}`}
       titleAdornment={
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-purple-soft text-purple">
           <FileText className="h-4 w-4" />
