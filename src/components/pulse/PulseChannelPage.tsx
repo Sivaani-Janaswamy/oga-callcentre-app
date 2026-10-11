@@ -15,12 +15,12 @@ export function PulseChannelPage(): JSX.Element {
   const requestDeps = useMemo(() => [channelId], [channelId]);
   const { data, loading, error } = useAsync(request, requestDeps);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [inputState, setInputState] = useState<NeedsInput | undefined>();
+  const [inputStates, setInputStates] = useState<NeedsInput[]>([]);
   const [actionError, setActionError] = useState<string | null>(null);
 
   useEffect(() => {
     setMessages(data?.messages ?? []);
-    setInputState(data?.needsInput);
+    setInputStates(data?.needsInputs ?? []);
   }, [data]);
 
   if (loading) {
@@ -45,15 +45,11 @@ export function PulseChannelPage(): JSX.Element {
     }
   };
 
-  const handleAnswer = async (answer: string): Promise<void> => {
-    if (!inputState) {
-      return;
-    }
-
+  const handleAnswer = async (id: string, answer: string): Promise<void> => {
     setActionError(null);
     try {
-      const result = await answerNeedsInput(inputState.id, answer);
-      setInputState(result);
+      const result = await answerNeedsInput(id, answer);
+      setInputStates((current) => current.map((input) => (input.id === id ? result : input)));
     } catch (answerError) {
       setActionError(
         answerError instanceof Error ? answerError.message : 'Answer could not be saved.',
@@ -64,7 +60,17 @@ export function PulseChannelPage(): JSX.Element {
   return (
     <section>
       <PulseChannelHeader channel={data.channel} />
-      {inputState && <NeedsInputCard needsInput={inputState} onAnswer={handleAnswer} />}
+      {inputStates.length > 0 && (
+        <div className="mt-5 space-y-3">
+          {inputStates.map((input) => (
+            <NeedsInputCard
+              key={input.id}
+              needsInput={input}
+              onAnswer={(answer) => void handleAnswer(input.id, answer)}
+            />
+          ))}
+        </div>
+      )}
       {actionError && <DashboardError message={actionError} />}
       <MessageList messages={messages} />
       <MessageComposer onSend={handleSend} />

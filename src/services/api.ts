@@ -10,7 +10,7 @@ import {
   kpis,
   leads,
   missedCalls,
-  needsInput,
+  needsInputs,
   practiseScenarios,
   progressToday,
   plannedCalls,
@@ -46,7 +46,7 @@ import { demoNowIso } from '../utils/clock';
 
 const delay = (ms: number): Promise<void> =>
   new Promise((resolve) => window.setTimeout(resolve, ms));
-let activeNeedsInput: NeedsInput = needsInput;
+let activeNeedsInputs: NeedsInput[] = needsInputs.map((input) => ({ ...input }));
 
 export async function getCurrentAgent(): Promise<Agent> {
   await delay(180);
@@ -192,7 +192,7 @@ export async function getPulseAgents(): Promise<PulseAgent[]> {
 }
 export async function getChannel(
   id: ID,
-): Promise<{ channel: Channel; messages: Message[]; needsInput?: NeedsInput }> {
+): Promise<{ channel: Channel; messages: Message[]; needsInputs: NeedsInput[] }> {
   await delay(220);
   const channel = channels.find((item) => item.id === id);
 
@@ -203,7 +203,7 @@ export async function getChannel(
   return {
     channel,
     messages: channelMessages[id] ?? [],
-    needsInput: activeNeedsInput.channelId === id ? activeNeedsInput : undefined,
+    needsInputs: activeNeedsInputs.filter((input) => input.channelId === id),
   };
 }
 
@@ -257,14 +257,19 @@ export async function sendMessage(channelId: ID, body: string): Promise<Message>
 
 export async function answerNeedsInput(id: ID, answer: string): Promise<NeedsInput> {
   await delay(180);
-  const result = {
-    ...activeNeedsInput,
-    id,
-    status: 'answered' as const,
+  const input = activeNeedsInputs.find((item) => item.id === id);
+
+  if (!input) {
+    throw new Error(`Pinned card not found: ${id}`);
+  }
+
+  const result: NeedsInput = {
+    ...input,
+    status: 'answered',
     answer,
     answeredAt: demoNowIso(),
   };
-  activeNeedsInput = result;
+  activeNeedsInputs = activeNeedsInputs.map((item) => (item.id === id ? result : item));
   return result;
 }
 
