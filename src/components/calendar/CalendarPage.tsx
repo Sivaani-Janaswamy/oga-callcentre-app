@@ -1,10 +1,10 @@
 import { CalendarDays, ChevronLeft, ChevronRight, Mail } from 'lucide-react';
-import { useCallback, useMemo } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import type { CalendarEvent } from '../../data/types';
 import { useAsync } from '../../hooks/useAsync';
 import { getEvents } from '../../services/api';
 import { getDemoTodayIso } from '../../utils/clock';
-import { formatMonthTitle, getMonthGrid } from '../../utils/calendar';
+import { formatMonthTitle, getMonthGrid, shiftMonth } from '../../utils/calendar';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
 
 const INITIAL_MONTH = '2026-10';
@@ -47,9 +47,12 @@ function CalendarGrid({
 }
 
 export function CalendarPage(): JSX.Element {
-  const request = useCallback(() => getEvents(INITIAL_MONTH), []);
-  const { data, loading, error } = useAsync(request);
+  const [month, setMonth] = useState(INITIAL_MONTH);
+  const request = useCallback(() => getEvents(month), [month]);
+  const requestDeps = useMemo(() => [month], [month]);
+  const { data, loading, error } = useAsync(request, requestDeps);
   const events = useMemo(() => data ?? [], [data]);
+  const todayMonth = getDemoTodayIso().slice(0, 7);
 
   if (loading) {
     return <DashboardLoading />;
@@ -77,15 +80,34 @@ export function CalendarPage(): JSX.Element {
       </div>
       <div className="mt-5 max-w-[820px] rounded-md border border-border bg-card p-4 shadow-soft">
         <div className="flex items-center justify-between">
-          <button type="button" disabled aria-label="Previous month" className="rounded-md p-2 opacity-40">
+          <button
+            type="button"
+            aria-label="Previous month"
+            onClick={() => setMonth((current) => shiftMonth(current, -1))}
+            className="rounded-md p-2 text-text hover:bg-card-soft"
+          >
             <ChevronLeft className="h-4 w-4" />
           </button>
-          <h2 className="text-13 font-semibold text-text">{formatMonthTitle(INITIAL_MONTH)}</h2>
-          <button type="button" disabled aria-label="Next month" className="rounded-md p-2 opacity-40">
+          <div className="flex items-center gap-2">
+            <h2 className="text-13 font-semibold text-text">{formatMonthTitle(month)}</h2>
+            <button
+              type="button"
+              onClick={() => setMonth(todayMonth)}
+              className="rounded-full bg-info-soft px-2.5 py-1 text-10 font-semibold text-info"
+            >
+              Today
+            </button>
+          </div>
+          <button
+            type="button"
+            aria-label="Next month"
+            onClick={() => setMonth((current) => shiftMonth(current, 1))}
+            className="rounded-md p-2 text-text hover:bg-card-soft"
+          >
             <ChevronRight className="h-4 w-4" />
           </button>
         </div>
-        <CalendarGrid month={INITIAL_MONTH} events={events} />
+        <CalendarGrid month={month} events={events} />
       </div>
     </section>
   );

@@ -32,3 +32,9 @@ export function formatMonthTitle(month: string): string {
     timeZone: 'UTC',
   }).format(parseIso(`${month}-01T00:00:00Z`));
 }
+
+export function shiftMonth(month: string, amount: number): string {
+  const date = parseIso(`${month}-01T00:00:00Z`);
+  date.setUTCMonth(date.getUTCMonth() + amount);
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, '0')}`;
+}
