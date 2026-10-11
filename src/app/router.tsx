@@ -63,10 +63,6 @@ export function AppRouter(): JSX.Element {
           element={<PulsePage />}
         />
         <Route
-          path="/pulse/avanibot"
-          element={<PulseChannelPage />}
-        />
-        <Route
           path="/pulse/:channelId"
           element={<PulseChannelPage />}
         />

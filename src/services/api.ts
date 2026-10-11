@@ -211,7 +211,7 @@ export async function getChannel(
   return {
     channel,
     messages: channelMessages[channel.id] ?? [],
-    needsInputs: activeNeedsInputs.filter((input) => input.channelId === id),
+    needsInputs: activeNeedsInputs.filter((input) => input.channelId === channel.id),
   };
 }
 
