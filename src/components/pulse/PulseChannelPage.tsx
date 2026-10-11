@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useAsync } from '../../hooks/useAsync';
 import { getChannel } from '../../services/api';
 import { DashboardError, DashboardLoading } from '../dashboard/DashboardState';
+import { NeedsInputCard } from './NeedsInputCard';
 import { PulseChannelHeader } from './PulseChannelHeader';
 import { MessageList } from './MessageList';
 
@@ -27,6 +28,7 @@ export function PulseChannelPage(): JSX.Element {
   return (
     <section>
       <PulseChannelHeader channel={data.channel} />
+      {data.needsInput && <NeedsInputCard needsInput={data.needsInput} />}
       <MessageList messages={data.messages} />
     </section>
   );
