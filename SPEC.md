@@ -10,7 +10,7 @@
 2. SOURCE OF TRUTH: The PDF defines scope. The mock defines look and behaviour. If they conflict, the mock wins on visuals and interactions; the PDF wins on what is required.
 3. SCOPE TIERS:
    - MUST: app shell; Dashboard (KPIs, progress, who's waiting, earnings, tasks, both 7-day charts using Recharts); Plan: Calls to make (ranked, expandable rows, paging), Incoming (with a Call back button), Recent (tap a row opens a review panel); Calendar; Pulse home; Pulse channel chat (header, back, pinned card, bubbles); Leads modal with paging.
-   - BONUS (in order): send a message in a channel; answer the "Needs your input" card; phone-width layout; Practise a call + working Call back flow; deploy + recording.
+   - BONUS (in order): send a message in a channel; answer the "Needs your input" card; phone-width layout; Practise a call + Call back overlay; deploy + recording.
    - OPTIONAL: DEMO strip, floating dial button.
 4. Charts and the review panel are MUST. Only the working Call back flow and Practise are bonus; the Call back button itself remains a MUST UI element.
 5. Use the docs and notes only; no copying from the mock HTML or PDF source.
@@ -81,9 +81,9 @@ src/
     leads/        LeadsModal, LeadCard, ScoreBar, SignalGroup
   data/           seed.ts (fixtures), types.ts
   services/       api.ts (async wrappers over fixtures)
-  hooks/          useAsync.ts, usePaging.ts, useMediaQuery.ts
-  styles/         tokens.css, index.css
-  utils/          format.ts (₹, durations, dates), score.ts
+  hooks/          useAsync.ts, usePaging.ts
+  styles/         tokens.css
+  utils/          clock.ts, format.ts (₹, durations, dates), calendar.ts
   tests/
 ```
 
@@ -156,9 +156,9 @@ src/
 
 **Acceptance**
 
-- [ ] All numbers come from the data layer, not hard-coded in JSX.
-- [ ] Charts render with Recharts, today's bar highlighted, tooltip on hover.
-- [ ] Clicking the tasks row opens the Leads modal at lead 1.
+- [x] All numbers come from the data layer, not hard-coded in JSX.
+- [x] Charts render with Recharts, today's bar highlighted, tooltip on hover.
+- [x] Clicking the tasks row opens the Leads modal at lead 1.
 
 ---
 
@@ -194,7 +194,7 @@ Shared **Plan header** (dark band): "Today's calling plan" + "Planner" title, an
 **Acceptance (Plan overall)**
 
 - [ ] Sorting is computed in the service layer, not hard-coded in the order of fixtures.
-- [ ] Paging logic lives in `usePaging` and is unit-tested.
+- [x] Paging logic lives in `usePaging` and is unit-tested.
 - [ ] Empty state exists for each list.
 
 ---
@@ -211,7 +211,7 @@ Shared **Plan header** (dark band): "Today's calling plan" + "Planner" title, an
 **Acceptance**
 
 - [ ] Month math is correct for any month (leap years, 28–31 days, week offsets).
-- [ ] Today button always returns to the real current date.
+- [x] Today button always returns to the fixed demo date, 9 Oct 2026.
 - [ ] Event dots come from `events` data.
 
 ---
@@ -232,15 +232,15 @@ Shared **Plan header** (dark band): "Today's calling plan" + "Planner" title, an
 ### 10.2 Pulse channel `/pulse/:channelId`
 
 - Purple header with **Back** button and `# channel-name`.
-- **Needs your input** (pinned): red count badge, "pinned" tag, title ("Confirm the 4:30pm callback"), sub-line, **two buttons** (Confirmed / Reschedule), and a reply text box with a send button.
+- **Needs your input** (pinned): red count badge, "pinned" tag, one or more cards with a title, sub-line, answer buttons, and a reply text box with a send button.
 - Date separator ("Today · Call Centre Team").
 - **Message list:** others on the left (avatar initials, name, time, bubble with icon-prefixed labels like STAKEHOLDERS / ISSUE DEFINITION / SUGGESTED RESOLUTION), current user on the right (green bubble with time).
-- **Composer** at bottom: placeholder "Message #callcentre-team…", emoji button.
+- **Composer** at bottom: a message input and send button. AvaniBot uses the placeholder "Message AvaniBot…" and has no emoji button.
 
 **Bonus behaviours**
 
 - Sending a message appends a green bubble on the right with the current time and scrolls to bottom. Enter sends, Shift+Enter newline.
-- Clicking **Confirmed** or **Reschedule** resolves the pinned card: it collapses into a small "Answered: Confirmed" state and a system line is added to the chat. Typing in the reply box and sending does the same with the typed answer.
+- Clicking an answer button or sending a typed answer resolves the pinned card and collapses it into a small answered state.
 
 **Acceptance**
 

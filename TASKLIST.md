@@ -74,7 +74,7 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 - [x] `feat(plan): expandable row (accordion, one open at a time)`
 - [x] `feat(plan): lead detail fields and reusable Place call state`
 - [x] `feat(plan): Pager component + paging on calls list`
-- [ ] `test(plan): usePaging edge cases (first/last page, empty)`
+- [x] `test(plan): usePaging edge cases (first/last page, empty)`
 - [x] `feat(plan): Incoming summary strip (count + ₹ at stake)`
 - [x] `feat(plan): Incoming rows with Call back button, Unknown caller state`
 - [x] `feat(plan): Recent list with call type icon, time, length`
@@ -90,7 +90,7 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 - [x] `feat(calendar): header with prev/next month and Today button`
 - [x] `feat(calendar): today outline + event dots from data`
 - [x] `feat(calendar): selected-day events panel`
-- [x] **Checkpoint:** Oct 2026 layout matches mock; Today returns to 9 Oct 2026 (or the real current date).
+- [x] **Checkpoint:** Oct 2026 layout matches mock; Today returns to 9 Oct 2026.
 - [x] `fix(calendar): correct upcoming event content and presentation`
 
 ---
@@ -113,7 +113,7 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 - [x] `fix(pulse): label sent messages just now`
 - [x] `feat(dashboard): derive my tasks from open pinned cards`
 - [x] `test(dashboard): answering a pinned card removes its task row`
-- [ ] **Checkpoint:** home → channel → back works, scrolling inside the chat is smooth.
+- [x] **Checkpoint:** home → channel → back works, scrolling inside the chat is smooth.
 
 ---
 
@@ -128,7 +128,7 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 - [x] `feat(leads): cumulative missed footer chip`
 - [x] `feat(leads): next/previous paging + dots + keyboard arrows`
 - [x] `feat(dashboard): open modal from tasks card (hot leads)`
-- [ ] **Checkpoint:** paging never overflows; collapsibles reset on lead change.
+- [x] **Checkpoint:** paging never overflows; collapsibles reset on lead change.
 
 ---
 
@@ -144,8 +144,8 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 ## Phase 8 — Bonus (⏱ ~3h, do in this order) ➕
 
-1. [ ] ➕ `feat(pulse): send message (Enter to send, auto-scroll, time stamp)`
-2. [ ] ➕ `feat(pulse): answer Needs-your-input via buttons or reply box → collapses to answered state + system line`
+1. [x] ➕ `feat(pulse): send message (Enter to send, auto-scroll, time stamp)`
+2. [x] ➕ `feat(pulse): answer Needs-your-input via buttons or reply box → collapses to answered state + system line`
 3. [ ] ➕ `feat(responsive): drawer sidebar, stacked KPIs, full-width modal at ≤640px`
 4. [ ] ➕ `feat(plan): Call back opens in-app call overlay (timer, end call, mark called back)`
 5. [ ] ➕ `feat(plan): Practise a call page with scripted scenario and reward`
