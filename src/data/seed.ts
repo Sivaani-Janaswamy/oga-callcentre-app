@@ -809,6 +809,16 @@ export const channelMessages: Record<string, Message[]> = {
   ],
 };
 
+export const avaniBotReplies = {
+  dailyBrief: `🌞 Here's today's brief
+• Avg Handle Time: 4m 12s ▼8% — nice improvement
+• Warranty score down 12% this week — worth a look in #avani-coaching
+• Greeting-in-first-10s at 71% — Sunita wants this pushed up
+• You've got 3 new kudos waiting 🏆
+Want me to open avani-coaching, or pull up your kudos?`,
+  fallback: 'I can only do daily briefs in this demo. Try asking for your daily brief.',
+};
+
 // PLACEHOLDER: verify the inferred task-to-pinned-card mapping against the mock.
 export const needsInputs: NeedsInput[] = [
   {

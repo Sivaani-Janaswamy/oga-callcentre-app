@@ -6,9 +6,11 @@ import { Card } from '../ui/Card';
 export function NeedsInputCard({
   needsInput,
   onAnswer,
+  showLabel = true,
 }: {
   needsInput: NeedsInput;
   onAnswer?: (answer: string) => void;
+  showLabel?: boolean;
 }): JSX.Element {
   const answered = needsInput.status === 'answered';
   const [draft, setDraft] = useState('');
@@ -36,9 +38,11 @@ export function NeedsInputCard({
       <div className="flex items-start gap-3">
         <Pin className="mt-0.5 h-4 w-4 shrink-0 text-warning" />
         <div className="min-w-0 flex-1">
-          <p className="text-11 font-semibold uppercase tracking-[0.12em] text-text-muted">
-            Needs your input
-          </p>
+          {showLabel && (
+            <p className="text-11 font-semibold uppercase tracking-[0.12em] text-text-muted">
+              Needs your input
+            </p>
+          )}
           <p className="mt-1 text-13 font-semibold text-text">{needsInput.title}</p>
           <p className="mt-1 text-11 text-text-muted">{needsInput.subtitle}</p>
           <div className="mt-3 flex flex-wrap gap-2">

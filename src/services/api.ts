@@ -1,5 +1,6 @@
 import {
   agent,
+  avaniBotReplies,
   buyingSignals,
   callReviewFixtures,
   calendarEvents,
@@ -194,7 +195,7 @@ export async function getChannel(
   id: ID,
 ): Promise<{ channel: Channel; messages: Message[]; needsInputs: NeedsInput[] }> {
   await delay(220);
-  const channel = channels.find((item) => item.id === id);
+  const channel = channels.find((item) => item.id === id || item.slug === id);
 
   if (!channel) {
     throw new Error(`Channel not found: ${id}`);
@@ -202,7 +203,7 @@ export async function getChannel(
 
   return {
     channel,
-    messages: channelMessages[id] ?? [],
+    messages: channelMessages[channel.id] ?? [],
     needsInputs: activeNeedsInputs.filter((input) => input.channelId === id),
   };
 }
@@ -247,6 +248,29 @@ export async function sendMessage(channelId: ID, body: string): Promise<Message>
     isSelf: true,
     kind: 'text',
     body,
+    sentAt: demoNowIso(),
+  };
+
+  const currentMessages = channelMessages[channelId] ?? [];
+  channelMessages[channelId] = [...currentMessages, message];
+  return message;
+}
+
+export async function getAvaniBotReply(channelId: ID, body: string): Promise<Message> {
+  await delay(600);
+  const response = body.toLowerCase().includes('brief')
+    ? avaniBotReplies.dailyBrief
+    : avaniBotReplies.fallback;
+  const message: Message = {
+    id: `msg_${Date.now()}`,
+    channelId,
+    authorId: 'avanibot',
+    authorName: 'AvaniBot',
+    authorInitials: '✦',
+    isSelf: false,
+    isBot: true,
+    kind: 'text',
+    body: response,
     sentAt: demoNowIso(),
   };
 
