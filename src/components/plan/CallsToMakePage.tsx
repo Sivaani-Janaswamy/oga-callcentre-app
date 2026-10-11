@@ -79,7 +79,7 @@ function LeadRow({
       </button>
       {expanded && (
         // PLACEHOLDER: verify the expandable detail content against the mock.
-        <div className="grid gap-3 border-t border-border px-3 py-3 text-11 text-text-muted sm:grid-cols-2">
+        <div className="grid gap-3 border-t border-border px-3 py-3 text-11 text-text-muted sm:grid-cols-2 grid-cols-1">
           <p className="sm:col-span-2">
             <span className="block text-10 uppercase tracking-[0.1em]">Story so far</span>
             <span className="mt-1 block text-text">{lead.story}</span>

@@ -25,32 +25,34 @@ function MissedCallRow({
   onEndCall: () => void;
 }): JSX.Element {
   return (
-    <div className="flex items-center gap-3 rounded-md border border-border bg-card p-3 shadow-soft transition-colors hover:border-brand">
-      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-danger-soft text-danger">
-        <PhoneMissed className="h-4 w-4" />
-      </span>
-      <div className="min-w-0 flex-1">
-        <p className="text-13 font-semibold text-text">{call.displayName}</p>
-        <p className="mt-1 truncate text-11 text-text-muted">{call.metaLabel}</p>
-      </div>
-      <div className="shrink-0 text-right">
-        {call.expectedValueInr === undefined ? (
-          <p className="text-12 font-semibold text-text-muted">New contact</p>
-        ) : (
-          <p className="text-12 font-semibold text-success">
-            {formatInr(call.expectedValueInr)} expected
-          </p>
-        )}
-        <div className="mt-1 flex items-center justify-end gap-2">
-          <CallAction
-            calling={calling}
-            label="Call back"
-            onCall={onCall}
-            onCancel={onCancel}
-            onEndCall={onEndCall}
-            showCalledBack={calledBack}
-          />
+    <div className="flex flex-col gap-3 rounded-md border border-border bg-card p-3 shadow-soft transition-colors hover:border-brand sm:flex-row sm:items-center sm:gap-3">
+      <div className="flex items-center gap-3">
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-danger-soft text-danger">
+          <PhoneMissed className="h-4 w-4" />
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="text-13 font-semibold text-text">{call.displayName}</p>
+          <p className="mt-1 truncate text-11 text-text-muted">{call.metaLabel}</p>
         </div>
+      </div>
+      <div className="flex items-center justify-between gap-3 sm:shrink-0 sm:text-right">
+        <div>
+          {call.expectedValueInr === undefined ? (
+            <p className="text-12 font-semibold text-text-muted">New contact</p>
+          ) : (
+            <p className="text-12 font-semibold text-success">
+              {formatInr(call.expectedValueInr)} expected
+            </p>
+          )}
+        </div>
+        <CallAction
+          calling={calling}
+          label="Call back"
+          onCall={onCall}
+          onCancel={onCancel}
+          onEndCall={onEndCall}
+          showCalledBack={calledBack}
+        />
       </div>
     </div>
   );
