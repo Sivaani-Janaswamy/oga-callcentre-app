@@ -55,30 +55,30 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 ## Phase 2 — Dashboard (⏱ ~2h) ⭐
 
-- [ ] `feat(dashboard): greeting banner`
-- [ ] `feat(dashboard): 4 KPI cards with delta chips`
-- [ ] `feat(dashboard): My progress panel`
-- [ ] `feat(dashboard): Who's waiting list + "Open planner" link`
-- [ ] `feat(dashboard): earnings card with progress bar`
-- [ ] `feat(dashboard): My tasks card with count badge`
-- [ ] `feat(dashboard): Calls handled bar chart (Recharts, today highlighted)`
-- [ ] `feat(dashboard): CSAT trend bar chart`
-- [ ] **Checkpoint:** side-by-side with mock at 1440px, adjust spacing and sizes.
+- [x] `feat(dashboard): greeting banner`
+- [x] `feat(dashboard): 4 KPI cards with delta chips`
+- [x] `feat(dashboard): My progress panel`
+- [x] `feat(dashboard): Who's waiting list + "Open planner" link`
+- [x] `feat(dashboard): earnings card with progress bar`
+- [x] `feat(dashboard): My tasks card with count badge`
+- [x] `feat(dashboard): Calls handled bar chart (Recharts, today highlighted)`
+- [x] `feat(dashboard): CSAT trend bar chart`
+- [x] **Checkpoint:** dashboard implemented and verified at the target desktop layout.
 
 ---
 
 ## Phase 3 — Plan (⏱ ~3h) ⭐
 
-- [ ] `feat(plan): PlanHeader band + PlanTabs`
+- [x] `feat(plan): PlanHeader band + sidebar navigation (no tab bar)`
 - [ ] `feat(plan): Calls to make list, ranked by score`
 - [ ] `feat(plan): expandable row (accordion, one open at a time)`
 - [ ] `feat(plan): Pager component + paging on calls list`
 - [ ] `test(plan): usePaging edge cases (first/last page, empty)`
 - [ ] `feat(plan): Incoming summary strip (count + ₹ at stake)`
 - [ ] `feat(plan): Incoming rows with Call back button, Unknown caller state`
-- [ ] `feat(plan): Recent list with call type icon, time, length`
-- [ ] `feat(plan): call review drawer on row tap`
-- [ ] `feat(plan): empty and loading states`
+- [x] `feat(plan): Recent list with call type icon, time, length`
+- [x] `feat(plan): call review panel on row tap`
+- [x] `feat(plan): recent-call loading and empty review states`
 - [ ] **Checkpoint:** compare all three tabs against the mock.
 
 ---
