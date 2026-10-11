@@ -135,9 +135,9 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 ## Phase 7 — Core polish (⏱ ~1h) ⭐
 
 - [x] Hover and focus states on every interactive element, matching the mock.
-- [ ] Consistent loading skeletons and empty states.
+- [x] Consistent loading skeletons and empty states.
 - [x] Remove console warnings, dead code, unused imports.
-- [ ] Run Lighthouse (accessibility) and fix obvious issues.
+- [x] Run Lighthouse (accessibility) and fix obvious issues.
 - [x] `chore: lint + format pass`
 
 ---
@@ -146,7 +146,7 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 1. [x] ➕ `feat(pulse): send message (Enter to send, auto-scroll, time stamp)`
 2. [x] ➕ `feat(pulse): answer Needs-your-input via buttons or reply box → collapses to answered state + system line`
-3. [ ] ➕ `feat(responsive): drawer sidebar, stacked KPIs, full-width modal at ≤640px`
+3. [x] ➕ `feat(responsive): drawer sidebar, stacked KPIs, full-width modal at ≤640px`
 4. [x] ➕ `feat(plan): Call back opens in-app call overlay (timer, end call, mark called back)`
 5. [x] ➕ `feat(plan): Practise a call page with scripted scenario and reward`
 6. [x] ➕ `test: key unit and component tests (paging, calendar util, send message)`
@@ -156,14 +156,14 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 
 ## Phase 9 — Ship (⏱ ~3h, finish by Sun 3 PM)
 
-- [ ] `docs: README` — what it is, how to run, stack + why, structure, done / skipped, decisions, **AI tools used**, known issues.
-- [ ] Add screenshots to `/docs/screens/`.
+- [x] `docs: README` — what it is, how to run, stack + why, structure, done / skipped, decisions, **AI tools used**, known issues.
+- [x] Add screenshots to `/docs/screens/`.
 - [x] `chore: production build passes, no warnings`.
-- [ ] Deploy to Vercel, test the live link in an incognito window.
+- [x] Deploy to Vercel, test the live link in an incognito window.
 - [ ] Record a ≤ 2-minute screen recording: shell → dashboard → plan tabs → calendar → pulse → channel send → leads modal. Upload (Drive/YouTube unlisted) and add the link to the README.
-- [ ] Final check that the repo is public (or shared with the email I'm sending from).
-- [ ] Send email: **To** mukunda@on-ground.ai · **Subject** `Assignment Submission: <your full name>` · include repo link, live link, recording link, 3-line summary.
-- [ ] Confirm the email was sent (check Sent folder).
+- [x] Final check that the repo is public (or shared with the email I'm sending from).
+- [x] Send email: **To** mukunda@on-ground.ai · **Subject** `Assignment Submission: <your full name>` · include repo link, live link, recording link, 3-line summary.
+- [x] Confirm the email was sent (check Sent folder).
 
 ---
 
