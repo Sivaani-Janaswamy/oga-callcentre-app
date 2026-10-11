@@ -863,35 +863,50 @@ export const kudos: Kudos = {
 export const practiseScenarios: PractiseScenario[] = [
   {
     id: 'practice_01',
-    title: 'Price objection',
+    // PLACEHOLDER: verify practice scenario copy, scripts, and rewards against mock.
+    title: 'Open with the greeting script',
+    description: 'Start the conversation with a clear, confident greeting.',
     difficulty: 'easy',
     script: [
-      { speaker: 'customer', text: 'I found a cheaper bed elsewhere.' },
-      { speaker: 'you', text: 'I can help compare value, warranty, and trial support.' },
+      { speaker: 'customer', text: 'Hello, who is calling?' },
+      { speaker: 'you', text: 'Hello, this is Aditi from The Sleep Company.' },
+      { speaker: 'customer', text: 'What is this about?' },
+      { speaker: 'you', text: 'I am calling to understand how we can help with your sleep.' },
+      { speaker: 'customer', text: 'Okay, tell me more.' },
+      { speaker: 'you', text: 'I would love to learn what you are looking for today.' },
     ],
-    rewardInr: 300,
+    rewardInr: 50,
   },
   {
     id: 'practice_02',
-    title: 'Financing follow-up',
+    // PLACEHOLDER: verify practice scenario copy, scripts, and rewards against mock.
+    title: 'Handle a price objection',
+    description: 'Practise responding to a customer who compares prices.',
     difficulty: 'medium',
     script: [
-      { speaker: 'customer', text: 'I want to know the EMI plan before I decide.' },
-      { speaker: 'you', text: 'Let me explain the 9-month plan and delivery timing.' },
+      { speaker: 'customer', text: 'This is more expensive than another mattress.' },
+      { speaker: 'you', text: 'I can help compare the value, warranty, and trial support.' },
+      { speaker: 'customer', text: 'Why should I pay more?' },
+      { speaker: 'you', text: 'The materials and after-sales support are built for long-term comfort.' },
+      { speaker: 'customer', text: 'I need to think about it.' },
+      { speaker: 'you', text: 'Of course. I can also share the details so you can compare them easily.' },
     ],
-    rewardInr: 450,
+    rewardInr: 75,
   },
   {
     id: 'practice_03',
-    title: 'Delivery delay recovery',
-    difficulty: 'hard',
+    // PLACEHOLDER: verify practice scenario copy, scripts, and rewards against mock.
+    title: 'Raise EMI options',
+    description: 'Practise introducing financing options at the right moment.',
+    difficulty: 'medium',
     script: [
-      { speaker: 'customer', text: 'The product was not delivered on time last month.' },
-      {
-        speaker: 'you',
-        text: 'I appreciate the frustration, and I can explain the current availability and support.',
-      },
+      { speaker: 'customer', text: 'I like it, but I cannot pay the full amount today.' },
+      { speaker: 'you', text: 'We can look at EMI options to spread the payment.' },
+      { speaker: 'customer', text: 'How would that work?' },
+      { speaker: 'you', text: 'I can explain the available plans and help you choose one.' },
+      { speaker: 'customer', text: 'That could work for me.' },
+      { speaker: 'you', text: 'Great, let us review the plan that fits your monthly budget.' },
     ],
-    rewardInr: 700,
+    rewardInr: 75,
   },
 ];

@@ -253,6 +253,7 @@ export interface Kudos {
 export interface PractiseScenario {
   id: ID;
   title: string;
+  description: string;
   difficulty: 'easy' | 'medium' | 'hard';
   script: { speaker: 'customer' | 'you'; text: string }[];
   rewardInr: number;

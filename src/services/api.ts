@@ -48,6 +48,7 @@ import { demoNowIso } from '../utils/clock';
 const delay = (ms: number): Promise<void> =>
   new Promise((resolve) => window.setTimeout(resolve, ms));
 let activeNeedsInputs: NeedsInput[] = needsInputs.map((input) => ({ ...input }));
+let currentEarnings: Earnings = { ...earnings };
 
 export async function getCurrentAgent(): Promise<Agent> {
   await delay(180);
@@ -75,7 +76,7 @@ export async function getDashboard(): Promise<{
     kpis,
     progress: progressToday,
     waiting: waitingList,
-    earnings,
+    earnings: { ...currentEarnings },
     tasks: tasks.filter((task) => openTaskKinds.has(task.kind)),
     callsLast7: dailyStats,
     csatLast7: dailyStats,
@@ -319,10 +320,16 @@ export async function startCallback(missedCallId: ID): Promise<MissedCall> {
 
 export async function completePractise(scenarioId: ID): Promise<Earnings> {
   await delay(180);
-  const reward = practiseScenarios.find((scenario) => scenario.id === scenarioId)?.rewardInr ?? 0;
+  const scenario = practiseScenarios.find((item) => item.id === scenarioId);
 
-  return {
-    ...earnings,
-    fromPractiseInr: earnings.fromPractiseInr + reward,
+  if (!scenario) {
+    throw new Error(`Practice scenario not found: ${scenarioId}`);
+  }
+
+  currentEarnings = {
+    ...currentEarnings,
+    fromPractiseInr: currentEarnings.fromPractiseInr + scenario.rewardInr,
+    totalInr: currentEarnings.totalInr + scenario.rewardInr,
   };
+  return { ...currentEarnings };
 }
