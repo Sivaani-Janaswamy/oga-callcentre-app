@@ -107,7 +107,7 @@ export function Modal({
             type="button"
             aria-label="Close dialog"
             onClick={onClose}
-            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-card-soft text-text-muted hover:text-text"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-card-soft text-text-muted transition-colors hover:bg-border hover:text-text"
           >
             <X className="h-4 w-4" />
           </button>

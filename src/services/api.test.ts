@@ -62,3 +62,20 @@ describe('pulse service', () => {
     expect(after.messages[after.messages.length - 1].isSelf).toBe(true);
   });
 });
+
+describe('missed calls service', () => {
+  it('missed calls count, total and order are computed from the rows', async () => {
+    const result = await getMissedCalls();
+
+    expect(result.count).toBe(result.items.length);
+    expect(result.totalValueInr).toBe(
+      result.items.reduce((sum, call) => sum + (call.expectedValueInr ?? 0), 0),
+    );
+
+    // Verify order: highest expected value first, unknowns last
+    const values = result.items.map((call) => call.expectedValueInr ?? -1);
+    for (let i = 0; i < values.length - 1; i++) {
+      expect(values[i] >= values[i + 1]).toBe(true);
+    }
+  });
+});

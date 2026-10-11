@@ -27,7 +27,7 @@ export function WaitingList({ items }: { items: WaitingItem[] }): JSX.Element {
         {items.map((item) => (
           <div
             key={item.id}
-            className="flex items-center gap-3 rounded-md border border-border bg-card p-3 shadow-soft"
+            className="flex items-center gap-3 rounded-md border border-border bg-card p-3 shadow-soft transition-colors hover:border-brand"
           >
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-success-soft text-success">
               <Headset className="h-4 w-4" />

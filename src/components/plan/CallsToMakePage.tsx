@@ -50,7 +50,7 @@ function LeadRow({
   onEndCall: () => void;
 }): JSX.Element {
   return (
-    <div className="rounded-md border border-border bg-card shadow-soft">
+    <div className="rounded-md border border-border bg-card shadow-soft transition-colors hover:border-brand">
       <button
         type="button"
         aria-expanded={expanded}

@@ -21,7 +21,7 @@ export function AvaniBotCard({
             <button
               type="button"
               onClick={() => onAction('brief')}
-              className="inline-flex items-center gap-1 rounded-md bg-info px-3 py-1.5 text-11 font-semibold text-white"
+              className="inline-flex items-center gap-1 rounded-md bg-info px-3 py-1.5 text-11 font-semibold text-white transition-colors hover:bg-info/80"
             >
               <FileText className="h-3 w-3" />
               Daily Brief
@@ -29,7 +29,7 @@ export function AvaniBotCard({
             <button
               type="button"
               onClick={() => onAction('question')}
-              className="inline-flex items-center gap-1 rounded-md bg-white px-3 py-1.5 text-11 font-semibold text-info"
+              className="inline-flex items-center gap-1 rounded-md bg-white px-3 py-1.5 text-11 font-semibold text-info transition-colors hover:bg-card-soft"
             >
               <MessageCircle className="h-3 w-3" />
               Ask a question

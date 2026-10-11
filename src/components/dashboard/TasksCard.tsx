@@ -54,7 +54,7 @@ export function TasksCard({
               <Link
                 key={task.id}
                 to="/plan/calls"
-                className="flex items-center gap-3 rounded-md bg-white p-2.5"
+                className="flex items-center gap-3 rounded-md bg-white p-2.5 transition-colors hover:bg-card-soft"
               >
                 <TaskContent task={task} />
               </Link>
@@ -66,7 +66,7 @@ export function TasksCard({
               <Link
                 key={task.id}
                 to="/plan/recent"
-                className="flex items-center gap-3 rounded-md bg-white p-2.5"
+                className="flex items-center gap-3 rounded-md bg-white p-2.5 transition-colors hover:bg-card-soft"
               >
                 <TaskContent task={task} />
               </Link>
@@ -78,7 +78,7 @@ export function TasksCard({
               key={task.id}
               type="button"
               onClick={onHotLeadsClick}
-              className="flex w-full items-center gap-3 rounded-md bg-white p-2.5 text-left"
+              className="flex w-full items-center gap-3 rounded-md bg-white p-2.5 text-left transition-colors hover:bg-card-soft"
             >
               <TaskContent task={task} />
             </button>

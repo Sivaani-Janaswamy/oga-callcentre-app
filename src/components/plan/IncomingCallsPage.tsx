@@ -25,7 +25,7 @@ function MissedCallRow({
   onEndCall: () => void;
 }): JSX.Element {
   return (
-    <div className="flex items-center gap-3 rounded-md border border-border bg-card p-3 shadow-soft">
+    <div className="flex items-center gap-3 rounded-md border border-border bg-card p-3 shadow-soft transition-colors hover:border-brand">
       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-danger-soft text-danger">
         <PhoneMissed className="h-4 w-4" />
       </span>

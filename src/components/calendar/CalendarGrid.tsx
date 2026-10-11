@@ -31,10 +31,10 @@ export function CalendarGrid({
             key={cell.date}
             type="button"
             onClick={() => onSelect(cell.date as string)}
-            className={`flex h-10 flex-col items-center justify-center rounded-md text-12 font-semibold shadow-soft ${
+            className={`flex h-10 flex-col items-center justify-center rounded-md text-12 font-semibold shadow-soft transition-colors ${
               cell.date === today || cell.date === selectedDate
                 ? 'border-2 border-info text-info'
-                : 'bg-card-soft text-text'
+                : 'bg-card-soft text-text hover:bg-card'
             }`}
           >
             {cell.day}

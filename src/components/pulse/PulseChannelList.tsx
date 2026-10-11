@@ -24,7 +24,7 @@ function ChannelGroup({
           <Link
             key={channel.id}
             to={channel.slug === 'avanibot' ? '/pulse/avanibot' : `/pulse/${channel.id}`}
-            className="flex items-center gap-3 rounded-md bg-card p-3 shadow-soft"
+            className="flex items-center gap-3 rounded-md bg-card p-3 shadow-soft transition-colors hover:bg-card-soft"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-info-soft text-info">
               <Icon className="h-4 w-4" />
