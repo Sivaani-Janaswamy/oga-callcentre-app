@@ -13,6 +13,7 @@ import {
   needsInput,
   practiseScenarios,
   progressToday,
+  plannedCalls,
   recentCalls,
   tasks,
   waitingList,
@@ -33,6 +34,7 @@ import type {
   MissedCall,
   NeedsInput,
   Page,
+  PlannedCall,
   PractiseScenario,
   Task,
   WaitingItem,
@@ -71,11 +73,12 @@ export async function getDashboard(): Promise<{
   };
 }
 
-export async function getPlannedCalls(page: number, pageSize: number): Promise<Page<Lead>> {
+export async function getPlannedCalls(page: number, pageSize: number): Promise<Page<PlannedCall>> {
   await delay(220);
-  const sorted = [...leads]
-    .filter((lead) => lead.status === 'open')
-    .sort((a, b) => b.score - a.score);
+  const sorted = plannedCalls
+    .map((lead, index) => ({ lead, index }))
+    .sort((a, b) => b.lead.score - a.lead.score || a.index - b.index)
+    .map(({ lead }) => lead);
   const start = (page - 1) * pageSize;
   const end = start + pageSize;
   const items = sorted.slice(start, end);
@@ -95,11 +98,24 @@ export async function getMissedCalls(): Promise<{
   count: number;
 }> {
   await delay(180);
-  const items = [...missedCalls].sort((a, b) => {
-    const left = a.expectedValueInr ?? 0;
-    const right = b.expectedValueInr ?? 0;
-    return right - left;
-  });
+  const items = missedCalls
+    .map((call, index) => ({ call, index }))
+    .sort((a, b) => {
+      const left = a.call.expectedValueInr;
+      const right = b.call.expectedValueInr;
+
+      if (left === undefined && right === undefined) {
+        return a.index - b.index;
+      }
+      if (left === undefined) {
+        return 1;
+      }
+      if (right === undefined) {
+        return -1;
+      }
+      return right - left || a.index - b.index;
+    })
+    .map(({ call }) => call);
   const totalValueInr = items.reduce((sum, call) => sum + (call.expectedValueInr ?? 0), 0);
 
   return { items, totalValueInr, count: items.length };

@@ -41,6 +41,19 @@ export interface Lead {
   signalIds: ID[];
 }
 
+export interface PlannedCall {
+  id: ID;
+  name: string;
+  initials: string;
+  avatarTone: 'peach' | 'mint' | 'blue' | 'yellow';
+  productInterest: string;
+  quoteValueInr: number;
+  score: number;
+  icpScore: number;
+  intentScore: number;
+  lastNote: string;
+}
+
 export interface IcpFactor {
   label: string;
   weight: number;
@@ -105,6 +118,7 @@ export interface MissedCall {
   displayName: string;
   at: ISODateTime;
   reason: string;
+  metaLabel: string;
   expectedValueInr?: number;
   status: 'missed' | 'calling' | 'called_back';
 }
