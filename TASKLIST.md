@@ -72,6 +72,7 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 - [x] `feat(plan): PlanHeader band + sidebar navigation (no tab bar)`
 - [x] `feat(plan): Calls to make list, ranked by score`
 - [x] `feat(plan): expandable row (accordion, one open at a time)`
+- [x] `feat(plan): lead detail fields and reusable Place call state`
 - [x] `feat(plan): Pager component + paging on calls list`
 - [ ] `test(plan): usePaging edge cases (first/last page, empty)`
 - [x] `feat(plan): Incoming summary strip (count + ₹ at stake)`
@@ -90,6 +91,7 @@ Sleep is part of the plan. If you fall behind, **cut bonus work, never the READM
 - [x] `feat(calendar): today outline + event dots from data`
 - [x] `feat(calendar): selected-day events panel`
 - [x] **Checkpoint:** Oct 2026 layout matches mock; Today returns to 9 Oct 2026 (or the real current date).
+- [x] `fix(calendar): correct upcoming event content and presentation`
 
 ---
 

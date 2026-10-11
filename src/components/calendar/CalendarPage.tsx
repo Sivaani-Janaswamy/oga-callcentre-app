@@ -1,4 +1,4 @@
-import { CalendarDays, ChevronLeft, ChevronRight, Mail } from 'lucide-react';
+import { CalendarDays, ChevronLeft, ChevronRight, Mail, Users } from 'lucide-react';
 import { useCallback, useMemo, useState } from 'react';
 import { useAsync } from '../../hooks/useAsync';
 import { getEvents } from '../../services/api';
@@ -108,12 +108,17 @@ export function CalendarPage(): JSX.Element {
         </p>
         <div className="mt-3 space-y-2">
           {upcomingEvents.map((event) => (
-            <div key={event.id} className="border-l-2 border-info pl-3">
-              <p className="text-12 font-semibold text-info">{formatEventTime(event.time)}</p>
-              <p className="text-13 font-semibold text-text">{event.title}</p>
-              <p className="text-11 text-text-muted">
-                {formatCalendarDate(event.date)} · {event.metaLabel}
+            <div key={event.id} className="flex gap-3 border-l-2 border-info pl-3">
+              <p className="w-20 shrink-0 text-12 font-semibold text-info">
+                {formatEventTime(event.time)}
               </p>
+              <div className="min-w-0">
+                <p className="text-13 font-semibold text-text">{event.title}</p>
+                <p className="mt-1 flex items-center gap-1 text-11 text-text-muted">
+                  <Users className="h-3 w-3 shrink-0" />
+                  {formatCalendarDate(event.date)} · {event.metaLabel}
+                </p>
+              </div>
             </div>
           ))}
         </div>
