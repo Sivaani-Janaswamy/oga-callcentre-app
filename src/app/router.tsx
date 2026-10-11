@@ -5,6 +5,7 @@ import { CallsToMakePage } from '../components/plan/CallsToMakePage';
 import { IncomingCallsPage } from '../components/plan/IncomingCallsPage';
 import { PlanLayout } from '../components/plan/PlanLayout';
 import { RecentCallsPage } from '../components/plan/RecentCallsPage';
+import { PulsePage } from '../components/pulse/PulsePage';
 import { AppShell } from '../components/shell/AppShell';
 
 function PlaceholderPage({
@@ -58,12 +59,7 @@ export function AppRouter(): JSX.Element {
         />
         <Route
           path="/pulse"
-          element={
-            <PlaceholderPage
-              title="Pulse"
-              description="Pulse home with channels and quick updates will render here."
-            />
-          }
+          element={<PulsePage />}
         />
         <Route
           path="/pulse/:channelId"
