@@ -1,6 +1,5 @@
-import { Bell, Menu, Star } from 'lucide-react';
+import { Bell, Menu, Star, User } from 'lucide-react';
 import { getCurrentAgent, getDashboard } from '../../services/api';
-import { Avatar } from '../ui/Avatar';
 import { useAsync } from '../../hooks/useAsync';
 
 const EMPTY_DEPS: unknown[] = [];
@@ -14,42 +13,48 @@ export function TopBar({
   const { data: dashboardData } = useAsync(getDashboard, EMPTY_DEPS);
 
   return (
-    <header className="flex items-center justify-between border-b border-border bg-card px-6 py-4">
+    <header className="flex h-[54px] items-center justify-between bg-gradient-to-r from-sidebar to-sidebar-end px-4">
       <div className="flex items-center gap-3">
         <button
           type="button"
           onClick={onMenuToggle}
-          className="md:hidden flex h-9 w-9 items-center justify-center rounded-md bg-sidebar text-white transition-colors hover:bg-brand"
+          className="flex h-9 w-9 items-center justify-center rounded-md bg-white/10 text-white transition-colors hover:bg-white/20 md:hidden"
           aria-label="Open menu"
         >
           <Menu className="h-4 w-4" />
         </button>
-        <div className="hidden md:flex h-8 w-8 items-center justify-center rounded-md bg-brand/10 text-12 font-semibold text-brand">
+        <div className="flex h-[30px] w-[30px] items-center justify-center rounded-md bg-gradient-to-br from-brand to-brand-dark text-11 font-bold text-white">
           OG
         </div>
-        <div>
-          <p className="text-13 font-semibold text-text">On-Ground.ai</p>
-        </div>
+        <p className="text-13 font-semibold text-white">On-Ground.ai</p>
       </div>
 
       <div className="flex items-center gap-3">
-        <div className="relative flex h-9 w-9 items-center justify-center rounded-full bg-danger text-white">
+        <div
+          aria-hidden="true"
+          className="relative flex h-9 w-9 items-center justify-center rounded-full border border-white/40 bg-gradient-to-br from-danger to-danger-light shadow-[0_0_14px_rgba(217,80,80,0.45)] text-white"
+        >
           <Bell className="h-4 w-4" />
-          <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-accent" />
+          <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full border border-white bg-gold" />
           <span className="sr-only">
             {agentData?.unreadNotifications ?? 0} unread notifications
           </span>
         </div>
-        <div className="hidden sm:flex items-center gap-2 rounded-full border border-accent bg-card-soft px-2 py-1.5">
-          <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-brand text-10 font-semibold text-brand">
+        <div className="hidden items-center gap-2 rounded-full border border-white/20 bg-white/10 px-2.5 py-1.5 sm:flex">
+          <span className="flex h-6 w-6 items-center justify-center rounded-full border-2 border-white/70 bg-sidebar-end text-10 font-bold text-white">
             {dashboardData?.kpis.qaScore ?? '—'}
           </span>
-          <span className="flex items-center gap-1 text-11 font-semibold text-accent">
+          <span className="flex items-center gap-1 text-11 font-bold text-gold">
             <Star className="h-3 w-3 fill-current" />#{agentData?.rank ?? '—'}
           </span>
         </div>
-        <div className="rounded-full border-2 border-accent p-0.5">
-          <Avatar initials={agentData?.avatarInitials ?? '—'} size="sm" />
+        <div className="flex h-9 w-9 flex-col items-center justify-center rounded-full border-2 border-transparent bg-gradient-to-br from-brand to-gold p-0.5 text-white">
+          <span className="flex h-full w-full flex-col items-center justify-center rounded-full bg-sidebar-end">
+            <User className="h-3 w-3" />
+            <span className="text-10 font-bold leading-none">
+              {agentData?.avatarInitials ?? '—'}
+            </span>
+          </span>
         </div>
       </div>
     </header>
